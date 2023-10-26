@@ -64,12 +64,12 @@
             {
                 data: "published",
                 name: "published",
-                width: ""
+                width: "13%"
             },
             {
                 data: "actions",
                 name: "actions",
-                width: ""
+                width: "10%"
             }
         ],
         "columnDefs": [{
@@ -83,15 +83,18 @@
             },
             {
                 "width": "",
-                "targets": 2
+                "targets": 2,
+                "className": "dt-center"
             },
             {
                 "width": "",
-                "targets": 3
+                "targets": 3,
+                "className": "dt-center"
             },
             {
                 "width": "",
-                "targets": 4
+                "targets": 4,
+                "className": "dt-center"
             },
         ]
     });

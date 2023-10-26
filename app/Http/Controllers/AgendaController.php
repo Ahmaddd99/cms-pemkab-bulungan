@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -10,15 +11,76 @@ class AgendaController extends Controller
         return view('agendas.index');
     }
 
-    public function store(Request $request){
-        //
+    public function store(Request $request)
+    {
+    	$rules 	= [
+    		'tanggal' => 'required',
+    		'waktu'	=> 'required',
+    		'judul'	=> 'required',
+    		'keterangan' => 'required'
+    	];
+    	$messages = [
+    		'tanggal.required' => 'Tanggal tidak boleh kosong',
+    		'waktu.required' => 'Waktu tidak boleh kosong',
+    		'judul.required' => 'Judul tidak boleh kosong',
+    		'keterangan.required' => 'Keterangan tidak boleh kosong'
+    	];
+
+    	$validateData = $request->validate($rules, $messages);
+
+    	if($validateData) {
+    		$validateData['lokasi'] = $request->lokasi;
+    		Agenda::create($validateData);
+    	}
+
+    	return redirect()->route('agenda.index')->withSuccess('Berhasil tambah agenda!');
+
     }
 
-    public function show($id){
-        //
+
+    public function edit(Agenda $agenda)
+    {
+    	$data = [
+    		'agenda' => $agenda
+    	];
+    	return view('backend.agenda.edit', $data);
     }
 
-    public function destroy($id){
-        //
+
+    public function update(Request $request, Agenda $agenda)
+    {
+    	$rules 	= [
+    		'tanggal' => 'required',
+    		'waktu'	=> 'required',
+    		'judul'	=> 'required',
+    		'keterangan' => 'required'
+    	];
+    	$messages = [
+    		'tanggal.required' => 'Tanggal tidak boleh kosong',
+    		'waktu.required' => 'Waktu tidak boleh kosong',
+    		'judul.required' => 'Judul tidak boleh kosong',
+    		'keterangan.required' => 'Keterangan tidak boleh kosong'
+    	];
+
+    	$validateData = $request->validate($rules, $messages);
+
+    	if($validateData) {
+    		$validateData['lokasi'] = $request->lokasi;
+    		Agenda::where('id', $agenda->id)->update($validateData);
+    	}
+
+    	return redirect()->route('agenda.index')->withSuccess('Berhasil edit agenda!');
+    }
+
+
+    public function destroy(Agenda $agenda)
+    {
+    	Agenda::destroy($agenda->id);
+
+    	return redirect()->route('agenda.index')->withSuccess('Berhasil hapus data agenda.');
+    }
+
+    public function getAgenda(){
+        return Agenda::all();
     }
 }

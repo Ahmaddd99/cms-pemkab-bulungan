@@ -19,6 +19,7 @@
                     <div class="form-group">
                         <label for="image">Upload Banner</label>
                         <input type="file" class="form-control image-banner" id="image" name="image">
+                        <small class="text-danger">*Disarankan resolusi untuk upload banner adalah: 1200x600</small>
                     </div>
                 </div>
                 <div class="modal-footer">

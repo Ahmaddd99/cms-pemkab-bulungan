@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
@@ -36,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     // agenda
     Route::prefix('/agenda')->name('agenda.')->group(function(){
         Route::get('/index', [AgendaController::class, 'index'])->name('index');
+        Route::post('/index', [AgendaController::class, 'store'])->name('post');
+        Route::get('/all', [AgendaController::class, 'getAgenda'])->name('all');
     });
 
     // banner
@@ -77,6 +80,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/category', [ContentController::class, 'getCategoryId'])->name('category');
         Route::get('/subcategory', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
         Route::get('/feature', [ContentController::class, 'getFeatureId'])->name('feature');
+        Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
+        // delete attribute value
+        Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
     });
 
     Route::prefix('/feature')->name('feature.')->group(function(){
@@ -95,5 +101,14 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', [ContentGalleryController::class, 'destroy'])->name('delete');
         // get
         Route::get('/content', [ContentGalleryController::class, 'getContent'])->name('content');
+
+    });
+
+    Route::prefix('/attribute')->name('attribute.')->group(function(){
+        Route::get('/index', [AttributeController::class, 'index'])->name('index');
+        Route::post('/index', [AttributeController::class, 'store'])->name('post');
+        Route::get('/datatables', [AttributeController::class, 'datatables'])->name('datatables');
+        Route::get('/get/{id}', [AttributeController::class, 'getAttribute'])->name('get');
+        Route::delete('/delete/{id}', [AttributeController::class, 'destroy'])->name('delete');
     });
 });

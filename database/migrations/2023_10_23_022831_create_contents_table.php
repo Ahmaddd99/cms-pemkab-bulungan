@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('subcategory_id')->nullable()->references('id')->on('subcategories')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->string('title');
-            $table->longText('body');
+            $table->longText('body')->nullable();
             $table->string('meta');
             $table->timestamps();
         });

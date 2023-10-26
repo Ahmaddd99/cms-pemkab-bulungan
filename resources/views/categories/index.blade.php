@@ -52,7 +52,7 @@
             {
                 data: "published",
                 name: "published",
-                width: "15%"
+                width: "10%"
             },
             {
                 data: "image",
@@ -62,7 +62,7 @@
             {
                 data: "actions",
                 name: "actions",
-                width: "13%"
+                width: "10%"
             }
         ],
         "columnDefs": [{

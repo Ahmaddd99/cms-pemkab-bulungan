@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.4.0/css/dataTables.dateTime.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-1.13.6/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +21,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}" />
     <link rel="icon" href="{{asset('assets/images/logo/logo-pemkab-bulungan.png')}}" type="image/x-icon">
-    {{-- <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon" /> --}}
-    {{-- <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png" /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/calendar-style-new.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/calendar-theme.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.timepicker.min.css') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     @yield('css')
     <style>
@@ -110,10 +114,17 @@
                 dropdownParent: $('#ModalSub')
             });
             $("select.content").select2({
-                dropdownParent: $('#ModalContent')
+                // dropdownParent: $('#ModalContent')
             });
             $("select.content_id").select2({
                 dropdownParent: $('#ModalGallery')
+            });
+            $(".custom-select").each(function() {
+                $(this)
+                .wrap(`<div style="position:relative"></div>`)
+                .select2({
+                    // dropdownParent: $('#ModalContent')
+                });
             });
             @yield('js')
         });

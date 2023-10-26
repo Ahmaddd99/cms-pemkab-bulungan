@@ -42,9 +42,9 @@ class BannerController extends Controller
 
                 if($request->hasFile('image')){
                     // cek kalo ada gambar lama
-                    if($banner->image){
+                    if(optional($banner)->image){
                         $gambarLama = public_path('banner') . '/' . $banner->image;
-                        if(file_exists($gambarLama)){
+                        if(File::exists($gambarLama)){
                             unlink($gambarLama);
                         }
                     }
@@ -59,7 +59,7 @@ class BannerController extends Controller
                 DB::commit();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Success commited'
+                    'message' => 'Success commited',
                 ], 200);
             }catch(Throwable $e){
                 DB::rollBack();

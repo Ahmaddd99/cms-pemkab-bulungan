@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribut;
+use App\Models\AttributesValue;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Feature;
@@ -9,6 +11,7 @@ use App\Models\FeatureValue;
 use App\Models\Subcategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -59,19 +62,19 @@ class ContentController extends Controller
 
                 if ($request->subcategory_id) {
                     $contentData['subcategory_id'] = $request->subcategory_id;
-                }else{
+                } else {
                     $contentData['subcategory_id'] = null;
                 }
 
                 // cek gambar berdasarkan id
-                $id = $request->id;
-                $content = Content::find($id);
-                if($content->image){
-                    $gambar = storage_path('content/' . $content->image);
-                    if (File::exists($gambar)) {
-                        File::delete($gambar);
-                    }
-                }
+                // $id = $request->id;
+                // $content = Content::find($id);
+                // if($content->image){
+                //     $gambar = storage_path('content/' . $content->image);
+                //     if (File::exists($gambar)) {
+                //         File::delete($gambar);
+                //     }
+                // }
 
                 if ($request->hasFile('image')) {
                     $imgContent = $request->file('image');
@@ -88,16 +91,35 @@ class ContentController extends Controller
                     $contentData
                 );
 
-                if($request->feature_id){
-                    FeatureValue::updateOrCreate([
-                        'id' => $request->id_featureValue
-                    ],
-                    [
-                        'feature_id' => $request->feature_id,
-                        'content_id' => $content->id,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
-                    ]);
+                if ($request->feature_id) {
+                    FeatureValue::updateOrCreate(
+                        [
+                            'id' => $request->id_featureValue
+                        ],
+                        [
+                            'feature_id' => $request->feature_id,
+                            'content_id' => $content->id,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]
+                    );
+                }
+
+                // mulai loop attribute
+                $items = $request->attribute_id;
+                for ($i = 0; $i < count($items); $i++) {
+                    AttributesValue::updateOrCreate(
+                        [
+                            'id' => $request->attribute_value_id[$i]
+                        ],
+                        [
+                            'id' => $request->attribute_value_id[$i],
+                            'content_id' => $content->id,
+                            'attribut_id' => $request->attribute_id[$i],
+                            'description' => $request->description[$i],
+                            'order' => $request->order[$i]
+                        ]
+                    );
                 }
                 DB::commit();
                 return response()->json([
@@ -106,9 +128,66 @@ class ContentController extends Controller
             } catch (Throwable $e) {
                 DB::rollBack();
                 return response()->json([
-                    'message' => "error in server " . $e->getMessage()
+                    'message' => "Error in server " . $e->getMessage()
                 ], 500);
             }
+        }
+    }
+
+    public function createAttribute(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'slug' => 'required|unique:attributs,slug' . $request->id
+        ];
+        $messages = [
+            'name.required' => 'nama atribut harus terisi',
+            // 'slug.required' => 'slug harus terisi',
+            'slug.unique' => 'slug harus unik',
+        ];
+        $validation = Validator::make($request->all(), $rules, $messages);
+        if ($validation->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validation->getMessageBag()->toArray()
+            ], 422);
+        } else {
+            DB::beginTransaction();
+            try {
+                $name = $request->name;
+                Attribut::updateOrCreate(
+                    [
+                        'id' => $request->id
+                    ],
+                    [
+                        'name' => $name,
+                        'slug' => Str::slug($name . '-' . time()),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]
+                );
+                DB::commit();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Success post data'
+                ], 200);
+            } catch (Throwable $e) {
+                DB::rollBack();
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Internal server error ' . $e
+                ], 500);
+            }
+        }
+    }
+
+    public function deleteAttributeValue($id){
+        $data = AttributesValue::find($id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                'message' => 'success deleted attribute value'
+            ]);
         }
     }
 
@@ -116,8 +195,18 @@ class ContentController extends Controller
     {
         $data = Content::select("*")->orderBy('id', 'desc')->with('category', 'subcategory')->get();
         return DataTables::of($data)
+            ->editColumn('category_id', function ($row) {
+                return $row->category->name;
+            })
+            ->editColumn('subcategory_id', function ($row) {
+                if($row->subcategory == null){
+                    return "-";
+                }else{
+                    return $row->subcategory->name;
+                }
+            })
             ->editColumn('image', function ($row) {
-                return '<img src="' . $row->image . '" alt="" style="width:15em">';
+                return '<img src="' . $row->image . '" alt="" style="width:10em">';
             })
             ->addColumn('actions', function ($row) {
                 return '
@@ -125,13 +214,15 @@ class ContentController extends Controller
             <button type="button" class="btn btn-danger btn-delete-content btn-sm" data-id="' . $row->id . '">Hapus</button>
             ';
             })
-            ->rawColumns(['category_id', 'subcategory_id', 'image', 'title', 'body', 'meta', 'actions'])
+            ->rawColumns(['category_id', 'subcategory_id', 'image', 'title', 'meta', 'actions'])
             ->make(true);
     }
 
     public function show($id)
     {
-        $data = Content::where('id', $id)->with('category', 'subcategory', 'featureValue')->first();
+        $data = Content::where('id', $id)->with('category', 'subcategory', 'featureValue')->with('attributValue', function ($q) {
+            $q->select('id', 'attribut_id', 'content_id', 'description', 'order')->with('attribut');
+        })->first();
         return response()->json([
             'content' => $data
         ]);
@@ -161,11 +252,20 @@ class ContentController extends Controller
         ]);
     }
 
-    public function destroy($id){
+    public function getAttribute()
+    {
+        $data = Attribut::select("*")->limit(100)->orderBy('id', 'desc')->get();
+        return response()->json([
+            'attribute' => $data
+        ]);
+    }
+
+    public function destroy($id)
+    {
         $data = Content::where('id', $id)->with('featureValue')->first();
-        if($data->image){
+        if ($data->image) {
             $path = public_path('content') . '/' . $data->image;
-            if(fileExists($path)){
+            if (fileExists($path)) {
                 unlink($path);
             }
         }

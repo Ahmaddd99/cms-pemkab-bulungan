@@ -28,57 +28,51 @@
 
             <li class="sidebar-item {{ Route::is('agenda.index') ? 'active' : '' }}">
                 <a href="{{ Route('agenda.index') }}" class="sidebar-link">
-                    <i class="bi bi-bar-chart-line"></i>
+                    <i class="bi bi-calendar-date"></i>
                     <span>Agenda</span>
                 </a>
             </li>
 
             <li class="sidebar-item {{ Route::is('banner.index') ? 'active' : '' }}">
                 <a href="{{ Route('banner.index') }}" class="sidebar-link">
-                    <i class="bi bi-calendar-check"></i>
+                    <i class="bi bi-card-image"></i>
                     <span>Banner</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
                 <a href="{{ Route('category.index') }}" class="sidebar-link">
-                    <i class="bi bi-calendar-check"></i>
+                    <i class="bi bi-diagram-2"></i>
                     <span>Kategori</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Route::is('subcategory.index') ? 'active' : '' }}">
                 <a href="{{ Route('subcategory.index') }}" class="sidebar-link">
-                    <i class="bi bi-calendar-check"></i>
+                    <i class="bi bi-diagram-3"></i>
                     <span>Subkategori</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Route::is('content.index') ? 'active' : '' }}">
                 <a href="{{ Route('content.index') }}" class="sidebar-link">
-                    <i class="bi bi-calendar-check"></i>
+                    <i class="bi bi-card-heading"></i>
                     <span>Konten</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Route::is('feature.index') ? 'active' : '' }}">
                 <a href="{{ Route('feature.index') }}" class="sidebar-link">
-                    <i class="bi bi-calendar-check"></i>
+                    <i class="bi bi-file-earmark-plus"></i>
                     <span>Fitur</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ Route::is('attribute.index') ? 'active' : '' }}">
+                <a href="{{ Route('attribute.index') }}" class="sidebar-link">
+                    <i class="bi bi-columns-gap"></i>
+                    <span>Atribut</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Route::is('gallery.index') ? 'active' : '' }}">
                 <a href="{{ Route('gallery.index') }}" class="sidebar-link">
-                    <i class="bi bi-grid-fill"></i>
+                    <i class="bi bi-collection-play"></i>
                     <span>Galeri Konten</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ Route::is('dashboard') ? 'active' : '' }}">
-                <a href="{{ Route('dashboard') }}" class="sidebar-link">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ Route::is('dashboard') ? 'active' : '' }}">
-                <a href="{{ Route('dashboard') }}" class="sidebar-link">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
                 </a>
             </li>
 

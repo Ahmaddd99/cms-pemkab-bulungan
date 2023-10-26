@@ -57,7 +57,7 @@
             {
                 data: "actions",
                 name: "actions",
-                width: "20%"
+                width: "10%"
             }
         ],
         "columnDefs": [{
@@ -71,7 +71,8 @@
             },
             {
                 "width": "",
-                "targets": 2
+                "targets": 2,
+                "className": "dt-center"
             }
         ]
     });

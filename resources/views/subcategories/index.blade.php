@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>Kategori</th>
-                            <th>Nama</th>
+                            <th>Nama Subkategori</th>
                             <th>Gambar</th>
                             <th>Published</th>
                             <th></th>
@@ -46,29 +46,29 @@
             [10, 25, 50, 100, "All"]
         ],
         "columns": [{
-                data: "category_id",
-                name: "category_id",
-                width: ""
+                data: "category",
+                name: "category",
+                width: "21%"
             },
             {
                 data: "name",
                 name: "name",
-                width: "30%"
+                width: "21%"
             },
             {
                 data: "published",
                 name: "published",
-                width: "15%"
+                width: "13%"
             },
             {
                 data: "image",
                 name: "image",
-                width: "40%"
+                width: "30%"
             },
             {
                 data: "actions",
                 name: "actions",
-                width: "13%"
+                width: "10%"
             }
         ],
         "columnDefs": [{

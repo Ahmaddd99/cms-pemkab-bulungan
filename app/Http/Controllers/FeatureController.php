@@ -6,6 +6,7 @@ use App\Models\Feature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sail\Console\PublishCommand;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -76,6 +77,13 @@ class FeatureController extends Controller
         return DataTables::of($data)
         ->editColumn('image', function($row){
             return '<img src="'.$row->image.'" alt="" style="width:15em">';
+        })
+        ->editColumn('published', function($row){
+            if($row->published == 1){
+                return '<div class="btn-sm" style="background-color:#435EBE;color:white">Publish</div>';
+            }else{
+                return '<div class="btn-secondary btn-sm">Tidak Dipublish</div>';
+            }
         })
         ->addColumn('actions', function($row){
             return '

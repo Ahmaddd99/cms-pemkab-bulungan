@@ -79,12 +79,15 @@ class SubcategoryController extends Controller
         $data = Subcategory::select("*")->orderBy('id', 'desc')->with('category')->get();
         // return $data;
         return DataTables::of($data)
+        ->addColumn('category', function($row){
+            return $row->category->name;
+        })
         ->editColumn('image', function($row){
             return '<img src="'.$row->image.'" alt="" style="width:15em">';
         })
         ->editColumn('published', function($row){
             if($row->published == 1){
-                return '<div class="btn-primary btn-sm">Publish</div>';
+                return '<div class="btn-sm" style="background-color:#435EBE;color:white">Publish</div>';
             }else{
                 return '<div class="btn-secondary btn-sm">Tidak Dipublish</div>';
             }
@@ -95,7 +98,7 @@ class SubcategoryController extends Controller
             <button type="button" class="btn btn-danger btn-delete-subcategory btn-sm" data-id="'.$row->id.'">Hapus</button>
             ';
         })
-        ->rawColumns(['category_id', 'name', 'image', 'published', 'actions'])
+        ->rawColumns(['category', 'name', 'image', 'published', 'actions'])
         ->make(true);
     }
 

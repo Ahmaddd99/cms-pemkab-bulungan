@@ -81,7 +81,7 @@ class CategoryController extends Controller
         })
         ->editColumn('published', function($row){
             if($row->published == 1){
-                return '<div class="btn-primary btn-sm">Publish</div>';
+                return '<div class="btn-sm" style="background-color:#435EBE;color:white">Publish</div>';
             }else{
                 return '<div class="btn-secondary btn-sm">Tidak Dipublish</div>';
             }

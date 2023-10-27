@@ -71,8 +71,7 @@ class AgendaController extends Controller
 
     	if($validateData) {
             $waktu = $request->waktu;
-            $waktukedatabase = $waktu . ':00';
-            $validateData['waktu'] = $waktukedatabase;
+            $validateData['waktu'] = date_format($waktu, "H:i:s");
     		$validateData['lokasi'] = $request->lokasi;
     		Agenda::where('id', $agenda->id)->update($validateData);
     	}

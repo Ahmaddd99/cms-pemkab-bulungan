@@ -157,7 +157,7 @@
 
     });
     $('.waktu').timepicker({
-        'timeFormat': 'H.i.s',
+        'timeFormat': 'H.i',
         'step': 15,
         'scrollDefault': 'now'
     });

@@ -42,11 +42,9 @@ class BannerController extends Controller
 
                 if($request->hasFile('image')){
                     // cek kalo ada gambar lama
-                    if(optional($banner)->image){
-                        $gambarLama = public_path('banner') . '/' . $banner->image;
-                        if(File::exists($gambarLama)){
-                            unlink($gambarLama);
-                        }
+                    $currentImagePath = public_path('content/' . $request->current_image);
+                    if(File::exists($currentImagePath)) {
+                        unlink($currentImagePath);
                     }
                     // upload gambar
                     $foto = $request->file('image');

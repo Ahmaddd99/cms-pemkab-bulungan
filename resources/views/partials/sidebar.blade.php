@@ -57,7 +57,7 @@
                     <span>Konten</span>
                 </a>
             </li>
-            <li class="sidebar-item {{ Route::is('feature.index') ? 'active' : '' }}">
+            {{-- <li class="sidebar-item {{ Route::is('feature.index') ? 'active' : '' }}">
                 <a href="{{ Route('feature.index') }}" class="sidebar-link">
                     <i class="bi bi-file-earmark-plus"></i>
                     <span>Fitur</span>
@@ -74,49 +74,25 @@
                     <i class="bi bi-collection-play"></i>
                     <span>Galeri Konten</span>
                 </a>
-            </li>
+            </li> --}}
 
-            {{-- Databases
-            <li class="sidebar-item {{ Route::is('master.*') ? 'active' : '' }} has-sub">
+            <li class="sidebar-item {{ Route::is('submenu.*') ? 'active' : '' }} has-sub">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-collection-fill"></i>
-                    <span>Databases</span>
+                    <span>Fitur Tambahan</span>
                 </a>
-                <ul class="submenu {{ Route::is('master.*') ? 'active' : '' }}">
-                    <li class="submenu-item {{ Route::is('master.client.index') ? 'active' : '' }}">
-                        <a href="{{ route('master.client.index') }}" class="submenu-link">Client</a>
+                <ul class="submenu {{ Route::is('submenu.*') ? 'active' : '' }}">
+                    <li class="submenu-item {{ Route::is('submenu.feature.index') ? 'active' : '' }}">
+                        <a href="{{ route('submenu.feature.index') }}" class="submenu-link">Fitur</a>
                     </li>
-
-                    <li class="submenu-item {{ Route::is('master.project.index') ? 'active' : '' }}">
-                        <a href="{{ route('master.project.index') }}" class="submenu-link">Project</a>
+                    <li class="submenu-item {{ Route::is('submenu.attribute.index') ? 'active' : '' }}">
+                        <a href="{{ route('submenu.attribute.index') }}" class="submenu-link">Label</a>
                     </li>
-                    <li class="submenu-item {{ Route::is('master.production.index') ? 'active' : '' }}">
-                        <a href="{{ route('master.production.index') }}" class="submenu-link">Product</a>
-                    </li>
-                    <li class="submenu-item {{ Route::is('master.status.index') ? 'active' : '' }}">
-                        <a href="{{ route('master.status.index') }}" class="submenu-link">Status</a>
-                    </li>
-
-                </ul>
-            </li> --}}
-
-
-            <!-- Projects -->
-            {{-- <li class="sidebar-item {{ Route::is('projects.*') ? 'active' : '' }}  has-sub">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-card-checklist"></i>
-                    <span>Projects</span>
-                </a>
-                <ul class="submenu {{ Route::is('projects.*') ? 'active' : '' }}">
-                    <li class="submenu-item {{Route::is('projects.project.index')  ? 'active' : '' }}" >
-                        <a href="{{route('projects.project.index')}}" class="submenu-link">Project</a>
-                    </li>
-                    <li class="submenu-item {{Route::is('projects.status.index') ? 'active' : '' }}" >
-                        <a href="{{route('projects.status.index')}}" class="submenu-link">Status</a>
+                    <li class="submenu-item {{ Route::is('submenu.gallery.index') ? 'active' : '' }}">
+                        <a href="{{ route('submenu.gallery.index') }}" class="submenu-link">Galeri Konten</a>
                     </li>
                 </ul>
-            </li> --}}
-
+            </li>
             <hr>
             <li class="sidebar-item">
                 <a href="{{ route('logout') }}" class="sidebar-link">
@@ -124,32 +100,5 @@
                     <span>Logout</span>
                 </a>
             </li>
-
-            {{-- <li class="sidebar-item {{ Route::is('client.index') ? 'active' : '' }}">
-            <a href="{{ route('client.index') }}" class="sidebar-link">
-                <i class="bi bi-person"></i>
-                <span>Client</span>
-            </a>
-        </li>
-        <li class="sidebar-item {{ Route::is('project.index') ? 'active' : '' }}">
-            <a href="{{ route('project.index') }}" class="sidebar-link">
-                <i class="bi bi-kanban"></i>
-                <span>Project</span>
-            </a>
-        </li>
-        <li class="sidebar-item {{ Route::is('production.index') ? 'active' : '' }}">
-            <a href="{{ route('production.index') }}" class="sidebar-link">
-                <i class="bi bi-box-seam"></i>
-                <span>Production</span>
-            </a>
-        </li>
-        <li class="sidebar-item {{ Route::is('status.index') ? 'active' : '' }}">
-            <a href="{{ route('status.index') }}" class="sidebar-link">
-                <i class="bi bi-bar-chart"></i>
-                <span>Status</span>
-            </a>
-        </li> --}}
-
-
     </div>
 </div>

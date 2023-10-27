@@ -13,7 +13,7 @@
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
@@ -21,7 +21,7 @@
             <form method="POST" action="{{ route('agenda.post') }}">
                 @csrf
                 <div class="row">
-                    <div class="col-6 col-lg-6 col-xxl-9 d-flex">
+                    <div class="col-6 col-lg-6 col-xxl-6 d-flex">
                         <div class="card flex-fill">
                             <div class="calendar-container"></div>
                         </div>
@@ -114,7 +114,6 @@
                     </div><!-- / .col -->
                 </div><!-- / .row -->
             </section>
-
         </div>
     </main>
 @endsection
@@ -123,7 +122,7 @@
 		moment.locale('id');
 		var dateHariIni = new Date();
 		var agendaHariIni = moment(dateHariIni).format('Do MMMM YYYY');
-	    var formatTanggalHariIni = moment(dateHariIni).format("DD-MM-YYYY");
+	    var formatTanggalHariIni = moment(dateHariIni).format("YYYY-MM-DD");
 	    var getTanggal = moment(dateHariIni).format('Do MMMM YYYY');
 
 	 //    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -132,7 +131,7 @@
 		// });
 		$('[data-toggle="tooltip"]').tooltip();
 
-    $('#tanggal').val(moment(new Date()).format('DD-MM-YYYY'));
+    $('#tanggal').val(moment(new Date()).format('YYYY-MM-DD'));
     $('.tanggalPilih').html(agendaHariIni);
     getAgenda(formatTanggalHariIni);
 
@@ -140,10 +139,10 @@
         $('.calendar-container').updateCalendarOptions({
             date: date
         });
-        $('#tanggal').val(moment(date).format('DD-MM-YYYY'));
+        $('#tanggal').val(moment(date).format('YYYY-MM-DD'));
         $('.tanggalPilih').html(moment(date).format('Do MMMM YYYY'));
         getTanggal = moment(date).format('Do MMMM YYYY');
-        var formatTanggal = moment(date).format("DD-MM-YYYY");
+        var formatTanggal = moment(date).format("YYYY-MM-DD");
         getAgenda(formatTanggal);
     }
     $('.calendar-container').calendar({
@@ -158,7 +157,7 @@
 
     });
     $('.waktu').timepicker({
-        'timeFormat': 'H.i',
+        'timeFormat': 'H.i.s',
         'step': 15,
         'scrollDefault': 'now'
     });
@@ -196,8 +195,8 @@
                              </div><!-- / .card-body -->
                         </div><!-- / .col -->
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                            <a href="agenda/edit/${val.id}" class="btn btn-success">Edit</a>
-                            <form method="POST" action="agenda/delete/${val.id}" class="d-inline">
+                            <a href="./edit/${val.id}" class="btn btn-success">Edit</a>
+                            <form method="POST" action="./delete/${val.id}" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" style="margin-left:10px" onclick="return confirm('Anda yakin ingin menghapus agenda di tanggal ini?')">&times;</button>

@@ -6,6 +6,7 @@ use App\Models\Attribut;
 use App\Models\AttributesValue;
 use App\Models\Category;
 use App\Models\Content;
+use App\Models\ContentGallery;
 use App\Models\Feature;
 use App\Models\FeatureValue;
 use App\Models\Subcategory;
@@ -77,6 +78,10 @@ class ContentController extends Controller
                 // }
 
                 if ($request->hasFile('image')) {
+                    $currentImagePath = public_path('content/' . $request->current_image);
+                    if(File::exists($currentImagePath)) {
+                        unlink($currentImagePath);
+                    }
                     $imgContent = $request->file('image');
                     $namaFile = 'content-' . time() . '_' . $imgContent->getClientOriginalName();
                     $tujuanUpload = 'content';
@@ -107,24 +112,39 @@ class ContentController extends Controller
 
                 // mulai loop attribute
                 $items = $request->attribute_id;
+                $dataItems = [];
                 for ($i = 0; $i < count($items); $i++) {
-                    AttributesValue::updateOrCreate(
-                        [
-                            'id' => $request->attribute_value_id[$i]
-                        ],
-                        [
+                    $dataItems[] = [
                             'id' => $request->attribute_value_id[$i],
                             'content_id' => $content->id,
                             'attribut_id' => $request->attribute_id[$i],
                             'description' => $request->description[$i],
                             'order' => $request->order[$i]
-                        ]
-                    );
+                    ];
                 }
+                AttributesValue::upsert($dataItems, ['id']);
+
+                //content gallery
+                $galleryImages = [];
+                if($images = $request->file('image_gallery')){
+                    foreach ($images as $image){
+                        $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
+                        $image->move('gallery', $namaImage);
+                        $galleryImages[] = [
+                            'content_id' => $content->id,
+                            'image' => $namaImage
+                        ];
+                    }
+                }
+
+                ContentGallery::upsert($galleryImages, ['id']);
+
                 DB::commit();
+
                 return response()->json([
-                    'message' => "Commit was success"
+                    'message' => "Commit was success",
                 ], 200);
+
             } catch (Throwable $e) {
                 DB::rollBack();
                 return response()->json([
@@ -222,7 +242,7 @@ class ContentController extends Controller
     {
         $data = Content::where('id', $id)->with('category', 'subcategory', 'featureValue')->with('attributValue', function ($q) {
             $q->select('id', 'attribut_id', 'content_id', 'description', 'order')->with('attribut');
-        })->first();
+        })->with('galleries')->first();
         return response()->json([
             'content' => $data
         ]);

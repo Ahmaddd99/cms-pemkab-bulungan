@@ -37,7 +37,7 @@
             processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
         },
         "serverSide": true,
-        "ajax": "{{ route('feature.datatables') }}",
+        "ajax": "{{ route('submenu.feature.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -155,7 +155,7 @@
     });
 
     function postFeature(data){
-        axios.post('{{route('feature.post')}}', data, {
+        axios.post('{{route('submenu.feature.post')}}', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

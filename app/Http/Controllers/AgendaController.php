@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -29,6 +30,10 @@ class AgendaController extends Controller
     	$validateData = $request->validate($rules, $messages);
 
     	if($validateData) {
+            // $tanggal = $validateData['tanggal'];
+            // $formatTanggal = Carbon::createFromFormat('d-m-Y', $tanggal)->format('Y-m-d');
+            // $waktu = $validateData['waktu'];
+            // $formatWaktu = Carbon::createFromFormat('H:i', $waktu)->format('H:i:s');
     		$validateData['lokasi'] = $request->lokasi;
     		Agenda::create($validateData);
     	}
@@ -43,7 +48,7 @@ class AgendaController extends Controller
     	$data = [
     		'agenda' => $agenda
     	];
-    	return view('backend.agenda.edit', $data);
+    	return view('agendas.edit', $data);
     }
 
 
@@ -71,7 +76,6 @@ class AgendaController extends Controller
 
     	return redirect()->route('agenda.index')->withSuccess('Berhasil edit agenda!');
     }
-
 
     public function destroy(Agenda $agenda)
     {

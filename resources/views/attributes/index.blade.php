@@ -34,7 +34,7 @@
             processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
         },
         "serverSide": true,
-        "ajax": "{{ route('attribute.datatables') }}",
+        "ajax": "{{ route('submenu.attribute.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -106,7 +106,7 @@
     });
 
     function postAttribute(data){
-        axios.post('{{route('attribute.post')}}', data)
+        axios.post('{{route('submenu.attribute.post')}}', data)
             .then(function(response){
                 console.log(response);
                 afterAction();

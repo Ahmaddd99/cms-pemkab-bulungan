@@ -1,6 +1,6 @@
 <div id="ModalContent" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <form id="FormContent" enctype="multipart/form-data">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="margin: 0 auto">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Form konten</h5>
@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="col-8">
+                        <div class="col-4">
                             <input type="hidden" class="form-control id" id="id" name="id" value="">
                             <div class="form-row">
                                 <div class="form-group col-6">
@@ -27,49 +27,82 @@
                                 <input type="text" name="title" id="title" class="form-control title" placeholder="Tulis judul konten disini" required value="">
                             </div>
                             <div class="form-group">
-                                <label class="required" for="meta">Meta</label>
+                                <label class="required" for="meta">Deskripsi Singkat</label>
                                 <input type="text" name="meta" id="meta" class="form-control meta" placeholder="Tulis alamat/lokasi disini" required value="">
                             </div>
-                            <div id="gambar-content"></div>
+                            <!-- preview upload image content -->
+                            <div id="gambar-content" class="d-none my-3 text-center">
+                                <img alt="" alt="" class="img-fluid img-thumbnail" />
+                            </div>
+                            <!-- link asset gambar sebelumnya -->
+                            <div>
+                                <input type="hidden" name="current_image" class="form-control current_image" readonly value="" />
+                            </div>
                             <div class="form-group">
                                 <label for="image">Upload Gambar</label>
                                 <input type="file" name="image" id="image" class="form-control image-content" accept="image/*">
                             </div>
                             <div class="form-group">
-                                <label for="body">Konten</label>
-                                <textarea name="body" id="body" cols="3" class="form-control body"></textarea>
+                                <label for="body">Deskripsi</label>
+                                <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             </div>
-                            <hr>
-                            <button type="button" class="btn btn-secondary btn-sm btn-add-attribute" data-toggle="modal" data-target="#ModalAttribute">Tambah Atribut</button>
+                        </div>
+                        <div class="col-4">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-success btn-sm btn-add-attribute mb-3" data-toggle="modal" data-target="#ModalAttribute">Tambah Label Baru</button>
+                            </div>
                             <div id="form-group-body">
                                 <div class="attribute-group">
-                                    <div class="form-group mb-3">
-                                        <label class="required" for="attribute_id">Attribute</label>
+                                    <div class="form-group mb-3 col-6">
+                                        <label class="required" for="attribute_id">Label</label>
                                         <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required></select>
                                     </div>
-                                    <input type="text" id="attribute_value_id[]" name="attribute_value_id" class="form-control attribute_value_id" readonly>
                                     <div class="form-group">
-                                        <label class="required" for="description">Deskripsi Attribut</label>
-                                        <textarea name="description[]" id="description" cols="3" class="form-control description" required placeholder="Masukan deskripsi attribut"></textarea>
+                                        <input type="hidden" id="attribute_value_id[]" name="attribute_value_id" class="form-control attribute_value_id" readonly>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label class="required" for="order">Order</label>
-                                            <input type="number" name="order[]" id="order" class="form-control order" placeholder="cth:0" required>
+                                    <div class="form-group mb-3 col-12">
+                                        <label class="required" for="description">Deskripsi Attribut</label>
+                                        <textarea name="description[]" id="description" rows="2" class="form-control description" required placeholder="Masukan deskripsi attribut"></textarea>
+                                    </div>
+                                    <div class="form-row col-12">
+                                        <div class="form-group col-3">
+                                            <label for="order">Order</label>
+                                            <input type="number" name="order[]" id="order" class="form-control text-center order" value="0" onclick="this.select()" required>
                                         </div>
-                                        <div class="col-6">
-                                            <button type="button" class="btn btn-sm btn-secondary btn-hapus-attribute" style="width: 100%;margin-top:2.5em">Hapus</button>
+                                        <div class="col-2">
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="tambah-attribute" class="btn btn-sm btn-secondary tambah-attribute" style="width:100%">Tambah Attribut</button>
+                            <div class="col-12">
+                                <button type="button" id="tambah-attribute" class="btn btn-sm btn-outline-primary tambah-attribute" style="width:100%">Tambah Attribut</button>
+                            </div>
                         </div>
                         <div class="col-4">
-                            <input type="hidden" name="id_featureValue" id="id_featureValue" class="form-control id_featureValue" value="">
-                            <div class="form-group">
-                                <label for="feature_id">Pilih Penempatan untuk ditampilkan</label>
-                                <select name="feature_id" id="feature_id" class="form-control custom-select feature_id content" style="width: 100%"></select>
+                            <div class="form-row">
+                                <input type="hidden" name="id_featureValue" id="id_featureValue" class="form-control id_featureValue" value="">
+                                <div class="form-group">
+                                    <label for="feature_id">Pilih Penempatan untuk ditampilkan</label>
+                                    <select name="feature_id" id="feature_id" class="form-control custom-select feature_id content" style="width: 100%"></select>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-row">
+                                {{-- <input type="hidden" name="id_gallery[]" class="form-control id_gallery" readonly> --}}
+                                <div class="form-group">
+                                    <label for="">Upload gambar konten galeri</label>
+                                    <input type="file" id="image_gallery" name="image_gallery[]" class="form-control image_gallery" accept="image/*" multiple>
+                                </div>
+                                <!-- preview upload galleries -->
+                                <div id="preview-upload-galleries" class="d-none my-3 text-center">
+                                    <img alt="" alt="" class="img-fluid img-thumbnail" />
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- isi galeri kontent -->
+                            <div id="koleksi-galeri" class="d-none my-3 text-center">
+
                             </div>
                         </div>
                     </div>

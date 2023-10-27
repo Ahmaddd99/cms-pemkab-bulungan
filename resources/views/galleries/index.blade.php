@@ -34,7 +34,7 @@
             processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
         },
         "serverSide": true,
-        "ajax": "{{ route('gallery.datatables') }}",
+        "ajax": "{{ route('submenu.gallery.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -142,7 +142,7 @@
     });
 
     function postData(data){
-        axios.post('{{route('gallery.post')}}', data, {
+        axios.post('{{route('submenu.gallery.post')}}', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

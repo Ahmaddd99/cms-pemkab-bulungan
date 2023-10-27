@@ -15,11 +15,18 @@
                         <label class="required" for="keterangan">Keterangan</label>
                         <input type="text" class="form-control keterangan" id="keterangan" name="keterangan" placeholder="Tulis keterangan disini" required>
                     </div>
-                    <div id="gambar-banner"></div>
+                    <!-- preview upload banner -->
+                    <div id="gambar-banner" class="d-none my-3 text-center">
+                        <img alt="" alt="" class="img-fluid img-thumbnail" />
+                    </div>
+                    <!-- link asset gambar sebelumnya -->
+                    <div>
+                        <input type="hidden" name="current_image" class="form-control current_image" readonly value="" />
+                    </div>
                     <div class="form-group">
                         <label for="image">Upload Banner</label>
-                        <input type="file" class="form-control image-banner" id="image" name="image">
-                        <small class="text-danger">*Disarankan resolusi untuk upload banner adalah: 1200x600</small>
+                        <input type="file" class="form-control image-banner" id="image" name="image" accept="image/*">
+                        <small class="text-primary">*Disarankan resolusi untuk upload banner adalah: 1200x600</small>
                     </div>
                 </div>
                 <div class="modal-footer">

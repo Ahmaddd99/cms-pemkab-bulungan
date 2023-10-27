@@ -60,14 +60,22 @@ class ContentGalleryController extends Controller
             }
         }
     }
+
     public function datatables(){
-        $data = ContentGallery::select("*")->orderBy('id', 'desc')->with('content')->get();
+        // $data = ContentGallery::select("*")->orderBy('id', 'desc')->groupBy('content_id')->with('content')->get();
+        $data = Content::with('galleries')->orderBy('id','desc')->get();
+        // return $data;
         return DataTables::of($data)
         ->addColumn('content', function($row){
-            return $row->content->title;
+            return $row->title;
         })
         ->editColumn('image', function($row){
-            return '<img src="'.$row->image.'" alt="" style="width:15em">';
+            // return '<img src="'.$row->image.'" alt="" style="width:15em">';
+            $images = '';
+            foreach($row->galleries as $image) {
+                $images .= "<img class='float-left rounded mx-1' style='width:100px' src='". asset("gallery/" . $image->image) ."' />";
+            }
+            return $images;
         })
         ->addColumn('actions', function($row){
             return '

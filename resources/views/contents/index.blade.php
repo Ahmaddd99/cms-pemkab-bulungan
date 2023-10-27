@@ -115,6 +115,7 @@
     function afterAction() {
         $('#FormContent')[0].reset();
         $('#ModalContent').modal('hide');
+        $("#loop-attribute").empty();
     }
 
     function reloadDatatable() {
@@ -137,13 +138,15 @@
         afterAction();
         reloadDatatable();
         $('#gambar-content').empty();
+        //$("#loop-attribute").empty();
+        showAttributeForm('show');
     });
 
-    $(".add-new-content").on("click", function() {
+    $(".btn-add-content").on("click", function() {
         $(".id").val("");
         afterAction();
         $("#loop-attribute").empty();
-
+        //$("#tambah-attribute").trigger('click');
     });
 
     $('.close-content').on("click", function() {
@@ -151,6 +154,7 @@
         afterAction();
         reloadDatatable();
         $('#gambar-content').empty();
+        //$("#loop-attribute").empty();
     });
     // end partials
 
@@ -244,23 +248,25 @@
                 let newAttributeGroup = `
                 <div id="loop-attribute" class="attribute-group-additional">
                     <hr>
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3 col-6">
                         <label class="required" for="attribute_id">Attribute</label>
                         <select name="attribute_id[]" class="form-control custom-select get-attribute-additional attribute_id" style="width: 100%" required>${optionadditional}</select>
                     </div>
-                    <input type="text" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
                     <div class="form-group">
+                        <input type="hidden" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
+                    </div>
+                    <div class="form-group col-12">
                         <label class="required" for="description">Deskripsi Attribut</label>
                         <textarea name="description[]" cols="3" class="form-control description" required
-                            placeholder="Masukan deskripsi attribut"></textarea>
+                            placeholder="Masukan deskripsi attribut" style="height:10em"></textarea>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-6">
+                    <div class="form-row col-6">
+                        <div class="form-group col-8">
                             <label class="required" for="order">Order</label>
-                            <input type="number" name="order[]" id="order" class="form-control order" placeholder="cth:0" required>
+                            <input type="number" name="order[]" id="order" class="form-control order" required>
                         </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-sm btn-secondary btn-hapus-attribute" style="width: 100%;margin-top:2.5em">Hapus</button>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
                         </div>
                     </div>
                 </div>
@@ -276,6 +282,31 @@
             });
     });
     //end add attribute
+
+    // preview upload
+    $('#image').on('change', function() {
+        $('#gambar-banner').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-banner').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('#image_gallery').on('change', function() {
+        $('#preview-upload-galleries').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#preview-upload-galleries').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 
     // post
     $("#FormContent").on("submit", function(e) {
@@ -309,17 +340,18 @@
         //     order:order
         // }
 
-        let formData = new FormData(this);
+        let formData = new FormData($(this)[0]);
 
         //if ($(".subcategory_id").val()) {
         //    formData.append("subcategory_id", $(".subcategory_id").val());
         //}
 
         postContent(formData);
+        //console.log($(this).serialize());
     })
 
-    function postContent(data) {
-        axios.post('{{ route('content.post') }}', data, {
+    function postContent(post) {
+        axios.post('{{ route('content.post') }}', post, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -339,8 +371,40 @@
     $(document).on("click", ".btn-edit-content", function() {
         let id = $(this).data('id');
         console.log(id);
-        getContent(id)
+        getContent(id);
+        showAttributeForm('hide');
     });
+
+    function showAttributeForm(cond) {
+        let _form = '';
+        if(cond === 'show') {
+            _form = `<div class="attribute-group">
+                <div class="form-group mb-3 col-6">
+                    <label class="required" for="attribute_id">Label</label>
+                    <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required></select>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="attribute_value_id[]" name="attribute_value_id" class="form-control attribute_value_id" readonly>
+                </div>
+                <div class="form-group mb-3 col-12">
+                    <label class="required" for="description">Deskripsi Attribut</label>
+                    <textarea name="description[]" id="description" rows="2" class="form-control description" required placeholder="Masukan deskripsi attribut"></textarea>
+                </div>
+                <div class="form-row col-12">
+                    <div class="form-group col-3">
+                        <label for="order">Order</label>
+                        <input type="number" name="order[]" id="order" class="form-control text-center order" value="0" onclick="this.select()" required>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
+                    </div>
+                </div>
+            </div>`;
+            $('#form-group-body').html(_form);
+        } else {
+            $('#form-group-body').html('');
+        }
+    }
 
     function getContent(id) {
         axios.get('./get/' + id)
@@ -348,22 +412,26 @@
                 let data = response.data.content;
                 let feature = response.data.content.feature_value;
                 let attribute = response.data.content.attribut_value;
-                console.log(attribute);
+                let galleries = response.data.content.galleries;
+                console.log(galleries);
+                //console.log(attribute);
                 //console.log(feature);
-                //console.log(data);
+                console.log(data);
                 $('.id').val(data.id);
                 $('.category_id').val(data.category_id).trigger('change');
-                $('.subcategory_id').val(data.subcategory_id).trigger('change');
+                $('.subcategory_id').val(data.subcategory_id);
                 $('.title').val(data.title);
                 $('.body').val(data.body);
                 $('.meta').val(data.meta);
-                let gambar = `<div class="form-group">
-                    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
-                     <img src="${data.image}" alt="belum ada gambar sebelumnya" style="width: 15em"></div>`;
-                $('#gambar-content').html(gambar);
+                $('.current_image').val(data.image);
+                //let gambar = `<div class="form-group">
+                //    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
+                //     <img src="${data.image}" alt="belum ada gambar sebelumnya" style="width: 15em"></div>`;
+                $("#gambar-content").removeClass('d-none');
+                $('#gambar-content').find('img').attr('src' , data.image);
 
                 if (feature === null) {
-                    $('.feature_id').val("").trigger('change');
+                    $('.feature_id').val();
                     $('.id_featureValue').val("");
                 } else {
 
@@ -371,33 +439,42 @@
                     $('.id_featureValue').val(feature.id);
                 }
 
-                // get array apa deng namanya
-                $("#form-group-body").empty();
+                // loop image galleries
+                let galeri = '';
+                $.each(galleries, function(key, val){
+                    galeri += `<div class="gallery-item mb-3">
+                        <img class="img-fluid float-left img-thumbnail mx-1" style="width:100px" src="../../gallery/${val.image}" alt="">
+                        <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    </div>
+                    `
+                })
+                $("#koleksi-galeri").removeClass('d-none').html(galeri);
 
                 for (let i = 0; i < attribute.length; i++) {
                     let ambil = attribute[i];
                     $("#form-group-body").append(
                         `<div id="loop-attribute" class="attribute-group-additional">
-                            <hr>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 col-6">
                                 <label class="required" for="attribute_id">Attribute</label>
                                 <select name="attribute_id[]" class="form-control custom-select get-attribute-additional attribute_id" style="width: 100%" required>
                                     <option value="${ambil.attribut_id}">${ambil.attribut.name}</option>
                                 </select>
                             </div>
-                            <input type="text" name="attribute_value_id[]" class="form-control attribute_value_id" value="${ambil.id}" readonly>
                             <div class="form-group">
+                                <input type="hidden" name="attribute_value_id[]" class="form-control attribute_value_id" value="${ambil.id}" readonly>
+                            </div>
+                            <div class="form-group col-12">
                                 <label class="required" for="description">Deskripsi Attribut</label>
                                 <textarea name="description[]" cols="3" class="form-control description" required
-                                    placeholder="Masukan deskripsi attribut">${ambil.description}</textarea>
+                                    placeholder="Masukan deskripsi attribut" style="height: 10em">${ambil.description}</textarea>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-6">
+                            <div class="form-row col-6">
+                                <div class="form-group col-8">
                                     <label class="required" for="order">Order</label>
                                     <input type="number" name="order[]" id="order" class="form-control order" value="${ambil.order}" placeholder="cth:0" required>
                                 </div>
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-sm btn-secondary btn-hapus-attribute" style="width: 100%;margin-top:2.5em">Hapus</button>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-sm btn-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
                                 </div>
                             </div>
                         </div>`

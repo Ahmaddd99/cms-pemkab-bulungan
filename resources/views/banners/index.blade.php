@@ -113,6 +113,19 @@
     });
     // end partials
 
+    // preview
+    $('#image').on('change', function() {
+        $('#gambar-content').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-content').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
     // post
     $('#FormBanner').on('submit', function(e) {
         e.preventDefault();

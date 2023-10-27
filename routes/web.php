@@ -35,14 +35,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // agenda
-    Route::prefix('/agenda')->name('agenda.')->group(function(){
+    Route::prefix('/agenda')->name('agenda.')->group(function () {
         Route::get('/index', [AgendaController::class, 'index'])->name('index');
         Route::post('/index', [AgendaController::class, 'store'])->name('post');
         Route::get('/all', [AgendaController::class, 'getAgenda'])->name('all');
+        Route::get('/edit/{agenda}', [AgendaController::class, 'edit'])->name('edit');
+        Route::put('/update/{agenda}', [AgendaController::class, 'update'])->name('update');
+        Route::delete('/delete/{agenda}', [AgendaController::class, 'destroy'])->name('delete');
     });
 
     // banner
-    Route::prefix('/banner')->name('banner.')->group(function(){
+    Route::prefix('/banner')->name('banner.')->group(function () {
         Route::get('/index', [BannerController::class, 'index'])->name('index');
         Route::post('/index', [BannerController::class, 'store'])->name('post');
         Route::get('/datatables', [BannerController::class, 'datatables'])->name('datatables');
@@ -51,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // category
-    Route::prefix('/category')->name('category.')->group(function(){
+    Route::prefix('/category')->name('category.')->group(function () {
         Route::get('/index', [CategoryController::class, 'index'])->name('index');
         Route::post('/index', [CategoryController::class, 'store'])->name('post');
         Route::get('/datatables', [CategoryController::class, 'datatables'])->name('datatables');
@@ -60,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // subcategory
-    Route::prefix('/subcategory')->name('subcategory.')->group(function(){
+    Route::prefix('/subcategory')->name('subcategory.')->group(function () {
         Route::get('/index', [SubcategoryController::class, 'index'])->name('index');
         Route::post('/index', [SubcategoryController::class, 'store'])->name('post');
         Route::get('/datatables', [SubcategoryController::class, 'datatables'])->name('datatables');
@@ -70,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/categoryid', [SubcategoryController::class, 'getCategoryId'])->name('getcategory');
     });
 
-    Route::prefix('/content')->name('content.')->group(function(){
+    Route::prefix('/content')->name('content.')->group(function () {
         Route::get('/index', [ContentController::class, 'index'])->name('index');
         Route::post('/index', [ContentController::class, 'store'])->name('post');
         Route::get('/datatables', [ContentController::class, 'datatables'])->name('datatables');
@@ -87,30 +90,32 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
     });
 
-    Route::prefix('/feature')->name('feature.')->group(function(){
-        Route::get('/index', [FeatureController::class, 'index'])->name('index');
-        Route::post('/index', [FeatureController::class, 'store'])->name('post');
-        Route::get('/datatables', [FeatureController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [FeatureController::class, 'show'])->name('get');
-        Route::delete('/delete/{id}', [FeatureController::class, 'destroy'])->name('delete');
-    });
+    Route::prefix('/submenu')->name('submenu.')->group(function () {
 
-    Route::prefix('/gallery')->name('gallery.')->group(function(){
-        Route::get('/index', [ContentGalleryController::class, 'index'])->name('index');
-        Route::post('/index', [ContentGalleryController::class, 'store'])->name('post');
-        Route::get('/datatables', [ContentGalleryController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [ContentGalleryController::class, 'show'])->name('get');
-        Route::delete('/delete/{id}', [ContentGalleryController::class, 'destroy'])->name('delete');
-        // get
-        Route::get('/content', [ContentGalleryController::class, 'getContent'])->name('content');
+        Route::prefix('/feature')->name('feature.')->group(function () {
+            Route::get('/index', [FeatureController::class, 'index'])->name('index');
+            Route::post('/index', [FeatureController::class, 'store'])->name('post');
+            Route::get('/datatables', [FeatureController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [FeatureController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [FeatureController::class, 'destroy'])->name('delete');
+        });
 
-    });
+        Route::prefix('/gallery')->name('gallery.')->group(function () {
+            Route::get('/index', [ContentGalleryController::class, 'index'])->name('index');
+            Route::post('/index', [ContentGalleryController::class, 'store'])->name('post');
+            Route::get('/datatables', [ContentGalleryController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [ContentGalleryController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [ContentGalleryController::class, 'destroy'])->name('delete');
+            // get
+            Route::get('/content', [ContentGalleryController::class, 'getContent'])->name('content');
+        });
 
-    Route::prefix('/attribute')->name('attribute.')->group(function(){
-        Route::get('/index', [AttributeController::class, 'index'])->name('index');
-        Route::post('/index', [AttributeController::class, 'store'])->name('post');
-        Route::get('/datatables', [AttributeController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [AttributeController::class, 'getAttribute'])->name('get');
-        Route::delete('/delete/{id}', [AttributeController::class, 'destroy'])->name('delete');
+        Route::prefix('/attribute')->name('attribute.')->group(function () {
+            Route::get('/index', [AttributeController::class, 'index'])->name('index');
+            Route::post('/index', [AttributeController::class, 'store'])->name('post');
+            Route::get('/datatables', [AttributeController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [AttributeController::class, 'getAttribute'])->name('get');
+            Route::delete('/delete/{id}', [AttributeController::class, 'destroy'])->name('delete');
+        });
     });
 });

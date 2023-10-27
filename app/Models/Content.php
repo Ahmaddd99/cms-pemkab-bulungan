@@ -30,4 +30,9 @@ class Content extends Model
     {
         return $this->hasOne(FeatureValue::class, 'content_id', 'id');
     }
+
+    public function galleries()
+    {
+        return $this->hasMany(ContentGallery::class);
+    }
 }

@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     @include('contents.modal')
+    @include('attributes.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
@@ -204,6 +205,21 @@
     attribute();
     // end select 2
 
+    // submit new attribute
+    $("#FormAttribute").on("submit", function(e){
+        e.preventDefault();
+        postAttribute($(this).serialize());
+    })
+
+    function postAttribute(att){
+        axios.post('{{route('content.post.attribute')}}', att)
+            .then(function(response){
+                $("#ModalAttribute").modal('hide');
+                $("#FormAttribute")[0].reset();
+                attribute();
+            })
+    }
+
     // delete attribute value
     function deleteAttVal(id){
         axios.delete('./delAttVal/' + id)
@@ -211,7 +227,6 @@
                 console.log(response);
                 reloadDatatable();
             })
-
     }
 
     // add attribute

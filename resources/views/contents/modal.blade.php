@@ -40,6 +40,7 @@
                                 <textarea name="body" id="body" cols="3" class="form-control body"></textarea>
                             </div>
                             <hr>
+                            <button type="button" class="btn btn-secondary btn-sm btn-add-attribute" data-toggle="modal" data-target="#ModalAttribute">Tambah Atribut</button>
                             <div id="form-group-body">
                                 <div class="attribute-group">
                                     <div class="form-group mb-3">

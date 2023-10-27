@@ -83,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
         // delete attribute value
         Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
+        // post atttribute
+        Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
     });
 
     Route::prefix('/feature')->name('feature.')->group(function(){

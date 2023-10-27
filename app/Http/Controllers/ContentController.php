@@ -138,7 +138,7 @@ class ContentController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'slug' => 'required|unique:attributs,slug' . $request->id
+            'slug' => 'unique:attributs,slug' . $request->id
         ];
         $messages = [
             'name.required' => 'nama atribut harus terisi',

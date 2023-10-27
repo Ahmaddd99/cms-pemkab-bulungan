@@ -30,7 +30,10 @@ class AgendaController extends Controller
     	$validateData = $request->validate($rules, $messages);
 
     	if($validateData) {
-            $validateData['waktu'] = Carbon::parse($request->waktu)->format("H:i:s");
+            // $validateData['waktu'] = Carbon::parse($request->waktu)->format("H:i:s");
+            $waktu = $request->waktu;
+            $waktukedatabase = $waktu . ':00';
+            $validateData['waktu'] = $waktukedatabase;
     		$validateData['lokasi'] = $request->lokasi;
     		Agenda::create($validateData);
     	}
@@ -67,7 +70,9 @@ class AgendaController extends Controller
     	$validateData = $request->validate($rules, $messages);
 
     	if($validateData) {
-            $validateData['waktu'] = Carbon::parse($request->waktu)->format("H:i:s");
+            $waktu = $request->waktu;
+            $waktukedatabase = $waktu . ':00';
+            $validateData['waktu'] = $waktukedatabase;
     		$validateData['lokasi'] = $request->lokasi;
     		Agenda::where('id', $agenda->id)->update($validateData);
     	}

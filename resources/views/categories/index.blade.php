@@ -174,11 +174,15 @@
                 $(".id").val(data.id);
                 $(".name").val(data.name);
                 $(".published").val(data.published).trigger("change");
+                $("#current_image_category").val(data.image);
 
-                let gambar = `<div class="form-group mt-3">
-                    <label for="gambar">*Gambar kategori sebelumnya</label><br>
-                    <img src="${data.image}" alt="gambar kategori belum tersedia" id="gambar" style="width: 15em"></div>`;
-                $("#gambar-category").html(gambar);
+                //let gambar = `<div class="form-group mt-3">
+                //    <label for="gambar">*Gambar kategori sebelumnya</label><br>
+                //    <img src="${data.image}" alt="gambar kategori belum tersedia" id="gambar" style="width: 15em"></div>`;
+                //$("#gambar-category").html(gambar);
+
+                $("#gambar-category").removeClass('d-none');
+                $('#gambar-category').find('img').attr('src' , data.image);
             })
             .catch(function(response){
                 console.log("Data tidak ditemukan ", error);

@@ -45,9 +45,9 @@ class CategoryController extends Controller
                 ];
                 if ($request->hasFile('image')) {
                     //jika sudah ada file nya
-                    $gambar = $categories->image;
-                    if(File::exists($gambar)){
-                        File::delete($gambar);
+                    $gambarlama = public_path('category/' . $request->current_image_category);
+                    if(File::exists($gambarlama)){
+                        File::delete($gambarlama);
                     }
 
                     $foto = $request->file('image');

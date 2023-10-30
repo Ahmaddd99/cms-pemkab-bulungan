@@ -18,17 +18,22 @@
                         </div>
                         <div class="form-group col-6">
                             <label class="required" for="published">Publish</label>
-                            <select name="published" id="published" class="custom-select published" required>
+                            <select name="published" id="published" class="custom-select published" required style="width: 100%">
                                 <option disabled selected>Pilih status</option>
                                 <option value="0">Tidak Dipublish</option>
                                 <option value="1">Publish</option>
                             </select>
                         </div>
                     </div>
-                    <div id="gambar-category"></div>
+                    <div id="gambar-category" class="d-none my-3 text-center">
+                        <img alt="" src="" class="img-fluid img-thumbnail" />
+                    </div>
+                    <div>
+                        <input type="text" name="current_image_category" id="current_image_category" value="" class="form-control" readonly>
+                    </div>
                     <div class="form-group">
                         <label for="image">Upload Gambar Kategori</label>
-                        <input type="file" class="form-control image-category" id="image" name="image">
+                        <input type="file" class="form-control image-category" id="image" name="image" accept="image/*">
                     </div>
                 </div>
                 <div class="modal-footer">

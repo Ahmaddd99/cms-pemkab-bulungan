@@ -138,7 +138,7 @@
     $("#FormFeature").on("submit", function(e){
         e.preventDefault();
         let id = $(".id").val();
-        let title = $(".title").val();
+        let title = $(".title-feature").val();
         let order = $(".order").val();
         let published = $(".published").val();
         let image = $(".image-feature")[0].files[0];
@@ -183,7 +183,7 @@
                 let data = response.data.feature;
                 //console.log(data);
                 $(".id").val(data.id);
-                $(".title").val(data.title);
+                $(".title-feature").val(data.title);
                 $(".order").val(data.order);
                 $(".published").val(data.published);
 

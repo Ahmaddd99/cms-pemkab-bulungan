@@ -35,7 +35,7 @@ class ContentController extends Controller
             'subcategory_id' => 'nullable',
             'image' => 'image|mimes:jpg,jpeg,png',
             'title' => 'required',
-            'body' => 'required',
+            'body' => 'nullable',
             'meta' => 'required'
         ];
         $messages = [
@@ -43,7 +43,6 @@ class ContentController extends Controller
             'image.image' => 'file harus berupa gambar',
             'image.mimes' => 'file harus berupa jpeg, jpg, atau png',
             'title.required' => 'title harus terisi',
-            'body.required' => 'body harus terisi',
             'meta.required' =>  'meta harus terisi'
         ];
         $validation = Validator::make($request->all(), $messages, $rules);
@@ -80,7 +79,7 @@ class ContentController extends Controller
                 if ($request->hasFile('image')) {
                     $currentImagePath = public_path('content/' . $request->current_image);
                     if(File::exists($currentImagePath)) {
-                        unlink($currentImagePath);
+                        File::delete($currentImagePath);
                     }
                     $imgContent = $request->file('image');
                     $namaFile = 'content-' . time() . '_' . $imgContent->getClientOriginalName();
@@ -208,6 +207,58 @@ class ContentController extends Controller
             return response()->json([
                 'message' => 'success deleted attribute value'
             ]);
+        }
+    }
+
+    public function createFeature(Request $request){
+        $rules = [
+            'title' => 'required',
+            'image' => 'image|mimes:jpg,png,jpeg',
+            'published' => 'required',
+            'order' => 'nullable'
+        ];
+        $messages = [
+            'title.required' => 'Title harus terisi',
+            'image.image' => 'file harus berbentuk gambar',
+            'image.mimes' => 'tipe file harus .jpg/.jpeg/.png',
+            'published.required' => 'published harus terisi',
+        ];
+        $validation = Validator::make($request->all(), $messages, $rules);
+        if($validation->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validation->getMessageBag()->toArray()
+            ], 422);
+        }else{
+            DB::beginTransaction();
+            try{
+                $featureData = [
+                    'title' => $request->title,
+                    'order' => $request->order,
+                    'published' => $request->published
+                ];
+
+                if($request->hasFile('image')){
+                    $imgFeature = $request->file('image');
+                    $namaFile = 'feature-' . time() . '_' . $imgFeature->getClientOriginalName();
+                    $tujuanUpload = 'feature';
+                    $imgFeature->move($tujuanUpload, $namaFile);
+                    $featureData['image'] = $namaFile;
+                }
+
+                Feature::updateOrCreate(['id' => $request->id], $featureData);
+                DB::commit();
+                return response()->json([
+                    'status' => 200,
+                    'message' => "Success post feature"
+                ], 200);
+            }catch(Throwable $e){
+                DB::rollBack();
+                return response()->json([
+                    'status' => 500,
+                    'message' => "Internal server error" . $e->getMessage()
+                ], 500);
+            }
         }
     }
 

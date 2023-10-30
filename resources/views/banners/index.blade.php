@@ -114,13 +114,13 @@
     // end partials
 
     // preview
-    $('#image').on('change', function() {
-        $('#gambar-content').removeClass('d-none');
+    $('#input-banner').on('change', function() {
+        $('#gambar-banner').removeClass('d-none');
         const file = this.files[0];
         if(file) {
             let reader = new FileReader();
             reader.onload = function(event) {
-                $('#gambar-content').find('img').attr('src', event.target.result);
+                $('#gambar-banner').find('img').attr('src', event.target.result);
             }
             reader.readAsDataURL(file);
         }
@@ -129,15 +129,17 @@
     // post
     $('#FormBanner').on('submit', function(e) {
         e.preventDefault();
-        let id = $('.id').val();
-        let keterangan = $('.keterangan').val();
-        let image = $('.image-banner')[0].files[0];
+        // let id = $('.id').val();
+        // let keterangan = $('.keterangan').val();
+        // let image = $('.image-banner')[0].files[0];
 
-        let data = {
-            id: id,
-            keterangan: keterangan,
-            image: image
-        }
+        // let data = {
+        //     id: id,
+        //     keterangan: keterangan,
+        //     image: image
+        // }
+
+        let data = new FormData($(this)[0]);
 
         postBanner(data);
     });
@@ -175,10 +177,13 @@
                 $('.keterangan').val(data.keterangan);
 
                 // kalo ada gambar
-                let gambar = `<div class="form-group">
-                    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
-                    <img src="${data.image}" alt="belum ada banner" style="width: 15em"></div>`;
-                $('#gambar-banner').html(gambar);
+                //let gambar = `<div class="form-group">
+                //    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
+                //    <img src="${data.image}" alt="belum ada banner" style="width: 15em"></div>`;
+                //$('#gambar-banner').html(gambar);
+
+                $("#gambar-banner").removeClass('d-none');
+                $('#gambar-banner').find('img').attr('src' , data.image);
             })
     }
     // end edit

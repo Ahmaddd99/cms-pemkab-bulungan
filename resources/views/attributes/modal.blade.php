@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id" id="id" name="id" value="">
                     <div class="form-group mb-3">
-                        <label class="required" for="name">Nama Atribut</label>
+                        <label class="required" for="name">Nama Label</label>
                         <input type="text" name="name" id="name" class="form-control name"
                             placeholder="Tulis nama atribut disini" required></input>
                     </div>

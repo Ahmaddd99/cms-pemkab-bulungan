@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/categoryid', [SubcategoryController::class, 'getCategoryId'])->name('getcategory');
     });
 
+    // content
     Route::prefix('/content')->name('content.')->group(function () {
         Route::get('/index', [ContentController::class, 'index'])->name('index');
         Route::post('/index', [ContentController::class, 'store'])->name('post');
@@ -88,6 +89,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
         // post atttribute
         Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
+        // post feature
+        Route::post('/postfeature', [ContentController::class, 'createFeature'])->name('postfeature');
     });
 
     Route::prefix('/submenu')->name('submenu.')->group(function () {

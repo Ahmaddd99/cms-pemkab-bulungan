@@ -10,19 +10,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" class="form-control id" id="id" name="id">
+                    <input type="hidden" class="form-control id" id="id" name="id" value="">
                     <div class="form-group">
                         <label class="required" for="title">Judul</label>
-                        <input type="text" class="form-control title" id="title" name="title" placeholder="Tulis judul disini" required>
+                        <input type="text" class="form-control title-feature" id="title" name="title" placeholder="Tulis judul disini" value="" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label class="required" for="order">Order</label>
-                            <input type="number" name="order" id="order" class="form-control number order" placeholder="0" required>
+                        <div class="form-group col-2">
+                            <label for="order">Order</label>
+                            <input type="number" name="order" id="order" class="form-control text-center number order" value="0" onclick="this.select()" required>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-3">
                             <label class="required" class="required" for="published">Status</label>
-                            <select name="published" id="published" class="form-control custom-select published" required>
+                            <select name="published" id="published" class="form-control custom-select published" style="width: 100%" required>
                                 <option selected disabled>Pilih status publish</option>
                                 <option value="0">Tidak dipublish</option>
                                 <option value="1">Publish</option>

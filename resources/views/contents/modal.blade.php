@@ -32,7 +32,7 @@
                             </div>
                             <!-- preview upload image content -->
                             <div id="gambar-content" class="d-none my-3 text-center">
-                                <img alt="" alt="" class="img-fluid img-thumbnail" />
+                                <img src="" alt="" class="img-fluid img-thumbnail" />
                             </div>
                             <!-- link asset gambar sebelumnya -->
                             <div>
@@ -58,10 +58,10 @@
                                         <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required></select>
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" id="attribute_value_id[]" name="attribute_value_id" class="form-control attribute_value_id" readonly>
+                                        <input type="hidden" id="attribute_value_id" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
                                     </div>
                                     <div class="form-group mb-3 col-12">
-                                        <label class="required" for="description">Deskripsi Attribut</label>
+                                        <label class="required" for="description">Deskripsi Label</label>
                                         <textarea name="description[]" id="description" rows="2" class="form-control description" required placeholder="Masukan deskripsi attribut"></textarea>
                                     </div>
                                     <div class="form-row col-12">
@@ -80,6 +80,7 @@
                             </div>
                         </div>
                         <div class="col-4">
+                            <button type="button" class="btn btn-sm btn-success btn-add-fitur mb-3" data-toggle="modal" data-target="#ModalFeature">Tambah Fitur Baru</button>
                             <div class="form-row">
                                 <input type="hidden" name="id_featureValue" id="id_featureValue" class="form-control id_featureValue" value="">
                                 <div class="form-group">

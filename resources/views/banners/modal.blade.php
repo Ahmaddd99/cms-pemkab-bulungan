@@ -17,15 +17,15 @@
                     </div>
                     <!-- preview upload banner -->
                     <div id="gambar-banner" class="d-none my-3 text-center">
-                        <img alt="" alt="" class="img-fluid img-thumbnail" />
+                        <img alt="" src="" class="img-fluid img-thumbnail" />
                     </div>
                     <!-- link asset gambar sebelumnya -->
                     <div>
-                        <input type="hidden" name="current_image" class="form-control current_image" readonly value="" />
+                        <input type="text" name="current_image_banner" class="form-control current_image_banner" readonly value="" />
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Banner</label>
-                        <input type="file" class="form-control image-banner" id="image" name="image" accept="image/*">
+                        <input type="file" class="form-control image-banner" id="input-banner" name="image" accept="image/*">
                         <small class="text-primary">*Disarankan resolusi untuk upload banner adalah: 1200x600</small>
                     </div>
                 </div>

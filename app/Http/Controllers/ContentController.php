@@ -35,7 +35,6 @@ class ContentController extends Controller
             'subcategory_id' => 'nullable',
             'image' => 'image|mimes:jpg,jpeg,png',
             'title' => 'required',
-            'body' => 'nullable',
             'meta' => 'required'
         ];
         $messages = [
@@ -109,19 +108,21 @@ class ContentController extends Controller
                     );
                 }
 
-                // mulai loop attribute
-                $items = $request->attribute_id;
-                $dataItems = [];
-                for ($i = 0; $i < count($items); $i++) {
-                    $dataItems[] = [
-                            'id' => $request->attribute_value_id[$i],
-                            'content_id' => $content->id,
-                            'attribut_id' => $request->attribute_id[$i],
-                            'description' => $request->description[$i],
-                            'order' => $request->order[$i]
-                    ];
+                if($request->attribute_id){
+                    // mulai loop attribute
+                    $items = $request->attribute_id;
+                    $dataItems = [];
+                    for ($i = 0; $i < count($items); $i++) {
+                        $dataItems[] = [
+                                'id' => $request->attribute_value_id[$i],
+                                'content_id' => $content->id,
+                                'attribut_id' => $request->attribute_id[$i],
+                                'description' => $request->description[$i],
+                                'order' => $request->order[$i]
+                        ];
+                    }
+                    AttributesValue::upsert($dataItems, ['id']);
                 }
-                AttributesValue::upsert($dataItems, ['id']);
 
                 //content gallery
                 $galleryImages = [];

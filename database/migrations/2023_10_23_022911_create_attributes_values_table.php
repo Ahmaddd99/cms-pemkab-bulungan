@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->foreignId('attribut_id')->references('id')->on('attributs')->onDelete('cascade');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->string('order');
             $table->timestamps();
         });

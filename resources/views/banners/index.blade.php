@@ -175,7 +175,7 @@
                 let data = response.data.banner;
                 $('.id').val(data.id);
                 $('.keterangan').val(data.keterangan);
-
+                $(".current_image_banner").val(data.image);
                 // kalo ada gambar
                 //let gambar = `<div class="form-group">
                 //    <label for="">*Gambar yang sudah ada sebelumnya</label><br>

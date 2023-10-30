@@ -293,7 +293,7 @@
                     </div>
                     <div class="form-group col-12">
                         <label class="required" for="description">Deskripsi Label</label>
-                        <textarea name="description[]" cols="3" class="form-control description" required
+                        <textarea name="description[]" cols="3" class="form-control description"
                             placeholder="Masukan deskripsi label" rows="2"></textarea>
                     </div>
                     <div class="form-row col-12">
@@ -424,7 +424,7 @@
                 </div>
                 <div class="form-group mb-3 col-12">
                     <label class="required" for="description">Deskripsi Label</label>
-                    <textarea name="description[]" id="description" rows="2" class="form-control description" required></textarea>
+                    <textarea name="description[]" id="description" rows="2" class="form-control description" ></textarea>
                 </div>
                 <div class="form-row col-12">
                     <div class="form-group col-3">
@@ -455,7 +455,6 @@
                 console.log(data);
                 $('.id').val(data.id);
                 $('.category_id').val(data.category_id).trigger('change');
-                $('.subcategory_id').val(data.subcategory_id);
                 $('.title').val(data.title);
                 $('.body').val(data.body);
                 $('.meta').val(data.meta);
@@ -466,11 +465,16 @@
                 $("#gambar-content").removeClass('d-none');
                 $('#gambar-content').find('img').attr('src' , data.image);
 
+                if (data.subcategory === null) {
+                    $('.subcategory_id').val("");
+                }else {
+                    $('.subcategory_id').val(data.subcategory_id);
+                }
+
                 if (feature === null) {
                     $('.feature_id').val();
                     $('.id_featureValue').val("");
                 } else {
-
                     $('.feature_id').val(feature.feature_id).trigger('change');
                     $('.id_featureValue').val(feature.id);
                 }

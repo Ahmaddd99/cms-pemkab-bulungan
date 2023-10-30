@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="form-group mb-3 col-12">
                                         <label class="required" for="description">Deskripsi Label</label>
-                                        <textarea name="description[]" id="description" rows="2" class="form-control description" required placeholder="Masukan deskripsi attribut"></textarea>
+                                        <textarea name="description[]" id="description" rows="2" class="form-control description" placeholder="Masukan deskripsi attribut"></textarea>
                                     </div>
                                     <div class="form-row col-12">
                                         <div class="form-group col-3">

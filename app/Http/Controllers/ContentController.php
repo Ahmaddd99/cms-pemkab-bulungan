@@ -129,7 +129,7 @@ class ContentController extends Controller
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
                         $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
-                        $image->move('gallery', $namaImage);
+                        // $image->move('gallery', $namaImage);
                         $galleryImages[] = [
                             'content_id' => $content->id,
                             'image' => $namaImage
@@ -345,6 +345,27 @@ class ContentController extends Controller
         $data->delete();
         return response()->json([
             'message' => 'Content was deleted'
+        ]);
+    }
+
+    public function getgallery($contentid){
+        $data = ContentGallery::where('content_id', $contentid)->get();
+        return response()->json([
+            'gallery' => $data
+        ]);
+    }
+
+    public function deleteGallery($id){
+        $data = ContentGallery::find($id);
+        if($data->image){
+            $path = public_path('gallery') . '/' . $data->image;
+            if(fileExists($path)){
+                unlink($path);
+            }
+        }
+        $data->delete();
+        return response()->json([
+            'message' => 'Content gallery was deleted'
         ]);
     }
 }

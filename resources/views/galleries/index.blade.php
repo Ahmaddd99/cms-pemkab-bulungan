@@ -129,15 +129,17 @@
     // post
     $("#FormGallery").on("submit", function(e){
         e.preventDefault();
-        let id = $(".id").val();
-        let content_id = $(".content_id").val();
-        let image = $(".image")[0].files[0];
+        // let id = $(".id").val();
+        // let content_id = $(".content_id").val();
+        // let image = $(".image")[0].files[0];
 
-        let data = {
-            id:id,
-            content_id:content_id,
-            image:image
-        }
+        // let data = {
+        //     //id:id,
+        //     content_id:content_id,
+        //     image:image
+        // }
+        let data = new FormData($(this)[0]);
+        console.log(data);
         postData(data);
     });
 
@@ -162,6 +164,7 @@
     $(document).on("click", ".btn-edit-gallery", function(){
         let id = $(this).data('id');
         getData(id);
+        getkoleksi(id);
     });
 
     function getData(id){
@@ -170,13 +173,9 @@
                 let data = response.data.gallery;
                 console.log(data);
                 $(".id").val(data.id);
-                $("#content_id").val(data.content_id).trigger("change");
+                $("#content_id").val(data.id).trigger("change");
 
-                let gambar = `<div class="form-group mt-3">
-                    <label for="image">*Gambar sebelumnya</label><br>
-                    <img src="${data.image}" alt="Gambar belum tersedia" style="width: 10em">
-                </div>`
-                $("#gambar-gallery").html(gambar);
+                $(".test-galleries").val(data.id);
             })
     }
     // end get
@@ -200,4 +199,33 @@
                 console.log("Terjadi masalah saat menghapus data ", error);
             })
     }
+
+    // koleksi
+    function getkoleksi(contentId){
+        axios.get(`../gallery/${contentId}/koleksi`)
+            .then(function(response){
+                let data = response.data.gallery;
+                console.log(data);
+                koleksi = '';
+                $.each(data, function(key, val){
+                    koleksi += `<div class="content-gallery-image position-relative gallery-item mb-3" style="overflow:hidden;float:left">
+                        <button type="button" class="btn btn-sm btn-danger position-absolute delete-gallery" data-gallery-id="${val.id}" data-content-id="${contentId}" style="top:0;left:0"><i class="bi bi-trash"></i></button>
+                        <img class="img-fluid float-left img-thumbnail mx-1" style="width:100px" src="../../gallery/${val.image}" alt="">
+                    </div>
+                    `;
+                });
+                $("#koleksi-galeri").removeClass('d-none').html(koleksi);
+            });
+    }
+
+    $(document).on("click", ".delete-gallery", function(){
+        let idgallery = $(this).data('gallery-id');
+        let idcontent = $(this).data('content-id');
+        let conff = confirm("Anda yakin ingin menghapus data ini?");
+        if(conff){
+            deleteData(idgallery);
+            getkoleksi(idcontent);
+        }
+    });
+
 @endsection

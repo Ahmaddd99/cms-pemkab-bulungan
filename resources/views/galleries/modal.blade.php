@@ -15,10 +15,12 @@
                         <label class="required" for="content_id">Konten</label>
                         <select name="content_id" id="content_id" class="form-control custom-select content_id" style="width: 100%" required></select>
                     </div>
-                    <div id="gambar-gallery"></div>
                     <div class="form-group">
                         <label for="image">Upload Gambar</label>
                         <input type="file" name="image_gallery[]" id="image" class="form-control image" accept="image/*" multiple>
+                    </div>
+                    <div id="koleksi-galeri" class="d-none my-3 text-center">
+
                     </div>
                 </div>
                 <div class="modal-footer">

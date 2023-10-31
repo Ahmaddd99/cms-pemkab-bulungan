@@ -37,27 +37,21 @@ class ContentGalleryController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                // $galleryData = ['content_id' => $request->content_id];
-                // if($request->hasFile('image')){
-                //     $imageGallery = $request->file('image');
-                //     $namaFile = 'gallery-' . time() . '-' . $imageGallery->getClientOriginalName();
-                //     $tujuanUpload = 'gallery';
-                //     $imageGallery->move($tujuanUpload, $namaFile);
-                //     $galleryData['image'] = $namaFile;
-                // }
-                // ContentGallery::updateOrCreate(['id' => $request->id], $galleryData);
                 $galleryImages = [];
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
                         $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
                         $image->move('gallery', $namaImage);
                         $galleryImages[] = [
+                            // 'id' => $request->id,
                             'content_id' => $request->content_id,
                             'image' => $namaImage
                         ];
+
                     }
+                    // return $galleryImages;
+                    ContentGallery::upsert($galleryImages, ['id']);
                 }
-                ContentGallery::updateOrCreate(['id' => $request->id], $galleryImages);
                 DB::commit();
                 return response()->json([
                     'status' => 200,
@@ -99,7 +93,7 @@ class ContentGalleryController extends Controller
     }
 
     public function show($id){
-        $data = ContentGallery::where('id', $id)->with('content')->first();
+        $data = Content::where('id', $id)->with('galleries')->first();
         return response()->json([
             'gallery' => $data
         ]);
@@ -123,6 +117,13 @@ class ContentGalleryController extends Controller
         $data->delete();
         return response()->json([
             'message' => 'Content gallery was deleted'
+        ]);
+    }
+
+    public function getKoleksi($contentId){
+        $data = ContentGallery::where('content_id', $contentId)->get();
+        return response()->json([
+            'gallery' => $data
         ]);
     }
 }

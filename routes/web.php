@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\SubcategoryController;
 use App\Models\Content;
+use App\Models\ContentGallery;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,10 +88,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
         // delete attribute value
         Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
+        // delete image gallery
+        Route::delete('/delGallery/{id}', [ContentController::class, 'deleteGallery'])->name('delete.gallery');
         // post atttribute
         Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
         // post feature
         Route::post('/postfeature', [ContentController::class, 'createFeature'])->name('postfeature');
+        // get gallery
+        Route::get('/{contentid}/galleries', [ContentController::class, 'getgallery'])->name('getgallery');
     });
 
     Route::prefix('/submenu')->name('submenu.')->group(function () {
@@ -111,6 +116,8 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/delete/{id}', [ContentGalleryController::class, 'destroy'])->name('delete');
             // get
             Route::get('/content', [ContentGalleryController::class, 'getContent'])->name('content');
+            // koleksi
+            Route::get('/{contentid}/koleksi', [ContentGalleryController::class, 'getKoleksi'])->name('koleksi');
         });
 
         Route::prefix('/attribute')->name('attribute.')->group(function () {

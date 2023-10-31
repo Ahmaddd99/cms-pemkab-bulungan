@@ -3,6 +3,12 @@
 /public/build
 /public/hot
 /public/storage
+/public/gallery
+/public/category
+/public/subcategory
+/public/banner
+/public/feature
+/public/content
 /storage/*.key
 /vendor
 .env

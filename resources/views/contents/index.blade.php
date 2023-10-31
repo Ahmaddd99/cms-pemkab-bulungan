@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends ('layouts.master')
 @section('css')
     <style>
     </style>
@@ -210,7 +210,7 @@
     // end select 2
 
     // add new feature
-    $("#FormFeature").on("submit", function(e){
+    $("#FormFeature").on("submit", function(e) {
         e.preventDefault();
         let id = $(".id").val();
         let title = $(".title-feature").val();
@@ -219,23 +219,23 @@
         let image = $(".image-feature")[0].files[0];
 
         let data = {
-            id:id,
-            title:title,
-            order:order,
-            published:published,
-            image:image
+            id: id,
+            title: title,
+            order: order,
+            published: published,
+            image: image
         }
 
         postFeature(data);
     });
 
-    function postFeature(feature){
-        axios.post('{{route('content.postfeature')}}', feature, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-            .then(function(response){
+    function postFeature(feature) {
+        axios.post('{{ route('content.postfeature') }}', feature, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
                 $("#ModalFeature").modal('hide');
                 $("#FormFeature")[0].reset();
                 getfeature();
@@ -244,14 +244,14 @@
 
 
     // submit new attribute
-    $("#FormAttribute").on("submit", function(e){
+    $("#FormAttribute").on("submit", function(e) {
         e.preventDefault();
         postAttribute($(this).serialize());
     })
 
-    function postAttribute(att){
-        axios.post('{{route('content.post.attribute')}}', att)
-            .then(function(response){
+    function postAttribute(att) {
+        axios.post('{{ route('content.post.attribute') }}', att)
+            .then(function(response) {
                 $("#ModalAttribute").modal('hide');
                 $("#FormAttribute")[0].reset();
                 attribute();
@@ -259,11 +259,19 @@
     }
 
     // delete attribute value
-    function deleteAttVal(id){
+    function deleteAttVal(id) {
         axios.delete('./delAttVal/' + id)
-            .then(function(response){
+            .then(function(response) {
                 console.log(response);
                 reloadDatatable();
+            })
+    }
+
+    //delete content gallery
+    function deleteGall(id) {
+        axios.delete('./delGallery/' + id)
+            .then(function(response) {
+                console.log(response);
             })
     }
 
@@ -291,8 +299,8 @@
                     </div>
                     <div class="form-group col-12">
                         <label class="required" for="description">Deskripsi Label</label>
-                        <textarea name="description[]" cols="3" class="form-control description"
-                            placeholder="Masukan deskripsi label" rows="2"></textarea>
+                        <textarea name="description[]" cols="3" class="form-control description" placeholder="Masukan deskripsi label"
+                            rows="2"></textarea>
                     </div>
                     <div class="form-row col-12">
                         <div class="form-group col-3">
@@ -310,7 +318,7 @@
                     // dropdownParent: $('#ModalContent')
                 });
 
-                $("#form-group-body").on("click", ".btn-hapus-attribute", function(){
+                $("#form-group-body").on("click", ".btn-hapus-attribute", function() {
                     $(this).closest(".attribute-group-additional").remove();
                 })
             });
@@ -321,7 +329,7 @@
     $('#image').on('change', function() {
         $('#gambar-content').removeClass('d-none');
         const file = this.files[0];
-        if(file) {
+        if (file) {
             let reader = new FileReader();
             reader.onload = function(event) {
                 $('#gambar-content').find('img').attr('src', event.target.result);
@@ -333,7 +341,7 @@
     $('#image_gallery').on('change', function() {
         $('#preview-upload-galleries').removeClass('d-none');
         const file = this.files[0];
-        if(file) {
+        if (file) {
             let reader = new FileReader();
             reader.onload = function(event) {
                 $('#preview-upload-galleries').find('img').attr('src', event.target.result);
@@ -407,11 +415,39 @@
         console.log(id);
         getContent(id);
         showAttributeForm('hide');
+        getContentGallery(id);
     });
+
+    function getContentGallery(contentId) {
+        axios.get(`../content/${contentId}/galleries`)
+            .then(function(response) {
+                let data = response.data.gallery;
+                let galeri = '';
+                $.each(data, function(key, val) {
+                    galeri += `<div class="content-gallery-image position-relative gallery-item mb-3" style="overflow:hidden;float:left">
+                        <button type="button" class="btn btn-sm btn-danger position-absolute delete-gallery" data-gallery-id="${val.id}" data-content-id="${contentId}" style="top:0;left:0"><i class="bi bi-trash"></i></button>
+                        <img class="img-fluid float-left img-thumbnail mx-1" style="width:100px" src="../../gallery/${val.image}" alt="">
+                    </div>
+                    `;
+                });
+                $("#koleksi-galeri").removeClass('d-none').html(galeri);
+            });
+    }
+
+    $(document).on('click', '.delete-gallery', function() {
+        let idGallery = $(this).data('gallery-id');
+        let contentId = $(this).data('content-id');
+        let confdel = confirm("Anda yakin ingin menghapus gambar ini?");
+        if (confdel) {
+            deleteGall(idGallery);
+            getContentGallery(contentId);
+
+        }
+    })
 
     function showAttributeForm(cond) {
         let _form = '';
-        if(cond === 'show') {
+        if (cond === 'show') {
             _form = `<div class="attribute-group">
                 <div class="form-group mb-3 col-6">
                     <label class="required" for="attribute_id">Label</label>
@@ -422,7 +458,7 @@
                 </div>
                 <div class="form-group mb-3 col-12">
                     <label class="required" for="description">Deskripsi Label</label>
-                    <textarea name="description[]" id="description" rows="2" class="form-control description" ></textarea>
+                    <textarea name="description[]" id="description" rows="2" class="form-control description"></textarea>
                 </div>
                 <div class="form-row col-12">
                     <div class="form-group col-3">
@@ -459,11 +495,11 @@
                 $('.current_image').val(data.image);
 
                 $("#gambar-content").removeClass('d-none');
-                $('#gambar-content').find('img').attr('src' , `../../content/${data.image}`);
+                $('#gambar-content').find('img').attr('src', `../../content/${data.image}`);
 
                 if (data.subcategory === null) {
                     $('.subcategory_id').val("");
-                }else {
+                } else {
                     $('.subcategory_id').val(data.subcategory_id);
                 }
 
@@ -474,17 +510,6 @@
                     $('.feature_id').val(feature.feature_id).trigger('change');
                     $('.id_featureValue').val(feature.id);
                 }
-
-                // loop image galleries
-                let galeri = '';
-                $.each(galleries, function(key, val){
-                    galeri += `<div class="gallery-item mb-3">
-                        <img class="img-fluid float-left img-thumbnail mx-1" style="width:100px" src="../../gallery/${val.image}" alt="">
-                        <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                    </div>
-                    `
-                })
-                $("#koleksi-galeri").removeClass('d-none').html(galeri);
 
                 for (let i = 0; i < attribute.length; i++) {
                     let ambil = attribute[i];
@@ -516,11 +541,12 @@
                         </div>`
                     )
                 }
-                $(".btn-hapus-attribute").on("click", function(){
-                    let attValId = $(this).closest(".attribute-group-additional").find(".attribute_value_id").val();
+                $(".btn-hapus-attribute").on("click", function() {
+                    let attValId = $(this).closest(".attribute-group-additional").find(
+                        ".attribute_value_id").val();
                     //console.log(attValId);
                     let conf = confirm("Apakah anda yakin ingin menghapus atribut ini?");
-                    if(conf){
+                    if (conf) {
                         deleteAttVal(attValId);
                         $(this).closest(".attribute-group-additional").remove();
                     }
@@ -548,6 +574,4 @@
                 reloadDatatable();
             })
     }
-
-
 @endsection

@@ -107,7 +107,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        //$('#gambar-category').empty();
+        $('#gambar-category').removeClass('d-none');
+        $('#gambar-category').find('img').attr('src', '');
     });
 
     $(".add-new-category").on("click", function() {

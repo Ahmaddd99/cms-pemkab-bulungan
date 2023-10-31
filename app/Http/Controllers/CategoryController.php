@@ -59,8 +59,7 @@ class CategoryController extends Controller
                 DB::commit();
                 return response()->json([
                     'status' => 200,
-                    'message' => "Success commited",
-                    'test' => $currentImagePath
+                    'message' => "Success commited"
                 ], 200);
             }catch(Throwable $e){
                 DB::rollBack();

@@ -97,7 +97,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        //$('#gambar-banner').empty();
+        $('#gambar-banner').removeClass('d-none');
+        $('#gambar-banner').find('img').attr('src', '');
     });
 
     $(".add-new-banner").on("click", function() {

@@ -21,7 +21,7 @@
                     </div>
                     <!-- link asset gambar sebelumnya -->
                     <div>
-                        <input type="text" name="current_image_banner" class="form-control current_image_banner" readonly value="" />
+                        <input type="hidden" name="current_image_banner" class="form-control current_image_banner" readonly value="" />
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Banner</label>

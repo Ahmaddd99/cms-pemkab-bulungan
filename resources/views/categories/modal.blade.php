@@ -29,7 +29,7 @@
                         <img alt="" src="" class="img-fluid img-thumbnail" />
                     </div>
                     <div>
-                        <input type="text" class="form-control current_image_category" name="current_image_category" readonly value="">
+                        <input type="hidden" class="form-control current_image_category" name="current_image_category" readonly value="">
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Gambar Kategori</label>

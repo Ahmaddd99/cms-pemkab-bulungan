@@ -16,17 +16,16 @@ class UserSeeder extends Seeder
     {
         User::create(
             [
-                'id' => 1,
                 'name' => 'Admin',
                 'username' => 'Admin',
                 'password' => Hash::make('Bulungan2023')
-            ],
+            ]);
+
+        User::create(
             [
-                'id' => 2,
                 'name' => 'AdminAPI',
                 'username' => 'api.v1',
                 'password' => Hash::make('api.Bulungan2023')
-            ]
-        );
+            ]);
     }
 }

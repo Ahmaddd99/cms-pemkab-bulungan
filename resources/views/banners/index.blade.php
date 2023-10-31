@@ -97,8 +97,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-banner').removeClass('d-none');
-        $('#gambar-banner').find('img').attr('src', '');
+        $('#gambar-banner').addClass('d-none');
+        $('#gambar-banner img').attr('src', '');
     });
 
     $(".add-new-banner").on("click", function() {
@@ -177,6 +177,7 @@
                 $('.id').val(data.id);
                 $('.keterangan').val(data.keterangan);
                 $(".current_image_banner").val(data.image);
+
                 $("#gambar-banner").removeClass('d-none');
                 $('#gambar-banner').find('img').attr('src' , data.image);
             })

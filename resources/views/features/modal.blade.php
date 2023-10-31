@@ -33,7 +33,7 @@
                         <img src="" alt="" class="img-fluid img-thumbnail">
                     </div>
                     <div>
-                        <input type="text" class="form-control current_image_feature" name="current_image_feature" value="" readonly>
+                        <input type="hidden" class="form-control current_image_feature" name="current_image_feature" value="" readonly>
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Gambar</label>

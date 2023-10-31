@@ -107,8 +107,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-category').removeClass('d-none');
-        $('#gambar-category').find('img').attr('src', '');
+        $('#gambar-category').addClass('d-none');
+        $('#gambar-category img').attr('src', '');
     });
 
     $(".add-new-category").on("click", function() {
@@ -120,7 +120,6 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        //$('#gambar-category').empty();
     });
     // end partials
 

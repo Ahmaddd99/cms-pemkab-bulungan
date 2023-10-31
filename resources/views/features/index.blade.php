@@ -119,6 +119,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
+        $("#preview-feature").addClass('d-none');
+        $("#preview-feature img").empty();
     });
 
     $(".add-new-feature").on("click", function() {
@@ -140,7 +142,7 @@
         if(file) {
             let reader = new FileReader();
             reader.onload = function(event) {
-                $('#preview-feature').find('img').attr('src', event.target.result);
+                $('#preview-feature').find('img').attr('src', event.target.result).trigger("change");
             }
             reader.readAsDataURL(file);
         }
@@ -187,7 +189,9 @@
 
                 $(".current_image_feature").val(data.image);
                 $("#preview-feature").removeClass('d-none');
-                $("#preview-feature").find('img').attr('src' , data.image);
+                let gambar = '/feature/' + data.image;
+                //console.log(gambar);
+                $("#preview-feature").find('img').attr('src' , gambar);
             })
     }
     // end edit

@@ -119,8 +119,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $("#gambar-subcategory").removeClass('d-none');
-        $("#gambar-subcategory").find('img').attr('src', '');
+        $("#gambar-subcategory").addClass('d-none');
+        $("#gambar-subcategory img").attr('src', '');
     });
 
     $(".add-new-subcategory").on("click", function() {

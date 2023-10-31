@@ -138,9 +138,8 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-content').removeClass('d-none');
-        $('#gambar-content').empty();
-        //$("#loop-attribute").empty();
+        $('#gambar-content').addClass('d-none');
+        $('#gambar-content img').attr('src', '');
         showAttributeForm('show');
     });
 
@@ -155,8 +154,7 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-content').empty();
-        //$("#loop-attribute").empty();
+        //$('#gambar-content').empty();
     });
     // end partials
 
@@ -459,11 +457,9 @@
                 $('.body').val(data.body);
                 $('.meta').val(data.meta);
                 $('.current_image').val(data.image);
-                //let gambar = `<div class="form-group">
-                //    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
-                //     <img src="${data.image}" alt="belum ada gambar sebelumnya" style="width: 15em"></div>`;
+
                 $("#gambar-content").removeClass('d-none');
-                $('#gambar-content').find('img').attr('src' , data.image);
+                $('#gambar-content').find('img').attr('src' , `../../content/${data.image}`);
 
                 if (data.subcategory === null) {
                     $('.subcategory_id').val("");

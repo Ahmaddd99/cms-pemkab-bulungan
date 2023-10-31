@@ -23,16 +23,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(10)->create();
-        Subcategory::factory(10)->create();
-        Content::factory(10)->create();
-        Banner::factory(10)->create();
-        Agenda::factory(10)->create();
-        Attribut::factory(10)->create();
-        AttributesValue::factory(10)->create();
-        ContentGallery::factory(10)->create();
-        Feature::factory(10)->create();
-        FeatureValue::factory(10)->create();
+        // Category::factory(10)->create();
+        // Subcategory::factory(10)->create();
+        // Content::factory(10)->create();
+        // Banner::factory(10)->create();
+        // Agenda::factory(10)->create();
+        // Attribut::factory(10)->create();
+        // AttributesValue::factory(10)->create();
+        // ContentGallery::factory(10)->create();
+        // Feature::factory(10)->create();
+        // FeatureValue::factory(10)->create();
 
         $this->call(UserSeeder::class);
     }

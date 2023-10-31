@@ -18,6 +18,12 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'username' => 'Admin',
             'password' => Hash::make('Bulungan2023')
+        ]
+        ,
+        [
+            'name' => 'Admin',
+            'username' => 'api.v1',
+            'password' => Hash::make('api.Bulungan2023')
         ]);
     }
 }

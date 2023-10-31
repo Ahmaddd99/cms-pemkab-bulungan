@@ -49,9 +49,9 @@ class SubcategoryController extends Controller
                 ];
                 if ($request->hasFile('image')) {
                     //jika sudah ada file nya
-                    $gambar = $subcategories->image;
-                    if(File::exists($gambar)){
-                        File::delete($gambar);
+                    $image_path = public_path('subcategory/' . $request->current_image_subcategory);
+                    if(File::exists($image_path)){
+                        File::delete($image_path);
                     }
 
                     $foto = $request->file('image');

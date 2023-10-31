@@ -29,7 +29,12 @@
                             </select>
                         </div>
                     </div>
-                    <div id="gambar-feature"></div>
+                    <div id="preview-feature" class="d-none text-center my-3">
+                        <img src="" alt="" class="img-fluid img-thumbnail">
+                    </div>
+                    <div>
+                        <input type="text" class="form-control current_image_feature" name="current_image_feature" value="" readonly>
+                    </div>
                     <div class="form-group">
                         <label for="image">Upload Gambar</label>
                         <input type="file" class="form-control image-feature" id="image" name="image" accept="image/*">

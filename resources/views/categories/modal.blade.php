@@ -29,11 +29,11 @@
                         <img alt="" src="" class="img-fluid img-thumbnail" />
                     </div>
                     <div>
-                        <input type="text" name="current_image_category" id="current_image_category" value="" class="form-control" readonly>
+                        <input type="text" class="form-control current_image_category" name="current_image_category" readonly value="">
                     </div>
                     <div class="form-group">
                         <label for="image">Upload Gambar Kategori</label>
-                        <input type="file" class="form-control image-category" id="image" name="image" accept="image/*">
+                        <input type="file" class="form-control image-category" name="image" accept="image/*">
                     </div>
                 </div>
                 <div class="modal-footer">

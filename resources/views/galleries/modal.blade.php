@@ -18,7 +18,7 @@
                     <div id="gambar-gallery"></div>
                     <div class="form-group">
                         <label for="image">Upload Gambar</label>
-                        <input type="file" name="image" id="image" class="form-control image" accept="image/*">
+                        <input type="file" name="image_gallery[]" id="image" class="form-control image" accept="image/*" multiple>
                     </div>
                 </div>
                 <div class="modal-footer">

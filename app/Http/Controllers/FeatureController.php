@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Sail\Console\PublishCommand;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
 use function PHPUnit\Framework\fileExists;
-use function PHPUnit\Framework\isEmpty;
 
 class FeatureController extends Controller
 {
@@ -49,6 +48,10 @@ class FeatureController extends Controller
                 ];
 
                 if($request->hasFile('image')){
+                    $imagepath = public_path('feature/' . $request->current_image_feature);
+                    if(File::exists($imagepath)) {
+                        FIle::delete($imagepath);
+                    }
                     $imgFeature = $request->file('image');
                     $namaFile = 'feature-' . time() . '_' . $imgFeature->getClientOriginalName();
                     $tujuanUpload = 'feature';
@@ -76,7 +79,7 @@ class FeatureController extends Controller
         $data = Feature::select("*")->orderBy('id', 'desc')->get();
         return DataTables::of($data)
         ->editColumn('image', function($row){
-            return '<img src="'.$row->image.'" alt="" style="width:15em">';
+            return '<img src="'.asset("/feature/" . $row->image).'" alt="" style="width:15em">';
         })
         ->editColumn('published', function($row){
             if($row->published == 1){

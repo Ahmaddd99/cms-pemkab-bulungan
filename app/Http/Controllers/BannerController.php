@@ -58,6 +58,7 @@ class BannerController extends Controller
                 return response()->json([
                     'status' => 200,
                     'message' => 'Success commited',
+                    'test' => $currentImagePath
                 ], 200);
             }catch(Throwable $e){
                 DB::rollBack();

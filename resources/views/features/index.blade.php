@@ -119,7 +119,6 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-feature').empty();
     });
 
     $(".add-new-feature").on("click", function() {
@@ -131,26 +130,25 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-feature').empty();
     });
     // end partials
 
+    // preview
+    $('.image_feature').on('change', function() {
+        $('#preview-feature').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#preview-feature').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
     $("#FormFeature").on("submit", function(e){
         e.preventDefault();
-        let id = $(".id").val();
-        let title = $(".title-feature").val();
-        let order = $(".order").val();
-        let published = $(".published").val();
-        let image = $(".image-feature")[0].files[0];
-
-        let data = {
-            id:id,
-            title:title,
-            order:order,
-            published:published,
-            image:image
-        }
-
+        let data = new FormData($(this)[0]);
         postFeature(data);
     });
 
@@ -181,17 +179,15 @@
         axios.get('./get/' + id)
             .then(function(response){
                 let data = response.data.feature;
-                //console.log(data);
+                console.log(data);
                 $(".id").val(data.id);
                 $(".title-feature").val(data.title);
                 $(".order").val(data.order);
                 $(".published").val(data.published);
 
-                let gambar = `<div class="form-group mt-3">
-                    <label for="">*Gambar sebelumnya</label><br>
-                    <img src="${data.image}" alt="gambar belum tersedia" style="width:15em">
-                </div>`
-                $("#gambar-feature").html(gambar);
+                $(".current_image_feature").val(data.image);
+                //$("#preview-feature").removeClass('d-none');
+                //$("#preview-feature").find('img').attr('src' , data.image);
             })
     }
     // end edit

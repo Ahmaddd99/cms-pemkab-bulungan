@@ -97,7 +97,7 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-banner').empty();
+        //$('#gambar-banner').empty();
     });
 
     $(".add-new-banner").on("click", function() {
@@ -109,7 +109,7 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-banner').empty();
+        //$('#gambar-banner').empty();
     });
     // end partials
 
@@ -176,12 +176,6 @@
                 $('.id').val(data.id);
                 $('.keterangan').val(data.keterangan);
                 $(".current_image_banner").val(data.image);
-                // kalo ada gambar
-                //let gambar = `<div class="form-group">
-                //    <label for="">*Gambar yang sudah ada sebelumnya</label><br>
-                //    <img src="${data.image}" alt="belum ada banner" style="width: 15em"></div>`;
-                //$('#gambar-banner').html(gambar);
-
                 $("#gambar-banner").removeClass('d-none');
                 $('#gambar-banner').find('img').attr('src' , data.image);
             })

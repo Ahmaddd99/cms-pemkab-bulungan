@@ -37,15 +37,27 @@ class ContentGalleryController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                $galleryData = ['content_id' => $request->content_id];
-                if($request->hasFile('image')){
-                    $imageGallery = $request->file('image');
-                    $namaFile = 'gallery-' . time() . '-' . $imageGallery->getClientOriginalName();
-                    $tujuanUpload = 'gallery';
-                    $imageGallery->move($tujuanUpload, $namaFile);
-                    $galleryData['image'] = $namaFile;
+                // $galleryData = ['content_id' => $request->content_id];
+                // if($request->hasFile('image')){
+                //     $imageGallery = $request->file('image');
+                //     $namaFile = 'gallery-' . time() . '-' . $imageGallery->getClientOriginalName();
+                //     $tujuanUpload = 'gallery';
+                //     $imageGallery->move($tujuanUpload, $namaFile);
+                //     $galleryData['image'] = $namaFile;
+                // }
+                // ContentGallery::updateOrCreate(['id' => $request->id], $galleryData);
+                $galleryImages = [];
+                if($images = $request->file('image_gallery')){
+                    foreach ($images as $image){
+                        $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
+                        $image->move('gallery', $namaImage);
+                        $galleryImages[] = [
+                            'content_id' => $request->content_id,
+                            'image' => $namaImage
+                        ];
+                    }
                 }
-                ContentGallery::updateOrCreate(['id' => $request->id], $galleryData);
+                ContentGallery::updateOrCreate(['id' => $request->id], $galleryImages);
                 DB::commit();
                 return response()->json([
                     'status' => 200,

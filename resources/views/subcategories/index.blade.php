@@ -119,7 +119,6 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-subcategory').empty();
     });
 
     $(".add-new-subcategory").on("click", function() {
@@ -131,9 +130,21 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-subcategory').empty();
     });
     // end partials
+
+    // preview
+    $('.current_image_subcategory').on('change', function() {
+        $('#gambar-subcategory').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-subcategory').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 
     // get category id
     function getCategoryId(){
@@ -153,19 +164,7 @@
     // post subcategory
     $("#FormSub").on("submit", function(e){
         e.preventDefault();
-        let id = $(".id").val();
-        let category_id = $(".category_id").val();
-        let name = $(".name").val();
-        let published = $(".published").val();
-        let image = $(".image-sub")[0].files[0];
-
-        let data = {
-            id:id,
-            category_id:category_id,
-            name:name,
-            published:published,
-            image:image
-        }
+        let data = new FormData($(this)[0]);
         postSubcategory(data);
     });
 
@@ -199,12 +198,10 @@
                 $(".id").val(data.id);
                 $(".category_id").val(data.category_id).trigger("change");
                 $(".name").val(data.name);
-                $(".published").val(data.published);
-
-                let gambar = `<div class="form-group mt-3">
-                    <label for="gambar">*Gambar Subkategori Sebelumnya</label><br>
-                    <img src="${data.image}" alt="gambar subkategori belum tersedia" id="gambar" style="width: 15em"></div>`;
-                $("#gambar-subcategory").html(gambar);
+                $(".published").val(data.published).trigger("change");
+                $(".current_image_subcategory").val(data.image);
+                $("#gambar-subcategory").removeClass('d-none');
+                $('#gambar-subcategory').find('img').attr('src' , data.image);
             })
     }
 

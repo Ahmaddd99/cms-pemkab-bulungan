@@ -18,7 +18,7 @@ class CategoryController extends Controller
         return view('categories.index');
     }
 
-    public function store(Request $request, Category $categories){
+    public function store(Request $request){
         $rules = [
             'name' => 'required',
             'image' => 'image|mimes:jpg,jpeg,png',
@@ -44,10 +44,9 @@ class CategoryController extends Controller
                     'published' => $request->published
                 ];
                 if ($request->hasFile('image')) {
-                    //jika sudah ada file nya
-                    $gambarlama = public_path('category/' . $request->current_image_category);
-                    if(File::exists($gambarlama)){
-                        File::delete($gambarlama);
+                    $currentImagePath = public_path('category/' . $request->current_image_category);
+                    if(File::exists($currentImagePath)) {
+                        File::delete($currentImagePath);
                     }
 
                     $foto = $request->file('image');
@@ -60,7 +59,8 @@ class CategoryController extends Controller
                 DB::commit();
                 return response()->json([
                     'status' => 200,
-                    'message' => "Success commited"
+                    'message' => "Success commited",
+                    'test' => $currentImagePath
                 ], 200);
             }catch(Throwable $e){
                 DB::rollBack();

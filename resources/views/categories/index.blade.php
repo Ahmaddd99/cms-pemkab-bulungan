@@ -107,7 +107,7 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-category').empty();
+        //$('#gambar-category').empty();
     });
 
     $(".add-new-category").on("click", function() {
@@ -119,24 +119,39 @@
         $('.id').val("");
         afterAction();
         reloadDatatable();
-        $('#gambar-category').empty();
+        //$('#gambar-category').empty();
     });
     // end partials
+
+    // preview
+    $('.image-category').on('change', function() {
+        $('#gambar-category').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-category').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
 
     // post
     $("#FormCategory").on("submit", function(e){
         e.preventDefault();
-        let id = $(".id").val();
-        let name = $(".name").val();
-        let published = $(".published").val();
-        let image = $(".image-category")[0].files[0];
+        // let id = $(".id").val();
+        // let name = $(".name").val();
+        // let published = $(".published").val();
+        // let image = $(".image-category")[0].files[0];
 
-        let data = {
-            id:id,
-            name:name,
-            published:published,
-            image:image
-        }
+        // let data = {
+        //     id:id,
+        //     name:name,
+        //     published:published,
+        //     image:image
+        // }
+        let data = new FormData($(this)[0]);
 
         postCategory(data);
     });
@@ -174,13 +189,8 @@
                 $(".id").val(data.id);
                 $(".name").val(data.name);
                 $(".published").val(data.published).trigger("change");
-                $("#current_image_category").val(data.image);
 
-                //let gambar = `<div class="form-group mt-3">
-                //    <label for="gambar">*Gambar kategori sebelumnya</label><br>
-                //    <img src="${data.image}" alt="gambar kategori belum tersedia" id="gambar" style="width: 15em"></div>`;
-                //$("#gambar-category").html(gambar);
-
+                $(".current_image_category").val(data.image);
                 $("#gambar-category").removeClass('d-none');
                 $('#gambar-category').find('img').attr('src' , data.image);
             })

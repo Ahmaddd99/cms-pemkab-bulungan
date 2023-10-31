@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="TableAttributes" class="table table-responsive table-bordered table-hover table-striped"
+                <table id="TableAttributes" class="table table-bordered table-hover table-striped"
                     style="width: 100%">
                     <thead>
                         <tr>

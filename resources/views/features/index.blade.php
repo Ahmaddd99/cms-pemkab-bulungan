@@ -186,8 +186,8 @@
                 $(".published").val(data.published);
 
                 $(".current_image_feature").val(data.image);
-                //$("#preview-feature").removeClass('d-none');
-                //$("#preview-feature").find('img').attr('src' , data.image);
+                $("#preview-feature").removeClass('d-none');
+                $("#preview-feature").find('img').attr('src' , data.image);
             })
     }
     // end edit

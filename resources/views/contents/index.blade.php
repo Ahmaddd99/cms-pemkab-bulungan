@@ -130,7 +130,7 @@ $("#ModalContent").on("show.bs.modal", function () {
     // categoryId(null);
     // subcategoryId();
     getfeature();
-    getattribute();
+    // getattribute();
 });
 
 $("#ModalContent").on("hidden.bs.modal", function (e) {
@@ -207,7 +207,7 @@ function getattribute() {
     axios.get('./attribute')
         .then(function (response) {
             let data = response.data.attribute;
-            let option = "<option selected disabled>Pilih Label</option>";
+            let option = "<option selected disabled>-- Pilih Label --</option>";
             $.each(data, function (key, val) {
                 option += `<option value="${val.id}">${val.name}</option>`
             });
@@ -467,7 +467,7 @@ function showAttributeForm(cond) {
         _form = `<div class="attribute-group">
                 <div class="form-group mb-3 col-6">
                     <label class="required" for="attribute_id">Label</label>
-                    <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required></select>
+                    <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute get-attribute-additional attribute_id" style="width: 100%" required></select>
                 </div>
                 <div class="form-group">
                     <input type="hidden" id="attribute_value_id" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
@@ -488,9 +488,8 @@ function showAttributeForm(cond) {
             </div>`;
             getattribute();
         $('#form-group-body').html(_form);
-        $(".custom-select").select2({
+        $(".custom-select").select2();
 
-        });
     } else {
         $('#form-group-body').html('');
     }
@@ -544,7 +543,7 @@ function getContent(id) {
             }
 
             if(attribute.length === 0){
-                getattribute();
+                // getattribute();
                 $("#form-group-body").append(
                     `<div id="loop-attribute" class="attribute-group-additional">
                             <div class="form-group mb-3 col-6">
@@ -572,35 +571,29 @@ function getContent(id) {
                             </div>
                         </div>`
                         );
-                        $(".custom-select").select2({
-
-                        });
+                        $(".custom-select").select2();
             }
-
-
-            for (let i = 0; i < attribute.length; i++) {
-                let ambil = attribute[i];
-                getattribute();
+            $.each(attribute, function(k, v) {
                 $("#form-group-body").append(
                     `<div id="loop-attribute" class="attribute-group-additional">
                             <div class="form-group mb-3 col-6">
                                 <label class="required" for="attribute_id">Attribute</label>
-                                <select name="attribute_id[]" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required>
-                                    <option value="${ambil.attribut_id}">${ambil.attribut.name}</option>
+                                <select data-attribute-value-id="${v.id}" name="attribute_id[]" class="form-control custom-select get-attribute-on-edit-${k} get-attribute-additional attribute_id" style="width: 100%" required>
+
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" name="attribute_value_id[]" class="form-control attribute_value_id" value="${ambil.id}" readonly>
+                                <input type="hidden" name="attribute_value_id[]" class="form-control attribute_value_id" value="${v.id}" readonly>
                             </div>
                             <div class="form-group col-12">
                                 <label class="required" for="description">Deskripsi Attribut</label>
                                 <textarea name="description[]" cols="3" class="form-control description" required
-                                    placeholder="Masukan deskripsi attribut" rows="2">${ambil.description}</textarea>
+                                    placeholder="Masukan deskripsi attribut" rows="2">${v.description}</textarea>
                             </div>
                             <div class="form-row col-12">
                                 <div class="form-group col-3">
                                     <label for="order">Order</label>
-                                    <input type="number" name="order[]" id="order" class="form-control text-center order" value="${ambil.order}" placeholder="cth:0" required>
+                                    <input type="number" name="order[]" id="order" class="form-control text-center order" value="${v.order}" placeholder="cth:0" required>
                                 </div>
                                 <div class="col-4">
                                     <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
@@ -608,10 +601,45 @@ function getContent(id) {
                             </div>
                         </div>`
                 );
-                $(".custom-select").select2({
+                $(".custom-select").select2();
+                // getattribute();
+                // let attributeValueID = $('.get-attribute-on-edit').data('attribute-value-id');
 
-                });
-            }
+            });
+
+            for(let i = 0; i <= attribute.length - 1; i++) {
+               let attributeValueID = $('.get-attribute-on-edit-'+i).data('attribute-value-id');
+               let option = "<option selected disabled>-- Pilih Label --</option>";
+                axios.get('./attribute')
+                    .then(function (response) {
+                        let data = response.data.attribute;
+                        $.each(data, function (key, val) {
+                            option += `<option value="${val.id}" ${val.id === attributeValueID ? 'selected' : ''}>${val.name}</option>`;
+                        });
+                        // console.log($('.get-attribute-on-edit')[i]);
+                        $('.get-attribute-on-edit-'+i).append(option);
+                    });
+            };
+
+            // $('.get-attribute-on-edit').each(function() {
+            //     let attributeValueID = $(this).data('attribute-value-id');
+            //     axios.get('./attribute')
+            //         .then(function (response) {
+            //             let data = response.data.attribute;
+            //             let option = "<option selected disabled>-- Pilih Label --</option>";
+            //             $.each(data, function (key, val) {
+            //                 option += `<option value="${val.id}" ${val.id === attributeValueID ? 'selected' : ''}>${val.name}</option>`
+            //             });
+            //             $('.get-attribute-on-edit').html(option);
+            //         })
+            // });
+
+            // for (let i = 0; i < attribute.length; i++) {
+            //     let ambil = attribute[i];
+                // getattribute(ambil.attribut_id);
+            //     console.log(ambil.attribut_id);
+
+            // }
             $(".btn-hapus-attribute").on("click", function () {
                 let attValId = $(this).closest(".attribute-group-additional").find(
                     ".attribute_value_id").val();
@@ -627,6 +655,19 @@ function getContent(id) {
         });
 }
 // end edit
+
+function getattredit(idAttr){
+    axios.get('./attribute')
+    .then(function (response) {
+        let data = response.data.attribute;
+        let option = "<option selected disabled>-- Pilih Label --</option>";
+        $.each(data, function (key, val) {
+            option += `<option value="${val.id}" ${val.id === idAttr ? 'selected' : ''}>${val.name}</option>`
+        });
+        return option;
+    })
+}
+
 
 // delete
 $(document).on("click", ".btn-delete-content", function () {

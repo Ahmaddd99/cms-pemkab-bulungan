@@ -17,7 +17,7 @@
                                     <label class="required" for="category_id">Kategori</label>
                                     <select name="category_id" id="category_id" class="form-control custom-select category_id content" style="width: 100%" required></select>
                                 </div>
-                                <div class="form-group col-6">
+                                <div id="form-subcategory" class="form-group col-6">
                                     <label for="subcategory_id">Subkategori</label>
                                     <select name="subcategory_id" id="subcategory_id" class="form-control custom-select subcategory_id content" style="width: 100%"></select>
                                 </div>

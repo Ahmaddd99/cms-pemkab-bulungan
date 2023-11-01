@@ -119,6 +119,7 @@
         $(".id").val("");
         afterAction();
         reloadDatatable();
+        $('.published').val('').trigger('change');
         $("#preview-feature").addClass('d-none');
         $("#preview-feature img").empty();
     });
@@ -136,13 +137,13 @@
     // end partials
 
     // preview
-    $('.image_feature').on('change', function() {
+    $('#image').on('change', function() {
         $('#preview-feature').removeClass('d-none');
         const file = this.files[0];
         if(file) {
             let reader = new FileReader();
             reader.onload = function(event) {
-                $('#preview-feature').find('img').attr('src', event.target.result).trigger("change");
+                $('#preview-feature').find('img').attr('src', event.target.result);
             }
             reader.readAsDataURL(file);
         }
@@ -185,7 +186,7 @@
                 $(".id").val(data.id);
                 $(".title-feature").val(data.title);
                 $(".order").val(data.order);
-                $(".published").val(data.published);
+                $(".published").val(data.published).trigger("change");
 
                 $(".current_image_feature").val(data.image);
                 $("#preview-feature").removeClass('d-none');

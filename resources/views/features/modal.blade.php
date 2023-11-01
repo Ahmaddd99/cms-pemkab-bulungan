@@ -20,10 +20,10 @@
                             <label for="order">Order</label>
                             <input type="number" name="order" id="order" class="form-control text-center number order" value="0" onclick="this.select()" required>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="required" class="required" for="published">Status</label>
                             <select name="published" id="published" class="form-control custom-select published" style="width: 100%" required>
-                                <option selected disabled>Pilih status publish</option>
+                                <option value="" selected disabled>-- Pilih status publish --</option>
                                 <option value="0">Tidak dipublish</option>
                                 <option value="1">Publish</option>
                             </select>

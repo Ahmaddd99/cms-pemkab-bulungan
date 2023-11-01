@@ -418,6 +418,26 @@
         getContentGallery(id);
     });
 
+    // dynamic select category & subcategory
+    $(document).on("change", "#category_id", function(){
+        let idcategory = $(this).val();
+        console.log(idcategory);
+        getsubcategory(idcategory);
+    });
+
+    function getsubcategory(categoryid){
+        axios.get(`../content/${categoryid}/select`)
+        .then(function(response){
+            let data = response.data.category.subcategory;
+            console.log(data);
+            let select = '<option selected disabled>Pilih Subkategori</option>';
+            $.each(data, function(key, val){
+                select += `<option value="${val.id}">${val.name}</option>`
+            })
+            $("#subcategory_id").html(select);
+        })
+    }
+
     function getContentGallery(contentId) {
         axios.get(`../content/${contentId}/galleries`)
             .then(function(response) {
@@ -441,9 +461,8 @@
         if (confdel) {
             deleteGall(idGallery);
             getContentGallery(contentId);
-
         }
-    })
+    });
 
     function showAttributeForm(cond) {
         let _form = '';
@@ -556,7 +575,7 @@
                 console.log("terjadi kesalahan saat mengambil data ", error);
             });
     }
-    // end get
+    // end edit
 
     // delete
     $(document).on("click", ".btn-delete-content", function() {

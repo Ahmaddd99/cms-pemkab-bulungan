@@ -300,6 +300,13 @@ class ContentController extends Controller
         ]);
     }
 
+    public function dynamicSelectCategory($id){
+        $data = Category::whereId($id)->with('subcategory')->first();
+        return response()->json([
+            'category' => $data
+        ]);
+    }
+
     public function getCategoryId()
     {
         $data = Category::select("*")->limit(100)->orderBy('id', 'desc')->get();

@@ -96,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/postfeature', [ContentController::class, 'createFeature'])->name('postfeature');
         // get gallery
         Route::get('/{contentid}/galleries', [ContentController::class, 'getgallery'])->name('getgallery');
+        // dynamic
+        Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
     });
 
     Route::prefix('/submenu')->name('submenu.')->group(function () {

@@ -474,7 +474,7 @@ function showAttributeForm(cond) {
                 </div>
                 <div class="form-group mb-3 col-12">
                     <label class="required" for="description">Deskripsi Label</label>
-                    <textarea name="description[]" id="description" rows="2" class="form-control description"></textarea>
+                    <textarea name="description[]" id="description" rows="2" class="form-control description" placeholder="Masukan deskripsi attribut"></textarea>
                 </div>
                 <div class="form-row col-12">
                     <div class="form-group col-3">
@@ -543,13 +543,13 @@ function getContent(id) {
             }
 
             if(attribute.length === 0){
-                // getattribute();
+                getattribute();
                 $("#form-group-body").append(
                     `<div id="loop-attribute" class="attribute-group-additional">
                             <div class="form-group mb-3 col-6">
                                 <label class="required" for="attribute_id">Attribute</label>
                                 <select name="attribute_id[]" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required>
-                                    <option value="">Judul Attribute</option>
+
                                 </select>
                             </div>
                             <div class="form-group">
@@ -558,12 +558,12 @@ function getContent(id) {
                             <div class="form-group col-12">
                                 <label class="required" for="description">Deskripsi Attribut</label>
                                 <textarea name="description[]" cols="3" class="form-control description" required
-                                    placeholder="Masukan deskripsi attribut" rows="2">Deskripsi attribute</textarea>
+                                    placeholder="Masukan deskripsi attribut" rows="2"></textarea>
                             </div>
                             <div class="form-row col-12">
                                 <div class="form-group col-3">
                                     <label for="order">Order</label>
-                                    <input type="number" name="order[]" id="order" class="form-control text-center order" value="" placeholder="cth:0" required>
+                                    <input type="number" name="order[]" id="order" class="form-control text-center order" value="0" onclick="this.select()" placeholder="cth:0" required>
                                 </div>
                                 <div class="col-4">
                                     <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>

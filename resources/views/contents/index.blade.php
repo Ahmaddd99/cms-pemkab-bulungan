@@ -169,7 +169,7 @@ function categoryId(catID = null) {
             let option = "<option selected>-- Pilih Kategori --</option>";
             $.each(data, function (key, val) {
                 option += `<option value="${val.id}" ${catID === val.id && catID !== null ? 'selected' : ''}>${val.name}</option>`;
-                console.log(`Val ID: ${val.id}, Cat ID: ${catID}`);
+                // console.log(`Val ID: ${val.id}, Cat ID: ${catID}`);
             });
             $("#category_id").html(option);
         })
@@ -268,7 +268,6 @@ function postAttribute(att) {
 function deleteAttVal(id) {
     axios.delete('./delAttVal/' + id)
         .then(function (response) {
-            console.log(response);
             reloadDatatable();
         })
 }
@@ -277,7 +276,6 @@ function deleteAttVal(id) {
 function deleteGall(id) {
     axios.delete('./delGallery/' + id)
         .then(function (response) {
-            console.log(response);
         })
 }
 
@@ -314,7 +312,7 @@ $(".tambah-attribute").on("click", function () {
             `;
             $("#form-group-body").append(newAttributeGroup);
             $(".custom-select").select2({
-                // dropdownParent: $('#ModalContent')
+
             });
 
             $("#form-group-body").on("click", ".btn-hapus-attribute", function () {
@@ -387,7 +385,6 @@ $("#FormContent").on("submit", function (e) {
     //}
 
     postContent(formData);
-    //console.log($(this).serialize());
 })
 
 function postContent(post) {
@@ -397,7 +394,6 @@ function postContent(post) {
         }
     })
         .then(function (response) {
-            console.log(response);
             afterAction();
             reloadDatatable();
         })
@@ -411,7 +407,6 @@ function postContent(post) {
 function dynamicselect(){
     $(".category_id").on("change", function () {
         let idcategory = $(this).val();
-        console.log(idcategory);
         if(idcategory) {
             $('#form-subcategory').show();
             getsubcategory(idcategory);
@@ -423,7 +418,6 @@ function getsubcategory(categoryid) {
     axios.get(`../content/${categoryid}/select`)
         .then(function (response) {
             let data = response.data.category.subcategory;
-            console.log("xx", data);
             let select = '<option selected>Pilih Subkategori</option>';
             $.each(data, function (key, val) {
                 select += `<option value="${val.id}">${val.name}</option>`
@@ -435,7 +429,6 @@ function getsubcategory(categoryid) {
 // edit
 $(document).on("click", ".btn-edit-content", function () {
     let id = $(this).data('id');
-    console.log(id);
     getContent(id);
     showAttributeForm('hide');
     getContentGallery(id);
@@ -495,6 +488,9 @@ function showAttributeForm(cond) {
             </div>`;
             getattribute();
         $('#form-group-body').html(_form);
+        $(".custom-select").select2({
+
+        });
     } else {
         $('#form-group-body').html('');
     }
@@ -516,10 +512,6 @@ function getContent(id) {
             let feature = response.data.content.feature_value;
             let attribute = response.data.content.attribut_value;
             let galleries = response.data.content.galleries;
-            console.log(data);
-            //console.log(galleries);
-            //console.log(attribute);
-            //console.log(feature);
             $('.id').val(data.id);
             //$('.category_id').val(data.category_id).trigger('change');
             //$('.subcategory_id').val(data.subcategory_id);
@@ -532,7 +524,6 @@ function getContent(id) {
 
             categoryId(data.category_id);
             subcategoryId(data.subcategory_id);
-            // console.log(`Category ID: ${data.category_id}`);
 
 
             $("#gambar-content").removeClass('d-none');
@@ -553,12 +544,12 @@ function getContent(id) {
             }
 
             if(attribute.length === 0){
-                console.log("isinya kosong");
+                getattribute();
                 $("#form-group-body").append(
                     `<div id="loop-attribute" class="attribute-group-additional">
                             <div class="form-group mb-3 col-6">
                                 <label class="required" for="attribute_id">Attribute</label>
-                                <select name="attribute_id[]" class="form-control custom-select get-attribute-additional attribute_id" style="width: 100%" required>
+                                <select name="attribute_id[]" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required>
                                     <option value="">Judul Attribute</option>
                                 </select>
                             </div>
@@ -581,16 +572,20 @@ function getContent(id) {
                             </div>
                         </div>`
                         );
+                        $(".custom-select").select2({
+
+                        });
             }
 
 
             for (let i = 0; i < attribute.length; i++) {
                 let ambil = attribute[i];
+                getattribute();
                 $("#form-group-body").append(
                     `<div id="loop-attribute" class="attribute-group-additional">
                             <div class="form-group mb-3 col-6">
                                 <label class="required" for="attribute_id">Attribute</label>
-                                <select name="attribute_id[]" class="form-control custom-select get-attribute-additional attribute_id" style="width: 100%" required>
+                                <select name="attribute_id[]" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required>
                                     <option value="${ambil.attribut_id}">${ambil.attribut.name}</option>
                                 </select>
                             </div>
@@ -612,12 +607,14 @@ function getContent(id) {
                                 </div>
                             </div>
                         </div>`
-                )
+                );
+                $(".custom-select").select2({
+
+                });
             }
             $(".btn-hapus-attribute").on("click", function () {
                 let attValId = $(this).closest(".attribute-group-additional").find(
                     ".attribute_value_id").val();
-                //console.log(attValId);
                 let conf = confirm("Apakah anda yakin ingin menghapus atribut ini?");
                 if (conf) {
                     deleteAttVal(attValId);
@@ -643,7 +640,6 @@ $(document).on("click", ".btn-delete-content", function () {
 function deleteContent(id) {
     axios.delete('./delete/' + id)
         .then(function (response) {
-            console.log(response);
             reloadDatatable();
         })
 }

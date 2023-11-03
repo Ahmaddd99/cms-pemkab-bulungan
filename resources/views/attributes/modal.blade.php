@@ -11,7 +11,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" class="form-control id" id="id" name="id" value="">
+                    <input type="hidden" class="form-control id-attribute" id="id" name="id" value="">
                     <div class="form-group mb-3">
                         <label class="required" for="name">Nama Label</label>
                         <input type="text" name="name" id="name" class="form-control name"

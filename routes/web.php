@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/subcategory', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
         Route::get('/feature', [ContentController::class, 'getFeatureId'])->name('feature');
         Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
+        
         // delete attribute value
         Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
         // delete image gallery

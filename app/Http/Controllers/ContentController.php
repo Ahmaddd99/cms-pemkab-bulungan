@@ -129,7 +129,7 @@ class ContentController extends Controller
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
                         $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
-                        // $image->move('gallery', $namaImage);
+                        $image->move('gallery', $namaImage);
                         $galleryImages[] = [
                             'content_id' => $content->id,
                             'image' => $namaImage
@@ -175,7 +175,7 @@ class ContentController extends Controller
             DB::beginTransaction();
             try {
                 $name = $request->name;
-                Attribut::updateOrCreate(
+                $attribute = Attribut::updateOrCreate(
                     [
                         'id' => $request->id
                     ],
@@ -189,7 +189,11 @@ class ContentController extends Controller
                 DB::commit();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Success post data'
+                    'message' => 'Success post data',
+                    'attribute' => [
+                        'id' => $attribute->id,
+                        'name' => $attribute->name,
+                    ]
                 ], 200);
             } catch (Throwable $e) {
                 DB::rollBack();

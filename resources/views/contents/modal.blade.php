@@ -55,7 +55,9 @@
                                 <div class="attribute-group">
                                     <div class="form-group mb-3 col-6">
                                         <label class="required" for="attribute_id">Label</label>
-                                        <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-attribute attribute_id" style="width: 100%" required></select>
+                                        <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-all-attribute attribute-modal attribute_id" style="width: 100%" required>
+                                            <option class="option-default" selected disabled>-- Pilih Label --</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <input type="hidden" id="attribute_value_id" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
@@ -96,8 +98,8 @@
                                     <input type="file" id="image_gallery" name="image_gallery[]" class="form-control image_gallery" accept="image/*" multiple>
                                 </div>
                                 <!-- preview upload galleries -->
-                                <div id="preview-upload-galleries" class="d-none my-3 text-center">
-                                    <img alt="" alt="" class="img-fluid img-thumbnail" />
+                                <div id="preview-upload-galleries" class="d-none text-center my-3">
+                                    
                                 </div>
                             </div>
                             <hr>

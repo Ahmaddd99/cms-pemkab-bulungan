@@ -97,9 +97,11 @@
                                     <label for="">Upload gambar konten galeri</label>
                                     <input type="file" id="image_gallery" name="image_gallery[]" class="form-control image_gallery" accept="image/*" multiple>
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <!-- preview upload galleries -->
                                 <div id="preview-upload-galleries" class="d-none text-center my-3">
-                                    
+
                                 </div>
                             </div>
                             <hr>

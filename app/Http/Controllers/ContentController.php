@@ -323,9 +323,9 @@ class ContentController extends Controller
         ]);
     }
 
-    public function getSubcategoryId()
+    public function getSubcategoryId($categoryId)
     {
-        $data = Subcategory::select("*")->limit(100)->orderBy('id', 'desc')->get();
+        $data = Subcategory::select("*")->where('category_id', $categoryId)->limit(100)->orderBy('id', 'desc')->get();
         return response()->json([
             'subcategory' => $data
         ]);

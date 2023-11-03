@@ -1,4 +1,4 @@
-@extends ('layouts.master')
+@extends('layouts.master')
 @section('css')
     <style>
     </style>
@@ -107,7 +107,7 @@
             }
         ]
     });
-$(".custom-select").select2();
+
 // partials
     function afterAction() {
         $('#FormContent')[0].reset();
@@ -122,8 +122,11 @@ $(".custom-select").select2();
         // $("#FormContent")[0].reset();
         showAttributeForm('show');
         getfeature();
-
+        // $(document).on("", ".custom-select").select2();
+        // categoryId();
+        dynamicselect();
     });
+
     $(".btn-add-content").on("click", function() {
         categoryId();
         subcategoryId();
@@ -161,17 +164,18 @@ $(".custom-select").select2();
             });
     }
 
-    function subcategoryId(subcategoryID = null) {
-        if (subcategoryID === null) {
-            $('#form-subcategory').show()
+    function subcategoryId(categoryID = null, subcategoryID = null) {
+        if (categoryID === null) {
+            $('#form-subcategory').hide();
         } else {
-            axios.get('./subcategory')
+            axios.get(`./subcategory/${categoryID}`)
                 .then(function(response) {
                     let data = response.data.subcategory;
+                    console.log(data);
                     let option = `<option value="" >-- Pilih Subkategori --</option>`;
                     $.each(data, function(key, val) {
                         option +=
-                            `<option value="${val.id}" ${subcategoryID === val.id && subcategoryID !== null ? 'selected' : ''}>${val.name}</option>`
+                            `<option value="${val.id}" ${subcategoryID === val.id && categoryID !== null ? 'selected' : ''}>${val.name}</option>`
                     });
                     $("#form-subcategory").show().find("#subcategory_id").html(option);
                 });
@@ -194,8 +198,8 @@ $(".custom-select").select2();
                 let data = response.data.category.subcategory;
                 let select = `<option value="" >-- Pilih Subkategori --</option>`;
                 $.each(data, function(key, val) {
-                    select += `<option value="${val.id}">${val.name}</option>`
-                })
+                    select += `<option value="${val.id}" >${val.name}</option>`
+                });
                 $("#subcategory_id").html(select);
             });
     }
@@ -313,9 +317,9 @@ $(".custom-select").select2();
                         </div>
                     </div>
                 `;
+            await $(".custom-select").select2();
             await $("#form-group-body").append(newAttributeGroup);
             getAllAttribute(rand);
-            $(".custom-select").select2();
 
             $("#form-group-body").on("click", ".btn-hapus-attribute", function () {
             $(this).closest(".attribute-group-additional").remove();
@@ -474,6 +478,7 @@ $(".custom-select").select2();
             })
             .catch(function (error) {
                 console.log("Terjadi kesalahan saat post data ", error);
+                alert("Perhatikan saat mengisi form, pastikan untuk mengisi data mandatory");
             });
     }
 // end post
@@ -495,7 +500,7 @@ $(".custom-select").select2();
                 let galleries = response.data.content.galleries;
                 $('.id').val(data.id);
                 //$('.category_id').val(data.category_id).trigger('change');
-                //$('.subcategory_id').val(data.subcategory_id);
+                // $('.subcategory_id').val(data.subcategory_id);
                 // getcatid(data.category_id);
                 // getsubid(data.subcategory_id);
                 console.log(data);
@@ -504,13 +509,14 @@ $(".custom-select").select2();
                 $('.meta').val(data.meta);
                 $('.current_image').val(data.image);
 
-                categoryId(data.category_id);
                 getsubcategory(data.category_id);
-                subcategoryId(data.subcategory_id);
+                subcategoryId(data.category_id, data.subcategory_id);
+                categoryId(data.category_id);
+                dynamicselect();
+
 
                 if(data.subcategory_id === null){
-                    categoryId(data.category_id);
-                    // getsubcategory(data.category_id);
+                    $('#form-subcategory').show();
                 }
 
                 if(feature === null) {
@@ -556,10 +562,12 @@ $(".custom-select").select2();
                             </div>
                         </div>`;
                         getAllAttribute(val.attribut_id);
+
+
                     });
                     $("#form-group-body").html(attributeData);
+                    // $(".custom-select").select2();
                 }
-                $(".custom-select").select2();
                 $(".btn-hapus-attribute").on("click", function () {
                     let attValId = $(this).closest(".attribute-group-additional").find(".attribute_value_id").val();
                     // console.log(attValId);

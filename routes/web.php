@@ -83,10 +83,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', [ContentController::class, 'destroy'])->name('delete');
         // get
         Route::get('/category', [ContentController::class, 'getCategoryId'])->name('category');
-        Route::get('/subcategory', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
+        Route::get('/subcategory/{categoryId}', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
         Route::get('/feature', [ContentController::class, 'getFeatureId'])->name('feature');
         Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
-        
+
         // delete attribute value
         Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
         // delete image gallery

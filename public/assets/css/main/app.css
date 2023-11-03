@@ -298,6 +298,13 @@
         u+02dc, u+2000-206f, u+2074, u+20ac, u+2122, u+2191, u+2193, u+2212,
         u+2215, u+feff, u+fffd;
 }
+.dataTables_wrapper .dataTables_filter{
+    float: left;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 25em;
+    /* margin-right: 10em; */
+}
 .ps {
     -ms-overflow-style: none;
     overflow: hidden !important;

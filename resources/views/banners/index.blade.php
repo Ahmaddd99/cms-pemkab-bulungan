@@ -14,8 +14,8 @@
                 <table id="TableBanner" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr style="font-size: 0.9em">
-                            <th>Keterangan</th>
                             <th>Gambar</th>
+                            <th>Keterangan</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,15 +44,16 @@
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "All"]
         ],
-        "columns": [{
-                data: "keterangan",
-                name: "keterangan",
-                width: "30%"
-            },
+        "columns": [
             {
                 data: "image",
                 name: "image",
-                width: "50%"
+                width: "20%"
+            },
+            {
+                data: "keterangan",
+                name: "keterangan",
+                width: "30%"
             },
             {
                 data: "actions",
@@ -62,7 +63,8 @@
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",

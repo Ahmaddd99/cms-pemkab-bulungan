@@ -13,9 +13,9 @@
                 <table id="TableSub" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr>
+                            <th>Gambar</th>
                             <th>Kategori</th>
                             <th>Nama Subkategori</th>
-                            <th>Gambar</th>
                             <th>Published</th>
                             <th></th>
                         </tr>
@@ -45,7 +45,13 @@
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "All"]
         ],
-        "columns": [{
+        "columns": [
+            {
+                data: "image",
+                name: "image",
+                width: "15%"
+            },
+            {
                 data: "category",
                 name: "category",
                 width: "21%"
@@ -61,19 +67,15 @@
                 width: "13%"
             },
             {
-                data: "image",
-                name: "image",
-                width: "30%"
-            },
-            {
                 data: "actions",
                 name: "actions",
-                width: "10%"
+                width: "20%"
             }
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",

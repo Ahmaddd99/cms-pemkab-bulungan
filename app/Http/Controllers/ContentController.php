@@ -20,6 +20,7 @@ use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
 use function PHPUnit\Framework\fileExists;
+use function Symfony\Component\String\b;
 
 class ContentController extends Controller
 {
@@ -281,8 +282,11 @@ class ContentController extends Controller
                     return $row->subcategory->name;
                 }
             })
+            ->editColumn('title', function($row){
+                return '<div><b>'.$row->title.'</b><br><p>'.$row->meta.'</p></div>';
+            })
             ->editColumn('image', function ($row) {
-                return '<img src="' . $row->image . '" alt="" style="width:10em">';
+                return '<img src="' . $row->image . '" alt="" style="width:6.5em">';
             })
             ->addColumn('actions', function ($row) {
                 return '
@@ -290,7 +294,7 @@ class ContentController extends Controller
             <button type="button" class="btn btn-danger btn-delete-content btn-sm" data-id="' . $row->id . '">Hapus</button>
             ';
             })
-            ->rawColumns(['category_id', 'subcategory_id', 'image', 'title', 'meta', 'actions'])
+            ->rawColumns(['category_id', 'subcategory_id', 'image', 'title', 'actions'])
             ->make(true);
     }
 

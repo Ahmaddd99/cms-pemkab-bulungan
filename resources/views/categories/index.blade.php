@@ -13,9 +13,9 @@
                 <table id="TableCategory" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr style="font-size: 0.9em">
+                            <th>Gambar</th>
                             <th>Nama</th>
                             <th>Publish</th>
-                            <th>Gambar</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,7 +44,13 @@
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "All"]
         ],
-        "columns": [{
+        "columns": [
+            {
+                data: "image",
+                name: "image",
+                width: "15%"
+            },
+            {
                 data: "name",
                 name: "name",
                 width: "30%"
@@ -55,19 +61,15 @@
                 width: "10%"
             },
             {
-                data: "image",
-                name: "image",
-                width: "40%"
-            },
-            {
                 data: "actions",
                 name: "actions",
-                width: "10%"
+                width: "20%"
             }
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",

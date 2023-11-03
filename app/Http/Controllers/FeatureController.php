@@ -79,7 +79,7 @@ class FeatureController extends Controller
         $data = Feature::select("*")->orderBy('id', 'desc')->get();
         return DataTables::of($data)
         ->editColumn('image', function($row){
-            return '<img src="'.asset("/feature/" . $row->image).'" alt="" style="width:15em">';
+            return '<img src="'.asset("/feature/" . $row->image).'" alt="" style="width:6.5em">';
         })
         ->editColumn('published', function($row){
             if($row->published == 1){

@@ -13,8 +13,8 @@
                 <table id="TableFeature" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr style="font-size: 0.9em">
-                            <th>Judul</th>
                             <th>Gambar</th>
+                            <th>Judul</th>
                             <th>Order</th>
                             <th>Status</th>
                             <th></th>
@@ -46,14 +46,15 @@
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "All"]
         ],
-        "columns": [{
-                data: "title",
-                name: "title",
-                width: ""
-            },
+        "columns": [
             {
                 data: "image",
                 name: "image",
+                width: "15%"
+            },
+            {
+                data: "title",
+                name: "title",
                 width: ""
             },
             {
@@ -69,12 +70,13 @@
             {
                 data: "actions",
                 name: "actions",
-                width: "10%"
+                width: "20%"
             }
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",

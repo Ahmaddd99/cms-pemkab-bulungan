@@ -79,7 +79,7 @@ class ContentGalleryController extends Controller
             // return '<img src="'.$row->image.'" alt="" style="width:15em">';
             $images = '';
             foreach($row->galleries as $image) {
-                $images .= "<img class='float-left rounded mx-1' style='width:100px' src='". asset("gallery/" . $image->image) ."' />";
+                $images .= "<img class='float-left rounded mx-1' style='width:6.5em' src='". asset("gallery/" . $image->image) ."' />";
             }
             return $images;
         })

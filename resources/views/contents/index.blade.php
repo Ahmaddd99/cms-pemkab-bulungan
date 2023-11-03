@@ -20,11 +20,10 @@
                 <table id="TableContent" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr style="font-size: 0.9em">
+                            <th>Gambar</th>
                             <th>Kategori</th>
                             <th>Subkategori</th>
-                            <th>Gambar</th>
                             <th>Judul</th>
-                            <th>Meta</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -41,7 +40,9 @@
         "searching": true,
         "paging": true,
         "language": {
-            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
+            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>',
+            search : '',
+            searchPlaceholder: "Cari Konten"
         },
         "serverSide": true,
         "ajax": "{{ route('content.datatables') }}",
@@ -54,6 +55,11 @@
             [10, 25, 50, 100, "All"]
         ],
         "columns": [{
+                data: "image",
+                name: "image",
+                width: "15%"
+            },
+            {
                 data: "category_id",
                 name: "category_id",
                 width: ""
@@ -64,33 +70,25 @@
                 width: ""
             },
             {
-                data: "image",
-                name: "image",
-                width: ""
-            },
-            {
                 data: "title",
                 name: "title",
                 width: ""
             },
             {
-                data: "meta",
-                name: "meta",
-                width: ""
-            },
-            {
                 data: "actions",
                 name: "actions",
-                width: ""
+                width: "20%"
             },
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",
                 "targets": 1,
+                "className": "dt-center"
             },
             {
                 "width": "",
@@ -99,19 +97,17 @@
             },
             {
                 "width": "",
-                "targets": 3
+                "targets": 3,
+                "className": "dt-center"
             },
             {
                 "width": "",
-                "targets": 4
-            },
-            {
-                "width": "",
-                "targets": 5
+                "targets": 4,
+                "className": "dt-center"
             }
         ]
     });
-
+$(".custom-select").select2();
 // partials
     function afterAction() {
         $('#FormContent')[0].reset();
@@ -156,7 +152,7 @@
         axios.get('./category')
             .then(function(response) {
                 let data = response.data.category;
-                let option = "<option selected>-- Pilih Kategori --</option>";
+                let option = `<option selected>-- Pilih Kategori --</option>`;
                 $.each(data, function(key, val) {
                     option +=
                         `<option value="${val.id}" ${categoryID === val.id && categoryID !== null ? 'selected' : ''}>${val.name}</option>`;
@@ -167,12 +163,12 @@
 
     function subcategoryId(subcategoryID = null) {
         if (subcategoryID === null) {
-            $('#form-subcategory').hide()
+            $('#form-subcategory').show()
         } else {
             axios.get('./subcategory')
                 .then(function(response) {
                     let data = response.data.subcategory;
-                    let option = "<option selected disabled>-- Pilih Subkategori --</option>";
+                    let option = `<option value="" >-- Pilih Subkategori --</option>`;
                     $.each(data, function(key, val) {
                         option +=
                             `<option value="${val.id}" ${subcategoryID === val.id && subcategoryID !== null ? 'selected' : ''}>${val.name}</option>`
@@ -196,7 +192,7 @@
         axios.get(`../content/${categoryid}/select`)
             .then(function(response) {
                 let data = response.data.category.subcategory;
-                let select = '<option selected>Pilih Subkategori</option>';
+                let select = `<option value="" >-- Pilih Subkategori --</option>`;
                 $.each(data, function(key, val) {
                     select += `<option value="${val.id}">${val.name}</option>`
                 })
@@ -404,7 +400,7 @@
         axios.get('./feature')
             .then(function (response) {
                 let data = response.data.feature;
-                let option = "<option selected disabled>-- Pilih Fitur --</option>";
+                let option = `<option value="">-- Pilih Fitur --</option>`;
                 $.each(data, function (key, val) {
                     option += `<option value="${val.id}">${val.title}</option>`
                 });
@@ -511,6 +507,11 @@
                 categoryId(data.category_id);
                 getsubcategory(data.category_id);
                 subcategoryId(data.subcategory_id);
+
+                if(data.subcategory_id === null){
+                    categoryId(data.category_id);
+                    // getsubcategory(data.category_id);
+                }
 
                 if(feature === null) {
                     $('.feature_id').val();

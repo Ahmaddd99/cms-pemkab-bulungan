@@ -13,8 +13,8 @@
                 <table id="TableGallery" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
                         <tr style="font-size: 0.9em">
-                            <th>Nama Konten</th>
                             <th>Gambar</th>
+                            <th>Nama Konten</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -43,25 +43,27 @@
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "All"]
         ],
-        "columns": [{
-                data: "content",
-                name: "content",
-                width: "30%"
-            },
+        "columns": [
             {
                 data: "image",
                 name: "image",
                 width: "50%"
             },
             {
+                data: "content",
+                name: "content",
+                width: "30%"
+            },
+            {
                 data: "actions",
                 name: "actions",
-                width: "10%"
+                width: "20%"
             }
         ],
         "columnDefs": [{
                 "width": "",
-                "targets": 0
+                "targets": 0,
+                "className": "dt-center"
             },
             {
                 "width": "",

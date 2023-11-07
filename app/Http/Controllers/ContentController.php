@@ -82,7 +82,7 @@ class ContentController extends Controller
                         File::delete($currentImagePath);
                     }
                     $imgContent = $request->file('image');
-                    $namaFile = 'content-' . time() . '_' . Str::slug($request->meta)  .  ' . '  .  $imgContent->extension();
+                    $namaFile = 'content-' . time() . '_' . Str::slug($request->imgContent->getClientOriginalName())  .  '.'  .  $imgContent->extension();
                     $tujuanUpload = 'content';
                     $imgContent->move($tujuanUpload, $namaFile);
                     $contentData['image'] = $namaFile;
@@ -129,7 +129,7 @@ class ContentController extends Controller
                 $galleryImages = [];
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
-                        $namaImage = 'gallery-' . time() . '-' . Str::slug($request->image->getClientOriginalName())  .  ' . '  .  $image->extension();
+                        $namaImage = 'gallery-' . time() . '-' . Str::slug($request->image->getClientOriginalName())  .  '.'  .  $image->extension();
                         $image->move('gallery', $namaImage);
                         $galleryImages[] = [
                             'content_id' => $content->id,
@@ -246,7 +246,7 @@ class ContentController extends Controller
 
                 if($request->hasFile('image')){
                     $imgFeature = $request->file('image');
-                    $namaFile = 'feature-' . time() . '_' . Str::slug($request->title)  .  ' . '  .  $imgFeature->extension();
+                    $namaFile = 'feature-' . time() . '_' . Str::slug($request->title)  .  '.'  .  $imgFeature->extension();
                     $tujuanUpload = 'feature';
                     $imgFeature->move($tujuanUpload, $namaFile);
                     $featureData['image'] = $namaFile;

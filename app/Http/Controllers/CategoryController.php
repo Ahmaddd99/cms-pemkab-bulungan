@@ -51,7 +51,7 @@ class CategoryController extends Controller
                     }
 
                     $foto = $request->file('image');
-                    $namafile = 'category-' . Str::slug($request->name)  .  ' . '  .  $foto->extension();
+                    $namafile = 'category-' . Str::slug($request->name)  .  '.'  .  $foto->extension();
                     $tujuan_upload = 'category';
                     $foto->move($tujuan_upload, $namafile);
                     $categoryData['image'] = $namafile;
@@ -59,7 +59,7 @@ class CategoryController extends Controller
 
                 if ($request->hasFile('image_placeholder')) {
                     $placeholder = $request->file('image_placeholder');
-                    $path = time() . '_' . Str::slug($request->name)  .  ' . '  .  $placeholder->extension();
+                    $path = time() . '_' . Str::slug($request->name)  .  '.'  .  $placeholder->extension();
                     $placeholder->move('placeholder', $path);
                     $categoryData['image_placeholder'] = $path;
                 }

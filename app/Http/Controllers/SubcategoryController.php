@@ -56,7 +56,7 @@ class SubcategoryController extends Controller
                     }
 
                     $foto = $request->file('image');
-                    $namafile = 'subcategory-' . Str::slug($request->name)  .  ' . '  .  $foto->extension();
+                    $namafile = 'subcategory-' . Str::slug($request->name)  .  '.'  .  $foto->extension();
                     $tujuan_upload = 'subcategory';
                     $foto->move($tujuan_upload, $namafile);
                     $subcategoryData['image'] = $namafile;
@@ -64,7 +64,7 @@ class SubcategoryController extends Controller
 
                 if ($request->hasFile('image_placeholder')) {
                     $placeholder = $request->file('image_placeholder');
-                    $path = time() . '_' . Str::slug($request->name)  .  ' . '  .  $placeholder->extension();
+                    $path = time() . '_' . Str::slug($request->name)  .  '.'  .  $placeholder->extension();
                     $placeholder->move('placeholder', $path);
                     $subcategoryData['image_placeholder'] = $path;
                 }

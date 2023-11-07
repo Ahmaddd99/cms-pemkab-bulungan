@@ -30,7 +30,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
+                        <input type="text" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
+                        <input type="text" class="form-control current_placeholder_subcategory" name="current_placeholder_subcategory" value="" readonly>
                     </div>
                     <div class="form-row">
                         <div class="col-6">
@@ -43,8 +44,8 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div id="gambar-placeholder-subcategory" class="d-none my-3 text-center">
-                                <img src="" alt="" class="img-fluid img-thumbnail" style="width: 50%">
+                            <div id="gambar-placeholder-subcategory" class="my-3 text-center">
+                                <img src="{{{asset('placeholder/no_image.png')}}}" alt="" class="img-fluid img-thumbnail" style="width: 50%">
                             </div>
                             <div class="form-group">
                                 <label for="image_placeholder">Upload placeholder</label>

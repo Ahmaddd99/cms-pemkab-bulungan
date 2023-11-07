@@ -119,13 +119,13 @@
             $("select.content_id").select2({
                 dropdownParent: $('#ModalGallery')
             });
-            $(".custom-select").each(function() {
-                $(this)
-                .wrap(`<div style="position:relative"></div>`)
-                .select2({
-                    // dropdownParent: $('#ModalContent')
-                });
-            });
+            // $(".custom-select").each(function() {
+            //     $(this)
+            //     .wrap(`<div style="position:relative"></div>`)
+            //     .select2({
+            //         // dropdownParent: $('#ModalContent')
+            //     });
+            // });
             @yield('js')
         });
     </script>

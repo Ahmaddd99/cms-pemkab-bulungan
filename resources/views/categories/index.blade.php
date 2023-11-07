@@ -111,13 +111,14 @@
         reloadDatatable();
         $('#gambar-category').addClass('d-none');
         $('#gambar-category img').attr('src', '');
-        $('#gambar-placeholder-category').addClass('d-none');
-        $('#gambar-placeholder-category img').attr('src', '');
+        $('#gambar-placeholder-category img').attr('src', '{{asset('placeholder/no_image.png')}}');
     });
 
     $(".add-new-category").on("click", function() {
         $(".id").val("");
         afterAction();
+        $('#gambar-placeholder-category').addClass('d-none');
+        // $('#gambar-placeholder-category img').attr('src', '{{asset('placeholder/no_image.png')}}');
     });
 
     $('.close-category').on("click", function() {
@@ -194,6 +195,7 @@
         let id = $(this).data('id');
         console.log(id);
         getCategory(id);
+        $('#gambar-placeholder-category').find('img').attr('src', '');
     });
 
     function getCategory(id){
@@ -201,10 +203,13 @@
             .then(function(response){
                 let data = response.data.category;
                 console.log(data);
-
+                console.log(data.image_placeholder);
                 $(".id").val(data.id);
                 $(".name").val(data.name);
                 $(".published").val(data.published).trigger("change");
+
+                $('.current_placeholder_category').val(data.image_placeholder);
+                $('#gambar-placeholder-category').find('img').attr('src', `../../placeholder/${data.image_placeholder}`);
 
                 $(".current_image_category").val(data.image);
                 $("#gambar-category").removeClass('d-none');

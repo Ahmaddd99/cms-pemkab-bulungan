@@ -26,7 +26,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control current_image_category" name="current_image_category" readonly value="">
+                        <input type="text" class="form-control current_image_category" name="current_image_category" readonly value="">
+                        <input type="text" class="form-control current_placeholder_category" name="current_placeholder_category" readonly value="">
                     </div>
                     <div class="form-row">
                         <div class="col-6">
@@ -39,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div id="gambar-placeholder-category" class="d-none my-3 text-center">
+                            <div id="gambar-placeholder-category" class="my-3 text-center">
                                 <img alt="" src="{{asset('placeholder/no_image.png')}}" class="img-fluid img-thumbnail" style="width: 50%" />
                             </div>
                             <div class="form-group">

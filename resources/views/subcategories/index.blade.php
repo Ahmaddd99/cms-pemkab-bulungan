@@ -123,8 +123,7 @@
         reloadDatatable();
         $("#gambar-subcategory").addClass('d-none');
         $("#gambar-subcategory img").attr('src', '');
-        $("#gambar-placeholder-subcategory").addClass('d-none');
-        $("#gambar-placeholder-subcategory img").attr('src', '');
+        $("#gambar-placeholder-subcategory img").attr('src', '{{asset('placeholder/no_image.png')}}');
     });
 
     $(".add-new-subcategory").on("click", function() {
@@ -206,6 +205,7 @@
         let id = $(this).data("id");
         console.log(id);
         getSubcategory(id);
+        $('#gambar-placeholder-subcategory img').attr('src', '');
     });
 
     function getSubcategory(id){
@@ -217,6 +217,10 @@
                 $(".category_id").val(data.category_id).trigger("change");
                 $(".name").val(data.name);
                 $(".published").val(data.published).trigger("change");
+
+                $('.current_placeholder_subcategory').val('data.image_placeholder');
+                $('#gambar-placeholder-subcategory').find('img').attr('src', `../placeholder/${data.image_placeholder}`);
+
                 $(".current_image_subcategory").val(data.image);
                 $("#gambar-subcategory").removeClass('d-none');
                 $('#gambar-subcategory').find('img').attr('src' , data.image);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,7 @@ class CategoryController extends Controller
                     }
 
                     $foto = $request->file('image');
-                    $namafile = 'category-' . time() . '_' . $foto->getClientOriginalName();
+                    $namafile = 'category-' . time() . '_' . Str::slug($foto->getClientOriginalName());
                     $tujuan_upload = 'category';
                     $foto->move($tujuan_upload, $namafile);
                     $categoryData['image'] = $namafile;

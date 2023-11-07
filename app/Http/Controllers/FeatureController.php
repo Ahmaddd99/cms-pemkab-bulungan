@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -53,7 +54,7 @@ class FeatureController extends Controller
                         FIle::delete($imagepath);
                     }
                     $imgFeature = $request->file('image');
-                    $namaFile = 'feature-' . time() . '_' . $imgFeature->getClientOriginalName();
+                    $namaFile = 'feature-' . time() . '_' . Str::slug($imgFeature->getClientOriginalName());
                     $tujuanUpload = 'feature';
                     $imgFeature->move($tujuanUpload, $namaFile);
                     $featureData['image'] = $namaFile;

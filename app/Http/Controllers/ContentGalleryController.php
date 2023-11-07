@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\ContentGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
@@ -40,7 +41,7 @@ class ContentGalleryController extends Controller
                 $galleryImages = [];
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
-                        $namaImage = 'gallery-' . time() . '-' . $image->getClientOriginalName();
+                        $namaImage = 'gallery-' . time() . '-' . Str::slug($image->getClientOriginalName());
                         $image->move('gallery', $namaImage);
                         $galleryImages[] = [
                             // 'id' => $request->id,

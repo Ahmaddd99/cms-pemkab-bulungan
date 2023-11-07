@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -48,7 +49,7 @@ class BannerController extends Controller
                     }
                     // upload gambar
                     $foto = $request->file('image');
-                    $namaFile = 'banner-' . time() . '-' . $foto->getClientOriginalName();
+                    $namaFile = 'banner-' . time() . '-' . Str::slug($foto->getClientOriginalName());
                     $tujuanUpload = 'banner';
                     $foto->move($tujuanUpload, $namaFile);
                     $bannerData['image'] = $namaFile;

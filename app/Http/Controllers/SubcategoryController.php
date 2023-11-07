@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -55,7 +56,7 @@ class SubcategoryController extends Controller
                     }
 
                     $foto = $request->file('image');
-                    $namafile = 'subcategory-' . time() . '_' . $foto->getClientOriginalName();
+                    $namafile = 'subcategory-' . time() . '_' . Str::slug($foto->getClientOriginalName());
                     $tujuan_upload = 'subcategory';
                     $foto->move($tujuan_upload, $namafile);
                     $subcategoryData['image'] = $namafile;

@@ -30,8 +30,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
-                        <input type="text" class="form-control current_placeholder_subcategory" name="current_placeholder_subcategory" value="" readonly>
+                        <input type="hidden" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
+                        <input type="hidden" class="form-control current_placeholder_subcategory" name="current_placeholder_subcategory" value="" readonly>
                     </div>
                     <div class="form-row">
                         <div class="col-6">

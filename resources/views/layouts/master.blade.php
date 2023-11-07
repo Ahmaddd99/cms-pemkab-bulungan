@@ -111,13 +111,13 @@
                 }
             });
             $("select.category_id").select2({
-                dropdownParent: $('#ModalSub')
+
             });
             $("select.content").select2({
                 // dropdownParent: $('#ModalContent')
             });
             $("select.content_id").select2({
-                dropdownParent: $('#ModalGallery')
+                
             });
             // $(".custom-select").each(function() {
             //     $(this)

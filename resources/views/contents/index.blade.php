@@ -493,7 +493,7 @@
 
     function getContent(id) {
         axios.get('./get/' + id)
-            .then(async function (response) {
+            .then( async function (response) {
                 let data = response.data.content;
                 let feature = response.data.content.feature_value;
                 let attribute = response.data.content.attribut_value;
@@ -509,9 +509,9 @@
                 $('.meta').val(data.meta);
                 $('.current_image').val(data.image);
 
-                await getsubcategory(data.category_id);
-                await subcategoryId(data.category_id, data.subcategory_id);
+                // await getsubcategory(data.category_id);
                 await categoryId(data.category_id);
+                await subcategoryId(data.category_id, data.subcategory_id);
                 dynamicselect();
 
 

@@ -49,7 +49,7 @@ class BannerController extends Controller
                     }
                     // upload gambar
                     $foto = $request->file('image');
-                    $namaFile = 'banner-' . time() . '-' . Str::slug($foto->getClientOriginalName());
+                    $namaFile = 'banner-' . time() . '-' . Str::slug($request->keterangan)  .  ' . '  .  $foto->extension();
                     $tujuanUpload = 'banner';
                     $foto->move($tujuanUpload, $namaFile);
                     $bannerData['image'] = $namaFile;

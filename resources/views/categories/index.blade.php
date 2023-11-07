@@ -111,6 +111,8 @@
         reloadDatatable();
         $('#gambar-category').addClass('d-none');
         $('#gambar-category img').attr('src', '');
+        $('#gambar-placeholder-category').addClass('d-none');
+        $('#gambar-placeholder-category img').attr('src', '');
     });
 
     $(".add-new-category").on("click", function() {
@@ -133,6 +135,18 @@
             let reader = new FileReader();
             reader.onload = function(event) {
                 $('#gambar-category').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('.image-placeholder-category').on('change', function() {
+        $('#gambar-placeholder-category').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-placeholder-category').find('img').attr('src', event.target.result);
             }
             reader.readAsDataURL(file);
         }

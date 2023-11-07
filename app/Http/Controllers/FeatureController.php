@@ -54,7 +54,7 @@ class FeatureController extends Controller
                         FIle::delete($imagepath);
                     }
                     $imgFeature = $request->file('image');
-                    $namaFile = 'feature-' . time() . '_' . Str::slug($imgFeature->getClientOriginalName());
+                    $namaFile = 'feature-' . time() . '_' . Str::slug($request->title)  .  ' . '  .  $imgFeature->extension();
                     $tujuanUpload = 'feature';
                     $imgFeature->move($tujuanUpload, $namaFile);
                     $featureData['image'] = $namaFile;

@@ -56,17 +56,17 @@ class SubcategoryController extends Controller
                     }
 
                     $foto = $request->file('image');
-                    $namafile = 'subcategory-' . time() . '_' . Str::slug($foto->getClientOriginalName());
+                    $namafile = 'subcategory-' . Str::slug($request->name)  .  ' . '  .  $foto->extension();
                     $tujuan_upload = 'subcategory';
                     $foto->move($tujuan_upload, $namafile);
                     $subcategoryData['image'] = $namafile;
                 }
 
-                if ($request->hasFile('placeholder_image')) {
-                    $foto = $request->file('placeholder_image');
-                    $namafile = $foto->getClientOriginalName();
-                    $foto->move('placeholder', $namafile);
-                    $categoryData['placeholder_image'] = $namafile;
+                if ($request->hasFile('image_placeholder')) {
+                    $placeholder = $request->file('image_placeholder');
+                    $path = time() . '_' . Str::slug($request->name)  .  ' . '  .  $placeholder->extension();
+                    $placeholder->move('placeholder', $path);
+                    $categoryData['image_placeholder'] = $path;
                 }
 
                 Subcategory::updateOrCreate(['id' => $request->id], $subcategoryData);

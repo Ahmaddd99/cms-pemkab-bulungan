@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('subcategories', function (Blueprint $table) {
-            $table->string('image_placeholder')->default(asset('placeholder/no_image.png'))->after('image');
+            $table->string('image_placeholder')->default('no_image.png')->after('image');
         });
     }
 

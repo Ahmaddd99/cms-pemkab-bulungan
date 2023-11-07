@@ -123,6 +123,8 @@
         reloadDatatable();
         $("#gambar-subcategory").addClass('d-none');
         $("#gambar-subcategory img").attr('src', '');
+        $("#gambar-placeholder-subcategory").addClass('d-none');
+        $("#gambar-placeholder-subcategory img").attr('src', '');
     });
 
     $(".add-new-subcategory").on("click", function() {
@@ -138,13 +140,25 @@
     // end partials
 
     // preview
-    $('.current_image_subcategory').on('change', function() {
+    $('#image-subcategory').on('change', function() {
         $('#gambar-subcategory').removeClass('d-none');
         const file = this.files[0];
         if(file) {
             let reader = new FileReader();
             reader.onload = function(event) {
                 $('#gambar-subcategory').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('.image-placeholder-sub').on('change', function() {
+        $('#gambar-placeholder-subcategory').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#gambar-placeholder-subcategory').find('img').attr('src', event.target.result);
             }
             reader.readAsDataURL(file);
         }

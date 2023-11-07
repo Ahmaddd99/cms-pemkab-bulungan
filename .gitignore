@@ -9,6 +9,7 @@
 /public/banner
 /public/feature
 /public/content
+/public/placeholder
 /storage/*.key
 /vendor
 .env

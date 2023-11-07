@@ -29,15 +29,28 @@
                             </select>
                         </div>
                     </div>
-                    <div id="gambar-subcategory" class="d-none my-3 text-center">
-                        <img src="" alt="" class="img-fluid img-thumbnail">
-                    </div>
-                    <div>
+                    <div class="mb-3">
                         <input type="hidden" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="image">Upload Ikon Subkategori</label>
-                        <input type="file" class="form-control image-sub" id="image" name="image" accept="image/*">
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div id="gambar-subcategory" class="d-none my-3 text-center">
+                                <img src="" alt="" class="img-fluid img-thumbnail" style="width: 50%">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Upload Ikon Subkategori</label>
+                                <input type="file" class="form-control image-sub" id="image-subcategory" name="image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="gambar-placeholder-subcategory" class="d-none my-3 text-center">
+                                <img src="" alt="" class="img-fluid img-thumbnail" style="width: 50%">
+                            </div>
+                            <div class="form-group">
+                                <label for="image_placeholder">Upload placeholder</label>
+                                <input type="file" class="form-control image-placeholder-sub" id="image-placeholder-sub" name="image_placeholder" accept="image/*">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

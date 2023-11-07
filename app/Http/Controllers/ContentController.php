@@ -129,7 +129,7 @@ class ContentController extends Controller
                 $galleryImages = [];
                 if($images = $request->file('image_gallery')){
                     foreach ($images as $image){
-                        $namaImage = 'gallery-' . time() . '-' . Str::slug($request->image->getClientOriginalName())  .  '.'  .  $image->extension();
+                        $namaImage = 'gallery-' . time() . '-' . Str::slug($image)  .  '.'  .  $image->extension();
                         $image->move('gallery', $namaImage);
                         $galleryImages[] = [
                             'content_id' => $content->id,

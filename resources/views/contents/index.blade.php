@@ -171,7 +171,7 @@
             axios.get(`./subcategory/${categoryID}`)
                 .then(function(response) {
                     let data = response.data.subcategory;
-                    console.log(data);
+                    // console.log(data);
                     let option = `<option value="" >-- Pilih Subkategori --</option>`;
                     $.each(data, function(key, val) {
                         option +=
@@ -493,7 +493,7 @@
 
     function getContent(id) {
         axios.get('./get/' + id)
-            .then(function (response) {
+            .then(async function (response) {
                 let data = response.data.content;
                 let feature = response.data.content.feature_value;
                 let attribute = response.data.content.attribut_value;
@@ -509,9 +509,9 @@
                 $('.meta').val(data.meta);
                 $('.current_image').val(data.image);
 
-                getsubcategory(data.category_id);
-                subcategoryId(data.category_id, data.subcategory_id);
-                categoryId(data.category_id);
+                await getsubcategory(data.category_id);
+                await subcategoryId(data.category_id, data.subcategory_id);
+                await categoryId(data.category_id);
                 dynamicselect();
 
 

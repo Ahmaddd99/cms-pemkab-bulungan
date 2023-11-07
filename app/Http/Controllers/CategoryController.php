@@ -55,6 +55,14 @@ class CategoryController extends Controller
                     $foto->move($tujuan_upload, $namafile);
                     $categoryData['image'] = $namafile;
                 }
+
+                if ($request->hasFile('placeholder_image')) {
+                    $foto = $request->file('placeholder_image');
+                    $namafile = $foto->getClientOriginalName();
+                    $foto->move('placeholder', $namafile);
+                    $categoryData['placeholder_image'] = $namafile;
+                }
+
                 Category::updateOrCreate(['id' => $request->id], $categoryData);
                 DB::commit();
                 return response()->json([

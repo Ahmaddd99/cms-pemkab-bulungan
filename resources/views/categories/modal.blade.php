@@ -32,7 +32,7 @@
                         <input type="hidden" class="form-control current_image_category" name="current_image_category" readonly value="">
                     </div>
                     <div class="form-group">
-                        <label for="image">Upload Gambar Kategori</label>
+                        <label for="image">Upload Ikon Kategori</label>
                         <input type="file" class="form-control image-category" name="image" accept="image/*">
                     </div>
                 </div>

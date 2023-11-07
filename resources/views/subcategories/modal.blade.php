@@ -36,7 +36,7 @@
                         <input type="hidden" class="form-control current_image_subcategory" name="current_image_subcategory" value="" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="image">Upload Gambar Subkategori</label>
+                        <label for="image">Upload Ikon Subkategori</label>
                         <input type="file" class="form-control image-sub" id="image" name="image" accept="image/*">
                     </div>
                 </div>

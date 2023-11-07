@@ -61,6 +61,13 @@ class SubcategoryController extends Controller
                     $subcategoryData['image'] = $namafile;
                 }
 
+                if ($request->hasFile('placeholder_image')) {
+                    $foto = $request->file('placeholder_image');
+                    $namafile = $foto->getClientOriginalName();
+                    $foto->move('placeholder', $namafile);
+                    $categoryData['placeholder_image'] = $namafile;
+                }
+
                 Subcategory::updateOrCreate(['id' => $request->id], $subcategoryData);
                 DB::commit();
                 return response()->json([

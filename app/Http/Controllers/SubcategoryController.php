@@ -66,7 +66,7 @@ class SubcategoryController extends Controller
                     $placeholder = $request->file('image_placeholder');
                     $path = time() . '_' . Str::slug($request->name)  .  ' . '  .  $placeholder->extension();
                     $placeholder->move('placeholder', $path);
-                    $categoryData['image_placeholder'] = $path;
+                    $subcategoryData['image_placeholder'] = $path;
                 }
 
                 Subcategory::updateOrCreate(['id' => $request->id], $subcategoryData);

@@ -82,7 +82,7 @@ class ContentController extends Controller
                         File::delete($currentImagePath);
                     }
                     $imgContent = $request->file('image');
-                    $namaFile = 'content-' . time() . '_' . Str::slug($request->imgContent->getClientOriginalName())  .  '.'  .  $imgContent->extension();
+                    $namaFile = 'content-' . time() . '_' . Str::slug($request->title)  .  '.'  .  $imgContent->extension();
                     $tujuanUpload = 'content';
                     $imgContent->move($tujuanUpload, $namaFile);
                     $contentData['image'] = $namaFile;

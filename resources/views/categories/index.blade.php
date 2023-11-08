@@ -32,7 +32,9 @@
         "searching": true,
         "paging": true,
         "language": {
-            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
+            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>',
+            search : '',
+            searchPlaceholder: "Cari Kategori"
         },
         "serverSide": true,
         "ajax": "{{ route('category.datatables') }}",

@@ -32,7 +32,9 @@
         "searching": true,
         "paging": true,
         "language": {
-            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>'
+            processing: '<span style="font-size:22px"><i class="fa fa-spinner fa-spin fa-fw"></i> Loading..</span>',
+            search : '',
+            searchPlaceholder: "Cari Banner"
         },
         "serverSide": true,
         "ajax": "{{ route('banner.datatables') }}",

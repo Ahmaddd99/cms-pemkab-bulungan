@@ -303,7 +303,8 @@
 }
 div.dataTables_wrapper div.dataTables_filter input {
     width: 25em;
-    /* margin-right: 10em; */
+    margin: 0;
+    margin-bottom: 0.5em;
 }
 .ps {
     -ms-overflow-style: none;

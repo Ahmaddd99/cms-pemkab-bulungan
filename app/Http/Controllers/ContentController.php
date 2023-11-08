@@ -285,7 +285,7 @@ class ContentController extends Controller
             })
             ->editColumn('title', function($row){
                 if($row->qrcode !== null){
-                    return '<div><b>'.$row->title.'</b> <span class="badge badge-pill badge-success" style="font-size:0.75em">&#10004; QR Code</span><br><p>'.$row->meta.'</p></div>';
+                    return '<div><b>'.$row->title.'</b> <span class="badge badge-pill badge-success" style="font-size:0.55em">QR Code</span><br><p>'.$row->meta.'</p></div>';
                 } else {
                     return '<div><b>'.$row->title.'</b><br><p>'.$row->meta.'</p></div>';
                 }

@@ -1,20 +1,19 @@
 @extends('layouts.master')
-@section('css')
-    <style>
-    </style>
-@endsection
 @section('content')
+<div class="row">
+    <div class="col">
+        <strong>Konten</strong>
+        <h1 class="h3 mb-3"><strong>Kelola Isi Konten</strong></h1>
+    </div>
+</div>
     @include('contents.modal')
     @include('attributes.modal')
     @include('features.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Konten</h5>
-                    <button type="button" class="btn btn-success btn-sm btn-add-content" data-toggle="modal"
-                        data-target="#ModalContent">Tambah Konten</button>
-                </div>
+                <button type="button" class="btn btn-success btn-sm btn-add-content" data-toggle="modal"
+                    data-target="#ModalContent"><i class="fa-solid fa-plus"></i> Tambah Konten</button>
             </div>
             <div class="card-body">
                 <table id="TableContent" class="table table-bordered table-hover table-striped" style="width: 100%">
@@ -45,7 +44,7 @@
             searchPlaceholder: "Cari Konten"
         },
         "serverSide": true,
-        "ajax": "{{ route('content.datatables') }}",
+        "ajax": "{{ route('menu.content.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -231,7 +230,7 @@
     };
 
     function postAttribute(att) {
-        axios.post('{{ route('content.post.attribute') }}', att)
+        axios.post('{{ route('menu.content.post.attribute') }}', att)
             .then(function (response) {
                 $("#ModalAttribute").modal('hide');
                 $("#FormAttribute")[0].reset();
@@ -388,7 +387,7 @@
     });
 
     function postFeature(feature) {
-        axios.post('{{ route('content.postfeature') }}', feature, {
+        axios.post('{{ route('menu.content.postfeature') }}', feature, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -466,7 +465,7 @@
     })
 
     function postContent(post) {
-        axios.post('{{ route('content.post') }}', post, {
+        axios.post('{{ route('menu.content.post') }}', post, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

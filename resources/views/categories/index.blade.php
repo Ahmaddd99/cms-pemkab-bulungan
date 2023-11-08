@@ -1,13 +1,16 @@
 @extends('layouts.master')
 @section('content')
+<div class="row">
+    <div class="col">
+        <strong>Konten</strong>
+        <h1 class="h3 mb-3"><strong>Kelola Kategori</strong></h1>
+    </div>
+</div>
 @include('categories.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Kategori</h5>
-                    <button type="button" class="btn btn-success btn-sm btn-add-category" data-toggle="modal" data-target="#ModalCategory">Tambah Kategori</button>
-                </div>
+                <button type="button" class="btn btn-success btn-sm btn-add-category" data-toggle="modal" data-target="#ModalCategory"><i class="fa-solid fa-plus"></i> Tambah Kategori</button>
             </div>
             <div class="card-body">
                 <table id="TableCategory" class="table table-bordered table-hover table-striped" style="width: 100%">
@@ -37,7 +40,7 @@
             searchPlaceholder: "Cari Kategori"
         },
         "serverSide": true,
-        "ajax": "{{ route('category.datatables') }}",
+        "ajax": "{{ route('menu.category.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -176,7 +179,7 @@
     });
 
     function postCategory(data){
-        axios.post('{{route('category.post')}}', data, {
+        axios.post('{{route('menu.category.post')}}', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -215,7 +218,7 @@
 
                 $(".current_image_category").val(data.image);
                 $("#gambar-category").removeClass('d-none');
-                $('#gambar-category').find('img').attr('src' , data.image);
+                $('#gambar-category').find('img').attr('src' , `../../category/${data.image}`);
             })
             .catch(function(response){
                 console.log("Data tidak ditemukan ", error);

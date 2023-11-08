@@ -1,13 +1,16 @@
 @extends('layouts.master')
 @section('content')
+<div class="row">
+    <div class="col">
+        <strong>Pengaturan</strong>
+        <h1 class="h3 mb-3"><strong>Kelola Fitur</strong></h1>
+    </div>
+</div>
 @include('features.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Fitur</h5>
-                    <button type="button" class="btn btn-success btn-sm btn-add-feature" data-toggle="modal" data-target="#ModalFeature">Tambah Fitur</button>
-                </div>
+                <button type="button" class="btn btn-success btn-sm btn-add-feature" data-toggle="modal" data-target="#ModalFeature"><i class="fa-solid fa-plus"></i> Tambah Fitur</button>
             </div>
             <div class="card-body">
                 <table id="TableFeature" class="table table-bordered table-hover table-striped" style="width: 100%">

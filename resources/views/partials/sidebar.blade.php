@@ -1,8 +1,8 @@
 <div class="sidebar-wrapper active">
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center" style="align-content: center">
-            <div class="logo mt-3">
-                <h3>Administrator</h3>
+            <div class="mt-3">
+                <h4 class="text-bold">Sistem <br> Manajemen <br> Konten</h4>
             </div>
             <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                 <div class="form-check form-switch fs-6">
@@ -39,7 +39,8 @@
                     <span>Banner</span>
                 </a>
             </li>
-            <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
+
+            {{-- <li class="sidebar-item {{ Route::is('category.index') ? 'active' : '' }}">
                 <a href="{{ Route('category.index') }}" class="sidebar-link">
                     <i class="bi bi-diagram-2"></i>
                     <span>Kategori</span>
@@ -56,30 +57,30 @@
                     <i class="bi bi-card-heading"></i>
                     <span>Konten</span>
                 </a>
-            </li>
-            {{-- <li class="sidebar-item {{ Route::is('feature.index') ? 'active' : '' }}">
-                <a href="{{ Route('feature.index') }}" class="sidebar-link">
-                    <i class="bi bi-file-earmark-plus"></i>
-                    <span>Fitur</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ Route::is('attribute.index') ? 'active' : '' }}">
-                <a href="{{ Route('attribute.index') }}" class="sidebar-link">
-                    <i class="bi bi-columns-gap"></i>
-                    <span>Atribut</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ Route::is('gallery.index') ? 'active' : '' }}">
-                <a href="{{ Route('gallery.index') }}" class="sidebar-link">
-                    <i class="bi bi-collection-play"></i>
-                    <span>Galeri Konten</span>
-                </a>
             </li> --}}
+
+            <li class="sidebar-item {{ Route::is('menu.*') ? 'active' : '' }} has-sub">
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-card-heading"></i>
+                    <span>Konten</span>
+                </a>
+                <ul class="submenu {{ Route::is('menu.*') ? 'active' : '' }}">
+                    <li class="submenu-item {{ Route::is('menu.category.index') ? 'active' : '' }}">
+                        <a href="{{ route('menu.category.index') }}" class="submenu-link">Kategori</a>
+                    </li>
+                    <li class="submenu-item {{ Route::is('menu.subcategory.index') ? 'active' : '' }}">
+                        <a href="{{ route('menu.subcategory.index') }}" class="submenu-link">Subkategori</a>
+                    </li>
+                    <li class="submenu-item {{ Route::is('menu.content.index') ? 'active' : '' }}">
+                        <a href="{{ route('menu.content.index') }}" class="submenu-link">Isi Konten</a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="sidebar-item {{ Route::is('submenu.*') ? 'active' : '' }} has-sub">
                 <a href="#" class="sidebar-link">
-                    <i class="bi bi-collection-fill"></i>
-                    <span>Fitur Tambahan</span>
+                    <i class="bi bi-gear"></i>
+                    <span>Pengaturan</span>
                 </a>
                 <ul class="submenu {{ Route::is('submenu.*') ? 'active' : '' }}">
                     <li class="submenu-item {{ Route::is('submenu.feature.index') ? 'active' : '' }}">

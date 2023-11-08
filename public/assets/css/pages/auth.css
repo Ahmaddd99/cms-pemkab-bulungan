@@ -27,8 +27,8 @@ body {
     padding: 5rem 8rem;
 }
 #auth #auth-left .auth-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    /* margin-bottom: 1rem; */
 }
 #auth #auth-left .auth-subtitle {
     color: #a8aebb;

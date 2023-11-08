@@ -1,14 +1,17 @@
 @extends('layouts.master')
 @section('content')
+<div class="row mb-3">
+    <div class="col">
+        <strong>Banner</strong>
+        <h1 class="h3"><strong>Kelola Banner</strong></h1>
+    </div>
+</div>
     @include('banners.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Banner</h5>
                     <button type="button" class="btn btn-success btn-sm add-new-banner" data-toggle="modal"
-                        data-target="#ModalBanner">Tambah Banner</button>
-                </div>
+                        data-target="#ModalBanner"><i class="fa-solid fa-plus"></i> Tambah Banner</button>
             </div>
             <div class="card-body">
                 <table id="TableBanner" class="table table-bordered table-hover table-striped" style="width: 100%">

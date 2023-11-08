@@ -29,19 +29,28 @@
         }
 
         #auth-left img {
-            width: 8em!important;
+            margin-top: 2em;
+            width: 100px !important;
             margin-left: 2em;
         }
 
         #auth-left .auth-title {
-            font-size: 1.5rem!important;
-            margin-top: 10px;
+            font-size: 1.1rem !important;
+            /* margin-top: 10px; */
             white-space: nowrap;
             margin-left: 2em;
         }
 
         form {
             text-align: center;
+        }
+
+        #auth-left form{
+            width: 250px !important;
+        }
+
+        body{
+            background: #f5f5f5;
         }
     </style>
 </head>
@@ -52,15 +61,14 @@
         <div class="row h-100">
             <div class="col-lg-6 col-12">
                 <div id="auth-left">
-                    <img src="{{ asset('assets/images/logo/logo-pemkab-bulungan.png') }}" alt=""
-                        style="width: 10em">
-                    <p class="auth-title mt-2" style="margin:0;font-size:1.5em!important;margin-left:2em">Selamat Datang di Sistem Manajemen Konten</p>
-                    <p class="auth-title p">Pemerintah Kabupaten Bulungan</p>
+                    <img src="{{ asset('assets/images/logo/logo-pemkab-bulungan.png') }}" alt="">
+                    <h5 class="auth-title mt-3" style="margin-bottom:0!important;font-size:1.5em!important;margin-left:2em">Sistem Manajemen Konten</h5>
+                    <p class="auth-title" style="font-size:0.8em">Pemerintah Kabupaten Bulungan</p>
                     <form action="#" method="post" class="mt-3">
                         @csrf
-                        <div class="form-group position-relative has-icon-left mb-4">
+                        <div class="form-group position-relative has-icon-left mb-1">
                             <input type="username"
-                                class="form-control @error('username')
+                                class="form-control form-input-auth @error('username')
                             is-invalid
                             @enderror"
                                 placeholder="Username" name="username" />
@@ -71,7 +79,7 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
+                        <div class="form-group position-relative has-icon-left mb-1">
                             <input type="password"
                                 class="form-control @error('password')
                             is-invalid
@@ -85,7 +93,7 @@
                             @enderror
                         </div>
 
-                        <button class="btn btn-block btn-lg shadow-lg mt-4" style="color: #00A757">
+                        <button class="btn btn-block btn-success btn-lg shadow-lg mt-4" >
                             Login
                         </button>
                     </form>

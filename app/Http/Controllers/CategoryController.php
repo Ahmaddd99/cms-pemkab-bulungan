@@ -85,7 +85,7 @@ class CategoryController extends Controller
         // return $data;
         return DataTables::of($data)
         ->editColumn('image', function($row){
-            return '<img src="'.$row->image.'" alt="" style="width:6.5em">';
+            return '<img src="../../category/'.$row->image.'" alt="" style="width:6.5em">';
         })
         ->editColumn('published', function($row){
             if($row->published == 1){

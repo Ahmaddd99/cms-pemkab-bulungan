@@ -291,7 +291,7 @@ class ContentController extends Controller
                 }
             })
             ->editColumn('image', function ($row) {
-                return '<img src="' . $row->image . '" alt="" style="width:6.5em">';
+                return '<img src="../../content/' . $row->image . '" alt="" style="width:6.5em">';
             })
             ->addColumn('actions', function ($row) {
                 return '

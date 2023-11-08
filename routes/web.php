@@ -54,51 +54,55 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', [BannerController::class, 'destroy'])->name('delete');
     });
 
-    // category
-    Route::prefix('/category')->name('category.')->group(function () {
-        Route::get('/index', [CategoryController::class, 'index'])->name('index');
-        Route::post('/index', [CategoryController::class, 'store'])->name('post');
-        Route::get('/datatables', [CategoryController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [CategoryController::class, 'show'])->name('get');
-        Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
-    });
+    Route::prefix('/menu')->name('menu.')->group(function () {
 
-    // subcategory
-    Route::prefix('/subcategory')->name('subcategory.')->group(function () {
-        Route::get('/index', [SubcategoryController::class, 'index'])->name('index');
-        Route::post('/index', [SubcategoryController::class, 'store'])->name('post');
-        Route::get('/datatables', [SubcategoryController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [SubcategoryController::class, 'show'])->name('get');
-        Route::delete('/delete/{id}', [SubcategoryController::class, 'destroy'])->name('delete');
-        // get
-        Route::get('/categoryid', [SubcategoryController::class, 'getCategoryId'])->name('getcategory');
-    });
+        // category
+        Route::prefix('/category')->name('category.')->group(function () {
+            Route::get('/index', [CategoryController::class, 'index'])->name('index');
+            Route::post('/index', [CategoryController::class, 'store'])->name('post');
+            Route::get('/datatables', [CategoryController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [CategoryController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
+        });
 
-    // content
-    Route::prefix('/content')->name('content.')->group(function () {
-        Route::get('/index', [ContentController::class, 'index'])->name('index');
-        Route::post('/index', [ContentController::class, 'store'])->name('post');
-        Route::get('/datatables', [ContentController::class, 'datatables'])->name('datatables');
-        Route::get('/get/{id}', [ContentController::class, 'show'])->name('get');
-        Route::delete('/delete/{id}', [ContentController::class, 'destroy'])->name('delete');
-        // get
-        Route::get('/category', [ContentController::class, 'getCategoryId'])->name('category');
-        Route::get('/subcategory/{categoryId}', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
-        Route::get('/feature', [ContentController::class, 'getFeatureId'])->name('feature');
-        Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
+        // subcategory
+        Route::prefix('/subcategory')->name('subcategory.')->group(function () {
+            Route::get('/index', [SubcategoryController::class, 'index'])->name('index');
+            Route::post('/index', [SubcategoryController::class, 'store'])->name('post');
+            Route::get('/datatables', [SubcategoryController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [SubcategoryController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [SubcategoryController::class, 'destroy'])->name('delete');
+            // get
+            Route::get('/categoryid', [SubcategoryController::class, 'getCategoryId'])->name('getcategory');
+        });
 
-        // delete attribute value
-        Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
-        // delete image gallery
-        Route::delete('/delGallery/{id}', [ContentController::class, 'deleteGallery'])->name('delete.gallery');
-        // post atttribute
-        Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
-        // post feature
-        Route::post('/postfeature', [ContentController::class, 'createFeature'])->name('postfeature');
-        // get gallery
-        Route::get('/{contentid}/galleries', [ContentController::class, 'getgallery'])->name('getgallery');
-        // dynamic
-        Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
+        // content
+        Route::prefix('/content')->name('content.')->group(function () {
+            Route::get('/index', [ContentController::class, 'index'])->name('index');
+            Route::post('/index', [ContentController::class, 'store'])->name('post');
+            Route::get('/datatables', [ContentController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [ContentController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [ContentController::class, 'destroy'])->name('delete');
+            // get
+            Route::get('/category', [ContentController::class, 'getCategoryId'])->name('category');
+            Route::get('/subcategory/{categoryId}', [ContentController::class, 'getSubcategoryId'])->name('subcategory');
+            Route::get('/feature', [ContentController::class, 'getFeatureId'])->name('feature');
+            Route::get('/attribute', [ContentController::class, 'getAttribute'])->name('attribute');
+
+            // delete attribute value
+            Route::delete('/delAttVal/{id}', [ContentController::class, 'deleteAttributeValue'])->name('delete.attVal');
+            // delete image gallery
+            Route::delete('/delGallery/{id}', [ContentController::class, 'deleteGallery'])->name('delete.gallery');
+            // post atttribute
+            Route::post('/attribute', [ContentController::class, 'createAttribute'])->name('post.attribute');
+            // post feature
+            Route::post('/postfeature', [ContentController::class, 'createFeature'])->name('postfeature');
+            // get gallery
+            Route::get('/{contentid}/galleries', [ContentController::class, 'getgallery'])->name('getgallery');
+            // dynamic
+            Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
+        });
+
     });
 
     Route::prefix('/submenu')->name('submenu.')->group(function () {

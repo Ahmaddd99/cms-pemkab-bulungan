@@ -91,7 +91,7 @@ class SubcategoryController extends Controller
             return $row->category->name;
         })
         ->editColumn('image', function($row){
-            return '<img src="'.$row->image.'" alt="" style="width:6.5em">';
+            return '<img src="../../subcategory/'.$row->image.'" alt="" style="width:6.5em">';
         })
         ->editColumn('published', function($row){
             if($row->published == 1){

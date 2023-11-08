@@ -1,13 +1,16 @@
 @extends('layouts.master')
 @section('content')
+<div class="row">
+    <div class="col">
+        <strong>Konten</strong>
+        <h1 class="h3 mb-3"><strong>Kelola Subkategori</strong></h1>
+    </div>
+</div>
 @include('subcategories.modal')
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Subkategori</h5>
-                    <button type="button" class="btn btn-success btn-sm btn-add-subcategory" data-toggle="modal" data-target="#ModalSub">Tambah Subkategori</button>
-                </div>
+                <button type="button" class="btn btn-success btn-sm btn-add-subcategory" data-toggle="modal" data-target="#ModalSub"><i class="fa-solid fa-plus"></i> Tambah Subkategori</button>
             </div>
             <div class="card-body">
                 <table id="TableSub" class="table table-bordered table-hover table-striped" style="width: 100%">
@@ -38,7 +41,7 @@
             searchPlaceholder: "Cari Subkategori"
         },
         "serverSide": true,
-        "ajax": "{{ route('subcategory.datatables') }}",
+        "ajax": "{{ route('menu.subcategory.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -188,7 +191,7 @@
     });
 
     function postSubcategory(data){
-        axios.post('{{route('subcategory.post')}}', data, {
+        axios.post('{{route('menu.subcategory.post')}}', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -221,11 +224,11 @@
                 $(".published").val(data.published).trigger("change");
 
                 $('.current_placeholder_subcategory').val('data.image_placeholder');
-                $('#gambar-placeholder-subcategory').find('img').attr('src', `../placeholder/${data.image_placeholder}`);
+                $('#gambar-placeholder-subcategory').find('img').attr('src', `../../placeholder/${data.image_placeholder}`);
 
                 $(".current_image_subcategory").val(data.image);
                 $("#gambar-subcategory").removeClass('d-none');
-                $('#gambar-subcategory').find('img').attr('src' , data.image);
+                $('#gambar-subcategory').find('img').attr('src' , `../../subcategory/${data.image}`);
             })
     }
 

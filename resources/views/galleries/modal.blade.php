@@ -10,11 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" class="form-control id" id="id" name="id" value="">
-                    <div class="form-group mb-3">
-                        <label class="required" for="content_id">Konten</label>
-                        <select name="content_id" id="content_id" class="form-control custom-select content_id" style="width: 100%" required></select>
-                    </div>
+                    <input type="hidden" name="content_id" id="content_id" class="form-control content_id" value="" readonly>
                     <div class="form-group">
                         <label for="image">Upload Gambar</label>
                         <input type="file" name="image_gallery[]" id="image" class="form-control image" accept="image/*" multiple>

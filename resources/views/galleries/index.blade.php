@@ -9,9 +9,6 @@
 @include('galleries.modal')
     <div class="row">
         <div class="card">
-            <div class="card-header">
-                <button type="button" class="btn btn-success btn-sm btn-add-gallery" data-toggle="modal" data-target="#ModalGallery"><i class="fa-solid fa-plus"></i> Tambah Foto</button>
-            </div>
             <div class="card-body">
                 <table id="TableGallery" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
@@ -39,7 +36,7 @@
             searchPlaceholder: "Cari Gambar Berdasarkan Konten"
         },
         "serverSide": true,
-        "ajax": "{{ route('submenu.gallery.datatables') }}",
+        "ajax": "{{ route('menu.gallery.datatables') }}",
         "info": true,
         "order": [],
         "dom": "frtip",
@@ -101,7 +98,7 @@
 
     $("#ModalGallery").on("hidden.bs.modal", function(e) {
         e.preventDefault();
-        $(".id").val("");
+        $(".id").val();
         afterAction();
         reloadDatatable();
         $('#gambar-gallery').empty();
@@ -114,7 +111,7 @@
     });
 
     $('.close-gallery').on("click", function() {
-        $('.id').val("");
+        $('.id').val();
         afterAction();
         reloadDatatable();
         $('#gambar-gallery').empty();
@@ -146,12 +143,12 @@
         //     image:image
         // }
         let data = new FormData($(this)[0]);
-        console.log(data);
+        //console.log(data);
         postData(data);
     });
 
     function postData(data){
-        axios.post('{{route('submenu.gallery.post')}}', data, {
+        axios.post('{{route('menu.gallery.post')}}', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -180,7 +177,7 @@
                 let data = response.data.gallery;
                 console.log(data);
                 $(".id").val(data.id);
-                $("#content_id").val(data.id).trigger("change");
+                $(".content_id").val(data.id).trigger("change");
 
                 $(".test-galleries").val(data.id);
             })

@@ -74,6 +74,9 @@
                     <li class="submenu-item {{ Route::is('menu.content.index') ? 'active' : '' }}">
                         <a href="{{ route('menu.content.index') }}" class="submenu-link">Isi Konten</a>
                     </li>
+                    <li class="submenu-item {{ Route::is('menu.gallery.index') ? 'active' : '' }}">
+                        <a href="{{ route('menu.gallery.index') }}" class="submenu-link">Galeri Konten</a>
+                    </li>
                 </ul>
             </li>
 
@@ -88,9 +91,6 @@
                     </li>
                     <li class="submenu-item {{ Route::is('submenu.attribute.index') ? 'active' : '' }}">
                         <a href="{{ route('submenu.attribute.index') }}" class="submenu-link">Label</a>
-                    </li>
-                    <li class="submenu-item {{ Route::is('submenu.gallery.index') ? 'active' : '' }}">
-                        <a href="{{ route('submenu.gallery.index') }}" class="submenu-link">Galeri Konten</a>
                     </li>
                 </ul>
             </li>

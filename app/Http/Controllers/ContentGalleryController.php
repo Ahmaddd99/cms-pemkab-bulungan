@@ -86,8 +86,8 @@ class ContentGalleryController extends Controller
         })
         ->addColumn('actions', function($row){
             return '
-            <button type="button" class="btn btn-info btn-sm btn-edit-gallery" data-id="'.$row->id.'" data-toggle="modal" data-target="#ModalGallery">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm btn-delete-gallery" data-id="'.$row->id.'">Hapus</button>';
+            <button type="button" class="btn btn-info btn-sm btn-edit-gallery" data-id="'.$row->id.'" data-toggle="modal" data-target="#ModalGallery">Kelola Foto</button>
+            ';
         })
         ->rawColumns(['id', 'content', 'image', 'actions'])
         ->make(true);

@@ -103,18 +103,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
         });
 
-    });
-
-    Route::prefix('/submenu')->name('submenu.')->group(function () {
-
-        Route::prefix('/feature')->name('feature.')->group(function () {
-            Route::get('/index', [FeatureController::class, 'index'])->name('index');
-            Route::post('/index', [FeatureController::class, 'store'])->name('post');
-            Route::get('/datatables', [FeatureController::class, 'datatables'])->name('datatables');
-            Route::get('/get/{id}', [FeatureController::class, 'show'])->name('get');
-            Route::delete('/delete/{id}', [FeatureController::class, 'destroy'])->name('delete');
-        });
-
+        // gallery
         Route::prefix('/gallery')->name('gallery.')->group(function () {
             Route::get('/index', [ContentGalleryController::class, 'index'])->name('index');
             Route::post('/index', [ContentGalleryController::class, 'store'])->name('post');
@@ -125,6 +114,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/content', [ContentGalleryController::class, 'getContent'])->name('content');
             // koleksi
             Route::get('/{contentid}/koleksi', [ContentGalleryController::class, 'getKoleksi'])->name('koleksi');
+        });
+
+    });
+
+    Route::prefix('/submenu')->name('submenu.')->group(function () {
+
+        Route::prefix('/feature')->name('feature.')->group(function () {
+            Route::get('/index', [FeatureController::class, 'index'])->name('index');
+            Route::post('/index', [FeatureController::class, 'store'])->name('post');
+            Route::get('/datatables', [FeatureController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [FeatureController::class, 'show'])->name('get');
+            Route::delete('/delete/{id}', [FeatureController::class, 'destroy'])->name('delete');
         });
 
         Route::prefix('/attribute')->name('attribute.')->group(function () {

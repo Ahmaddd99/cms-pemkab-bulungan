@@ -75,7 +75,7 @@ class BannerController extends Controller
         // return $banner;
         return DataTables::of($banner)
         ->editColumn('image', function($row){
-            return '<img src="'.$row->image.'" alt="" style="width:6.5em">';
+            return '<img src="'.$row->image.'" alt="" style="width:80%">';
         })
         ->addColumn('actions', function($row){
             return '

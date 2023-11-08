@@ -47,7 +47,7 @@
                                 <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="">QR Code</label>
+                                <label for="">QR Code Link</label>
                                 <textarea name="qrcode" id="qrcode" class="form-control qrcode" cols="30" rows="1" placeholder="https://"></textarea>
                             </div>
                         </div>

@@ -12,14 +12,14 @@
             <div class="card-body">
                 <table id="TableCategory" class="table table-bordered table-hover table-striped" style="width: 100%">
                     <thead>
-                        <tr style="font-size: 0.9em">
+                        <tr>
                             <th>Gambar</th>
                             <th>Nama</th>
                             <th>Publish</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody style="font-size: 0.8em"></tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>

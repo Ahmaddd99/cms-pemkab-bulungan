@@ -95,9 +95,9 @@ class SubcategoryController extends Controller
         })
         ->editColumn('published', function($row){
             if($row->published == 1){
-                return '<div class="btn-sm" style="background-color:#435EBE;color:white">Publish</div>';
+                return '<span class="badge badge-pill badge-primary">Publish</span>';
             }else{
-                return '<div class="btn-secondary btn-sm">Tidak Dipublish</div>';
+                return '<span class="badge badge-pill badge-secondary">Tidak Dipublish</span>';
             }
         })
         ->addColumn('actions', function($row){

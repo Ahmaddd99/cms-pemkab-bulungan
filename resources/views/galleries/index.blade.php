@@ -69,8 +69,7 @@
             },
             {
                 "width": "",
-                "targets": 1,
-                "className": "dt-center"
+                "targets": 1
             },
             {
                 "width": "",

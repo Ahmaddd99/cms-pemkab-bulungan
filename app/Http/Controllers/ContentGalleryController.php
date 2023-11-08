@@ -70,11 +70,28 @@ class ContentGalleryController extends Controller
 
     public function datatables(){
         // $data = ContentGallery::select("*")->orderBy('id', 'desc')->groupBy('content_id')->with('content')->get();
-        $data = Content::with('galleries')->orderBy('id','desc')->get();
+        $data = Content::with('galleries')->with('category')->with('subcategory')->orderBy('id','desc')->get();
         // return $data;
         return DataTables::of($data)
         ->addColumn('content', function($row){
-            return $row->title;
+            return '<div>
+                        <h5 class="mb-3">'.$row->title.'</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Kategori</th>
+                            <th class="text-center">Subkategori</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color:white">
+                            <td class="text-center">'.$row->category->name.'</td>
+                            <td class="text-center">'.$row->subcategory->name.'</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                </div>';
         })
         ->editColumn('image', function($row){
             // return '<img src="'.$row->image.'" alt="" style="width:15em">';

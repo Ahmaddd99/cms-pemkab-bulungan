@@ -9,7 +9,7 @@ class Content extends Model
 {
     use HasFactory;
     protected $guarded = 'id';
-    protected $fillable = ['category_id', 'subcategory_id', 'image', 'title', 'body', 'meta'];
+    protected $fillable = ['category_id', 'subcategory_id', 'image', 'title', 'body', 'qrcode', 'meta'];
 
     public function category()
     {

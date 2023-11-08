@@ -57,7 +57,8 @@ class ContentController extends Controller
                     'category_id' => $request->category_id,
                     'title' => $request->title,
                     'body' => $request->body,
-                    'meta' => $request->meta
+                    'meta' => $request->meta,
+                    'qrcode' => $request->qrcode
                 ];
 
                 if ($request->subcategory_id) {

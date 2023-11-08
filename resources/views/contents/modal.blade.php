@@ -46,6 +46,10 @@
                                 <label for="body">Deskripsi</label>
                                 <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="">Https</label>
+                                <textarea name="qrcode" id="qrcode" class="form-control qrcode" cols="30" rows="1"></textarea>
+                            </div>
                         </div>
                         <div class="col-4">
                             <div class="col-12">

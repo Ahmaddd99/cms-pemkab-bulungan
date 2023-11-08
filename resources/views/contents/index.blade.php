@@ -503,10 +503,11 @@
                 // $('.subcategory_id').val(data.subcategory_id);
                 // getcatid(data.category_id);
                 // getsubid(data.subcategory_id);
-                //console.log(data);
+                console.log(data);
                 $('.title').val(data.title);
                 $('.body').val(data.body);
                 $('.meta').val(data.meta);
+                $('.qrcode').val(data.qrcode);
                 $('.current_image').val(data.image);
 
                 // await getsubcategory(data.category_id);

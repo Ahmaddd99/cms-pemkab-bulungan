@@ -15,7 +15,7 @@
             <ol>
                 <li>Menu <b><code>Agenda</code></b> untuk membuat/menjadwalkan Agenda. cukup</li>
                 <li>Menu <b><code>Banner</code></b> untuk mengupload, edit, dan hapus Banner</li>
-                <li>Pada menu <b><code>Konten</code></b> terdapat submenu seperti Kategori, Subkategori, dan Isi Konten</li>
+                <li>Pada menu <b><code>Konten</code></b> terdapat submenu seperti Kategori, Subkategori, Isi Konten, dan Galeri Konten</li>
                 <li>Pada menu <b><code>Pengaturan</code></b> terdapat beberapa submenu untuk pelengkap Konten</li>
             </ol>
         </div>

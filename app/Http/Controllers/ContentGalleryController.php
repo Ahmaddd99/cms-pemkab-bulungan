@@ -74,24 +74,45 @@ class ContentGalleryController extends Controller
         // return $data;
         return DataTables::of($data)
         ->addColumn('content', function($row){
-            return '<div>
-                        <h5 class="mb-3">'.$row->title.'</h5>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Kategori</th>
-                            <th class="text-center">Subkategori</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background-color:white">
-                            <td class="text-center">'.$row->category->name.'</td>
-                            <td class="text-center">'.$row->subcategory->name.'</td>
-                        </tr>
-                    </tbody>
-                </table>
+            if($row->subcategory === null){
+                return '<div>
+                            <h5 class="mb-3">'.$row->title.'</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">Subkategori</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color:white">
+                                <td class="text-center">'.$row->category->name.'</td>
+                                <td class="text-center">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                </div>';
+                    </div>';
+                } else {
+                return '<div>
+                            <h5 class="mb-3">'.$row->title.'</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">Subkategori</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color:white">
+                                <td class="text-center">'.$row->category->name.'</td>
+                                <td class="text-center">'.$row->subcategory->name.'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    </div>';
+            }
         })
         ->editColumn('image', function($row){
             // return '<img src="'.$row->image.'" alt="" style="width:15em">';

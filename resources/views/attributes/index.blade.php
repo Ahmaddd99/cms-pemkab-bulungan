@@ -82,24 +82,24 @@
     }
 
     $("#ModalAttribute").on("show.bs.modal", function() {
-        $(".id").val("");
+        $(".id-attribute").val("");
         $('#FormAttribute')[0].reset();
     });
 
     $("#ModalAttribute").on("hidden.bs.modal", function(e) {
         e.preventDefault();
-        $(".id").val("");
+        $(".id-attribute").val("");
         afterAction();
         reloadDatatable();
     });
 
     $(".add-new-banner").on("click", function() {
-        $(".id").val("");
+        $(".id-attribute").val("");
         afterAction();
     });
 
     $('.close-banner').on("click", function() {
-        $('.id').val("");
+        $('.id-attribute').val("");
         afterAction();
         reloadDatatable();
     });
@@ -132,7 +132,7 @@
         axios.get('./get/' + id)
             .then(function(response){
                 let data = response.data.attribute;
-                $(".id").val(data.id);
+                $(".id-attribute").val(data.id);
                 $(".name").val(data.name);
             })
     }

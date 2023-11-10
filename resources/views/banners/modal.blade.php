@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id" id="id" name="id">
                     <div class="form-group mb-3">
-                        <label class="required" for="keterangan">Keterangan</label>
+                        <label class="required" for="keterangan"><strong>Keterangan</strong></label>
                         <input type="text" class="form-control keterangan" id="keterangan" name="keterangan" placeholder="Tulis keterangan disini" required>
                     </div>
                     <!-- preview upload banner -->
@@ -24,7 +24,7 @@
                         <input type="hidden" name="current_image_banner" class="form-control current_image_banner" readonly value="" />
                     </div>
                     <div class="form-group">
-                        <label for="image">Upload Banner</label>
+                        <label for="image"><strong>Upload Banner</strong></label>
                         <input type="file" class="form-control image-banner" id="input-banner" name="image" accept="image/*">
                         <small class="text-primary">*Disarankan resolusi untuk upload banner adalah: 1200x600</small>
                     </div>

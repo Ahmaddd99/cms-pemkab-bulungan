@@ -13,11 +13,11 @@
                     <input type="hidden" class="form-control id" id="id" name="id">
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <label class="required" for="name">Nama Kategori</label>
+                            <label class="required" for="name"><strong>Nama Kategori</strong></label>
                             <input type="text" class="form-control name" id="name" name="name" placeholder="Tulis kategori disini" required>
                         </div>
                         <div class="form-group col-6">
-                            <label class="required" for="published">Publish</label>
+                            <label class="required" for="published"><strong>Publish</strong></label>
                             <select name="published" id="published" class="custom-select published" required style="width: 100%">
                                 <option disabled selected>Pilih status</option>
                                 <option value="0">Tidak Dipublish</option>
@@ -35,7 +35,7 @@
                                 <img alt="" src="" class="img-fluid img-thumbnail" style="width: 50%" />
                             </div>
                             <div class="form-group">
-                                <label for="image">Upload Ikon Kategori</label>
+                                <label for="image"><strong>Upload Ikon Kategori</strong></label>
                                 <input type="file" class="form-control image-category" name="image" accept="image/*">
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <img alt="" src="{{asset('placeholder/no_image.png')}}" class="img-fluid img-thumbnail" style="width: 50%" />
                             </div>
                             <div class="form-group">
-                                <label for="image_placeholder">Upload Placeholder</label>
+                                <label for="image_placeholder"><strong>Upload Placeholder</strong></label>
                                 <input type="file" class="form-control image-placeholder-category" name="image_placeholder" accept="image/*">
                             </div>
                         </div>

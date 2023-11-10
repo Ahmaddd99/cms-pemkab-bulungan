@@ -12,16 +12,16 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id" id="id" name="id">
                     <div class="form-group mb-3">
-                        <label class="required" for="category_id">Kategori</label>
+                        <label class="required" for="category_id"><strong>Kategori</strong></label>
                         <select name="category_id" id="category_id" class="form-control custom-select category_id" style="width: 100%" required></select>
                     </div>
                     <div class="form-row mb-3">
                         <div class="form-group col-6">
-                            <label class="required" for="name">Nama subkategori</label>
+                            <label class="required" for="name"><strong>Nama subkategori</strong></label>
                             <input type="text" class="form-control name" id="name" name="name" placeholder="Tulis subkategori disini" required>
                         </div>
                         <div class="form-group col-6">
-                            <label class="required" for="published">Publish</label>
+                            <label class="required" for="published"><strong>Publish</strong></label>
                             <select name="published" id="published" class="form-control custom-select published" required style="width: 100%">
                                 <option selected disabled>Pilih Status</option>
                                 <option value="0">Tidak Dipublish</option>
@@ -39,7 +39,7 @@
                                 <img src="" alt="" class="img-fluid img-thumbnail" style="width: 50%">
                             </div>
                             <div class="form-group">
-                                <label for="image">Upload Ikon Subkategori</label>
+                                <label for="image"><strong>Upload Ikon Subkategori</strong></label>
                                 <input type="file" class="form-control image-sub" id="image-subcategory" name="image" accept="image/*">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <img src="{{{asset('placeholder/no_image.png')}}}" alt="" class="img-fluid img-thumbnail" style="width: 50%">
                             </div>
                             <div class="form-group">
-                                <label for="image_placeholder">Upload placeholder</label>
+                                <label for="image_placeholder"><strong>Upload placeholder</strong></label>
                                 <input type="file" class="form-control image-placeholder-sub" id="image-placeholder-sub" name="image_placeholder" accept="image/*">
                             </div>
                         </div>

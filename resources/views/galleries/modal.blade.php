@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <input type="hidden" name="content_id" id="content_id" class="form-control content_id" value="" readonly>
                     <div class="form-group">
-                        <label for="image">Upload Gambar</label>
+                        <label for="image"><strong>Upload Gambar</strong></label>
                         <input type="file" name="image_gallery[]" id="image" class="form-control image" accept="image/*" multiple>
                     </div>
                     <div id="koleksi-galeri" class="d-none my-3 text-center">

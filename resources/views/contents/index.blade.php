@@ -1,4 +1,7 @@
 @extends ('layouts.master')
+@section('script-css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/summernote/summernote-lite.css')}}" >
+@endsection
 @section('content')
 <div class="row">
     <div class="col">
@@ -31,6 +34,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script-js')
+    <script type="text/javascript" src="{{asset('assets/summernote/summernote-lite.min.js')}}"></script>
 @endsection
 @section('js')
 let datatable = $("#TableContent").DataTable({
@@ -107,7 +113,22 @@ let datatable = $("#TableContent").DataTable({
     ]
 });
 
-// $('#body').summernote();
+$('#body').summernote({
+	height: 350,
+	placeholder: 'Tulis deskripsi konten',
+	toolbar: [
+      ['style', ['style']],
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['font', ['strikethrough', 'superscript', 'subscript']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['fontname', ['fontname']],
+      ['table', ['table']],
+      ['view', ['fullscreen', 'codeview', 'help']]
+    ]
+});
 
 // partials
 function afterAction() {
@@ -319,7 +340,7 @@ $(".tambah-attribute").on("click", async function () {
     let newAttributeGroup = `
                     <div id="loop-attribute" class="attribute-group-additional attribute-group">
                         <div class="form-group mb-3 col-6">
-                            <label class="required" for="attribute_id">Label</label>
+                            <label class="required" for="attribute_id"><strong>Label</strong></label>
                             <select name="attribute_id[]" class="form-control custom-select get-all-attribute select-${rand} attribute-additional" style="width: 100%">
                             </select>
                         </div>
@@ -327,13 +348,13 @@ $(".tambah-attribute").on("click", async function () {
                             <input type="hidden" name="attribute_value_id[]" class="form-control attribute_value_id" readonly>
                         </div>
                         <div class="form-group col-12">
-                            <label class="required" for="description">Deskripsi Label</label>
+                            <label class="required" for="description"><strong>Deskripsi Label</strong></label>
                             <textarea name="description[]" cols="3" class="form-control description" placeholder="Masukan deskripsi label"
                                 rows="2"></textarea>
                         </div>
                         <div class="form-row col-12">
                             <div class="form-group col-3">
-                                <label for="order">Order</label>
+                                <label for="order"><strong>Order</strong></label>
                                 <input type="number" name="order[]" id="order" class="form-control text-center order" value="0" onclick="this.select()" required>
                             </div>
                             <div class="col-2">
@@ -518,9 +539,9 @@ function getContent(id) {
             // $('.subcategory_id').val(data.subcategory_id);
             // getcatid(data.category_id);
             // getsubid(data.subcategory_id);
-            //console.log(data);
+            console.log(data);
             $('.title').val(data.title);
-            $('.body').val(data.body);
+            $('#body').summernote('code', data.body);
             $('.meta').val(data.meta);
             $('.qrcode').val(data.qrcode);
             $('.current_image').val(data.image);
@@ -563,7 +584,7 @@ function getContent(id) {
                     let rand = generateRandomString();
                     attributeData += `<div class="attribute-group attribute-group-additional">
                             <div class="form-group mb-3 col-6">
-                                <label class="required" for="attribute_id">Label</label>
+                                <label class="required" for="attribute_id"><strong>Label</strong></label>
                                 <select name="attribute_id[]" id="attribute_id" class="form-control custom-select select-${val.attribut_id} get-all-attribute attribute-modal attribute_id" style="width: 100%">
                                     <option value="${val.attribut_id}">${val.attribut.id}</option>
                                 </select>
@@ -572,12 +593,12 @@ function getContent(id) {
                                 <input type="hidden" id="attribute_value_id" name="attribute_value_id[]" class="form-control attribute_value_id" value="${val.id}" readonly>
                             </div>
                             <div class="form-group mb-3 col-12">
-                                <label class="required" for="description">Deskripsi Label</label>
+                                <label class="required" for="description"><strong>Deskripsi Label</strong></label>
                                 <textarea name="description[]" id="description" rows="2" class="form-control description" placeholder="Masukan deskripsi attribut">${val.description}</textarea>
                             </div>
                             <div class="form-row col-12">
                                 <div class="form-group col-3">
-                                    <label for="order">Order</label>
+                                    <label for="order"><strong>Order</strong></label>
                                     <input type="number" name="order[]" id="order" class="form-control text-center order" value="${val.order}" onclick="this.select()" required>
                                 </div>
                                 <div class="col-2">

@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id" id="id" name="id" value="">
                     <div class="form-group">
-                        <label class="required" for="name">Nama</label>
+                        <label class="required" for="name"><strong>Nama</strong></label>
                         <input type="text" class="form-control name" id="name" name="name" placeholder="Tulis judul disini" value="" required>
                     </div>
                     <div id="preview-icon" class="d-none text-center my-3">
@@ -22,7 +22,7 @@
                         <input type="hidden" class="form-control current_icon" name="current_icon" value="" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="icon">Upload Gambar</label>
+                        <label for="icon"><strong>Upload Gambar</strong></label>
                         <input type="file" class="form-control icon-feature" id="icon" name="icon" accept="image/*">
                     </div>
                 </div>

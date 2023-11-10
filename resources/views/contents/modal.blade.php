@@ -14,20 +14,20 @@
                             <input type="hidden" class="form-control id" id="id" name="id" value="">
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label class="required" for="category_id">Kategori</label>
+                                    <label class="required" for="category_id"><strong>Kategori</strong></label>
                                     <select name="category_id" id="category_id" class="form-control custom-select category_id content" style="width: 100%" required></select>
                                 </div>
                                 <div id="form-subcategory" class="form-group col-6">
-                                    <label for="subcategory_id">Subkategori</label>
+                                    <label for="subcategory_id"><strong>Subkategori</strong></label>
                                     <select name="subcategory_id" id="subcategory_id" class="form-control custom-select subcategory_id content" style="width: 100%"></select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="required" for="title">Judul</label>
+                                <label class="required" for="title"><strong>Judul</strong></label>
                                 <input type="text" name="title" id="title" class="form-control title" placeholder="Tulis judul konten disini" required value="">
                             </div>
                             <div class="form-group">
-                                <label class="required" for="meta">Deskripsi Singkat</label>
+                                <label class="required" for="meta"><strong>Deskripsi Singkat</strong></label>
                                 <input type="text" name="meta" id="meta" class="form-control meta" placeholder="Tulis alamat/lokasi disini" required value="">
                             </div>
                             <!-- preview upload image content -->
@@ -39,21 +39,22 @@
                                 <input type="hidden" name="current_image" class="form-control current_image" readonly value="" />
                             </div>
                             <div class="form-group">
-                                <label for="image">Upload Gambar</label>
+                                <label for="image"><strong>Upload Gambar</strong></label>
                                 <input type="file" name="image" id="image" class="form-control image-content" accept="image/*">
+                                <small class="text-primary">*Disarankan resolusi untuk upload gambar konten adalah: 1280x720</small>
                             </div>
                             <div class="form-group">
-                                <label for="body">Deskripsi</label>
+                                <label for="body"><strong>Deskripsi</strong></label>
                                 <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             {{-- <div id="body"></div> --}}
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-10">
-                                    <label for="">QR Code Link</label>
+                                    <label for="qrcode"><strong>Deskripsi</strong></label>
                                     <textarea name="qrcode" id="qrcode" class="form-control qrcode" cols="30" rows="1" placeholder="https://"></textarea>
                                 </div>
                                 <div class="col-2">
-                                    <label class="required" for="">Priority</label>
+                                    <label class="required" for=""><strong>Priority</strong></label>
                                     <input type="number" id="content_order" class="form-control content_order text-center" value="0" onclick="this.select()" name="content_order" required>
                                 </div>
                             </div>
@@ -97,7 +98,7 @@
                             <div class="form-row mb-3">
                                 <input type="hidden" name="id_featureValue" id="id_featureValue" class="form-control id_featureValue" value="">
                                 <div class="form-group">
-                                    <label for="feature_id">Pilih Penempatan untuk ditampilkan</label>
+                                    <label for="feature_id"><strong>Pilih Penempatan untuk ditampilkan</strong></label>
                                     <select name="feature_id" id="feature_id" class="form-control custom-select feature_id content" style="width: 100%"></select>
                                 </div>
                             </div>
@@ -114,7 +115,7 @@
                             <div class="form-row">
                                 {{-- <input type="hidden" name="id_gallery[]" class="form-control id_gallery" readonly> --}}
                                 <div class="form-group">
-                                    <label for="">Upload gambar konten galeri</label>
+                                    <label for=""><strong>Upload gambar konten galeri</strong></label>
                                     <input type="file" id="image_gallery" name="image_gallery[]" class="form-control image_gallery" accept="image/*" multiple>
                                 </div>
                             </div>

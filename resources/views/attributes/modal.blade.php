@@ -5,7 +5,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="margin: 0 auto">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Form Atribut</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Form Atribut</strong></h5>
                     <button type="button" class="close close-gallery" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id-attribute" id="id" name="id" value="">
                     <div class="form-group mb-3">
-                        <label class="required" for="name">Nama Label</label>
+                        <label class="required" for="name"><strong>Nama Label</strong></label>
                         <input type="text" name="name" id="name" class="form-control name"
                             placeholder="Tulis nama atribut disini" required></input>
                     </div>

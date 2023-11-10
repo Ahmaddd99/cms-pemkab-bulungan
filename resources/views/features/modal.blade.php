@@ -12,16 +12,16 @@
                 <div class="modal-body">
                     <input type="hidden" class="form-control id" id="id" name="id" value="">
                     <div class="form-group">
-                        <label class="required" for="title">Judul</label>
+                        <label class="required" for="title"><strong>Judul</strong></label>
                         <input type="text" class="form-control title-feature" id="title" name="title" placeholder="Tulis judul disini" value="" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-2">
-                            <label for="order">Order</label>
+                            <label for="order"><strong>Order</strong></label>
                             <input type="number" name="order" id="order" class="form-control text-center number order" value="0" onclick="this.select()" required>
                         </div>
                         <div class="form-group col-4">
-                            <label class="required" class="required" for="published">Status</label>
+                            <label class="required" class="required" for="published"><strong>Status</strong></label>
                             <select name="published" id="published" class="form-control custom-select published" style="width: 100%" required>
                                 <option value="" selected disabled>-- Pilih status publish --</option>
                                 <option value="0">Tidak dipublish</option>
@@ -36,7 +36,7 @@
                         <input type="hidden" class="form-control current_image_feature" name="current_image_feature" value="" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="image">Upload Gambar</label>
+                        <label for="image"><strong>Upload Gambar</strong></label>
                         <input type="file" class="form-control image-feature" id="image" name="image" accept="image/*">
                     </div>
                 </div>

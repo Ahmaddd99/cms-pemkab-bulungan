@@ -10,6 +10,7 @@
 /public/feature
 /public/content
 /public/placeholder
+/public/rating
 /storage/*.key
 /vendor
 .env

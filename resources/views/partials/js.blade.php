@@ -16,6 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/imgcheckbox@0.5.3/jquery.imgcheckbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/js/calendar.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/jquery.timepicker.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>

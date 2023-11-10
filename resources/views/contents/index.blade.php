@@ -107,6 +107,7 @@ let datatable = $("#TableContent").DataTable({
     ]
 });
 
+// $('#body').summernote();
 
 // partials
 function afterAction() {
@@ -131,7 +132,7 @@ $("#ModalContent").on("show.bs.modal", function () {
 $(".btn-add-content").on("click", function () {
     categoryId();
     subcategoryId();
-    dynamicselect();
+    // dynamicselect();
     getAllAttribute();
     getfeature();
     getAttrToModal();
@@ -302,7 +303,7 @@ function statebutton(){
 function buttonAddAttr(condition){
     let button = '';
     if (condition === 'show'){
-            button = ` <button type="button" class="btn btn-success btn-sm btn-add-attribute mb-3" data-toggle="modal" data-target="#ModalAttribute">Tambah Label Baru</button>`;
+            button = `<button type="button" class="btn btn-success btn-sm btn-add-attribute mb-3" data-toggle="modal" data-target="#ModalAttribute"><i class="fa fa-plus"></i> Tambah Label Baru</button>`;
             $("#tambah-attribute-baru").html(button);
 
     } else {
@@ -523,6 +524,7 @@ function getContent(id) {
             $('.meta').val(data.meta);
             $('.qrcode').val(data.qrcode);
             $('.current_image').val(data.image);
+            $('.content_order').val(data.order);
 
             $.each(ratings, function(k,v) {
                 $(`input.checkbox-image-${v.rating_id}`).prop('checked', 'checked');

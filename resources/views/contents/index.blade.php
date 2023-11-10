@@ -118,7 +118,7 @@ $('#body').summernote({
 	placeholder: 'Tulis deskripsi konten',
 	toolbar: [
       // ['style', ['style']],
-      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['style', ['bold', 'italic', 'underline']],
       //['font', ['strikethrough', 'superscript', 'subscript']],
       ['fontsize', ['fontsize']],
       ['color', ['color']],

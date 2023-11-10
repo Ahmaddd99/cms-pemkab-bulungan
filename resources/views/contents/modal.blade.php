@@ -46,21 +46,20 @@
                                 <label for="body">Deskripsi</label>
                                 <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="">QR Code Link</label>
                                 <textarea name="qrcode" id="qrcode" class="form-control qrcode" cols="30" rows="1" placeholder="https://"></textarea>
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="col-12">
-                                <button type="button" class="btn btn-success btn-sm btn-add-attribute mb-3" data-toggle="modal" data-target="#ModalAttribute">Tambah Label Baru</button>
+                            <div id="tambah-attribute-baru" class="col-12">
+                                {{-- <button type="button" class="btn btn-success btn-sm btn-add-attribute mb-3" data-toggle="modal" data-target="#ModalAttribute">Tambah Label Baru</button> --}}
                             </div>
                             <div id="form-group-body">
-                                <div class="attribute-group">
+                                {{-- <div class="attribute-group">
                                     <div class="form-group mb-3 col-6">
                                         <label class="required" for="attribute_id">Label</label>
-                                        <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-all-attribute attribute-modal attribute_id" style="width: 100%" required>
-                                            <option class="option-default" selected disabled>-- Pilih Label --</option>
+                                        <select name="attribute_id[]" id="attribute_id" class="form-control custom-select get-all-attribute attribute-modal attribute_id" style="width: 100%">
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -79,22 +78,32 @@
                                             <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-12">
-                                <button type="button" id="tambah-attribute" class="btn btn-sm btn-outline-primary tambah-attribute" style="width:100%">Tambah Attribut</button>
+                                <button type="button" id="tambah-attribute" class="btn btn-sm btn-outline-primary tambah-attribute"><i class="fa fa-plus"></i> Tambah Attribut</button>
                             </div>
                         </div>
                         <div class="col-4">
-                            <button type="button" class="btn btn-sm btn-success btn-add-fitur mb-3" data-toggle="modal" data-target="#ModalFeature">Tambah Fitur Baru</button>
-                            <div class="form-row">
+                            <!-- Feature -->
+                            <button type="button" class="btn btn-sm btn-success btn-add-fitur mb-3" data-toggle="modal" data-target="#ModalFeature"><i class="fa fa-plus"></i> Tambah Fitur Baru</button>
+                            <div class="form-row mb-3">
                                 <input type="hidden" name="id_featureValue" id="id_featureValue" class="form-control id_featureValue" value="">
                                 <div class="form-group">
                                     <label for="feature_id">Pilih Penempatan untuk ditampilkan</label>
                                     <select name="feature_id" id="feature_id" class="form-control custom-select feature_id content" style="width: 100%"></select>
                                 </div>
                             </div>
+                            <!-- end feature -->
                             <hr>
+                            <!-- Rating -->
+                            <div id="form-rating" class="form-group mb-3">
+                                <label for=""><strong>Rating Label</strong></label>
+                                <div class="mt-2 each-icon row g-1" style="max-height:150px;height:150px;overflow-y:scroll"></div>
+                            </div>
+                            <!-- end rating -->
+                            <hr>
+                            <!-- Gallery Content -->
                             <div class="form-row">
                                 {{-- <input type="hidden" name="id_gallery[]" class="form-control id_gallery" readonly> --}}
                                 <div class="form-group">
@@ -102,6 +111,7 @@
                                     <input type="file" id="image_gallery" name="image_gallery[]" class="form-control image_gallery" accept="image/*" multiple>
                                 </div>
                             </div>
+                            <!-- end gallery content -->
                             <div class="form-row">
                                 <!-- preview upload galleries -->
                                 <div id="preview-upload-galleries" class="d-none text-center my-3">

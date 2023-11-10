@@ -35,4 +35,18 @@ class Content extends Model
     {
         return $this->hasMany(ContentGallery::class);
     }
+
+    public function getRatings() {
+        return $this->hasMany(ContentRating::class, 'content_id', 'id');
+    }
+
+    public function ratings() {
+        return $this->belongsToMany(Rating::class, 'content_ratings', 'content_id', 'rating_id')
+        ->as('ratings');
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribut::class, 'attributes_values', 'content_id', 'attribut_id');
+    }
 }

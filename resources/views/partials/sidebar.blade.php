@@ -92,6 +92,9 @@
                     <li class="submenu-item {{ Route::is('submenu.attribute.index') ? 'active' : '' }}">
                         <a href="{{ route('submenu.attribute.index') }}" class="submenu-link">Label</a>
                     </li>
+                    <li class="submenu-item {{ Route::is('submenu.rating.index') ? 'active' : '' }}">
+                        <a href="{{ route('submenu.rating.index') }}" class="submenu-link">Rating</a>
+                    </li>
                 </ul>
             </li>
             <hr>

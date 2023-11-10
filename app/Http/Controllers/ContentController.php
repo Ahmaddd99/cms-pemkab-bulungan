@@ -9,6 +9,7 @@ use App\Models\Content;
 use App\Models\ContentGallery;
 use App\Models\Feature;
 use App\Models\FeatureValue;
+use App\Models\Rating;
 use App\Models\Subcategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -124,6 +125,10 @@ class ContentController extends Controller
                         ];
                     }
                     AttributesValue::upsert($dataItems, ['id']);
+                }
+
+                if ($request->rating_id){
+                    $content->ratings()->sync($request->rating_id);
                 }
 
                 //content gallery
@@ -271,7 +276,10 @@ class ContentController extends Controller
 
     public function datatables()
     {
-        $data = Content::select("*")->orderBy('id', 'desc')->with('category', 'subcategory')->get();
+        $data = Content::select("*")->with('getRatings', function($q) {
+            $q->with('rating');
+        })->orderBy('id', 'desc')->with('category', 'subcategory')->get();
+        // return $data;
         return DataTables::of($data)
             ->editColumn('category_id', function ($row) {
                 return $row->category->name;
@@ -284,10 +292,20 @@ class ContentController extends Controller
                 }
             })
             ->editColumn('title', function($row){
+                $ratings = '';
+                foreach($row->getRatings as $data) {
+                    $ratings .= ' <img src="../../rating/'.$data->rating->icon.'" alt="'.$data->rating->name.'" class="mx-1" style="max-width:80px" />';
+                }
                 if($row->qrcode !== null){
                     return '<div><b>'.$row->title.'</b> <span class="badge badge-pill badge-success" style="font-size:0.55em">QR Code</span><br><p>'.$row->meta.'</p></div>';
                 } else {
-                    return '<div><b>'.$row->title.'</b><br><p>'.$row->meta.'</p></div>';
+                    return '
+                        <div>
+                            <h5>'.$row->title.'</h5>
+                            <p>'.$row->meta.'</p>
+                            '.$ratings.'
+                        </div>
+                    ';
                 }
             })
             ->editColumn('image', function ($row) {
@@ -305,7 +323,7 @@ class ContentController extends Controller
 
     public function show($id)
     {
-        $data = Content::where('id', $id)->with('category', 'subcategory', 'featureValue')->with('attributValue', function ($q) {
+        $data = Content::where('id', $id)->with('getRatings')->with('category', 'subcategory', 'featureValue')->with('attributValue', function ($q) {
             $q->select('id', 'attribut_id', 'content_id', 'description', 'order')->with('attribut');
         })->with('galleries')->first();
         return response()->json([
@@ -317,6 +335,13 @@ class ContentController extends Controller
         $data = Category::whereId($id)->with('subcategory')->first();
         return response()->json([
             'category' => $data
+        ]);
+    }
+
+    public function rating(){
+        $data = Rating::orderBy('id', 'desc')->get();
+        return response()->json([
+            'rating' => $data
         ]);
     }
 

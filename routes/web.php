@@ -9,6 +9,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentGalleryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SubcategoryController;
 use App\Models\Content;
 use App\Models\ContentGallery;
@@ -101,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{contentid}/galleries', [ContentController::class, 'getgallery'])->name('getgallery');
             // dynamic
             Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
+            // rating
+            Route::get('/rating', [ContentController::class, 'rating'])->name('rating');
         });
 
         // gallery
@@ -134,6 +137,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/datatables', [AttributeController::class, 'datatables'])->name('datatables');
             Route::get('/get/{id}', [AttributeController::class, 'getAttribute'])->name('get');
             Route::delete('/delete/{id}', [AttributeController::class, 'destroy'])->name('delete');
+        });
+
+        Route::prefix('/rating')->name('rating.')->group(function(){
+            Route::get('/index', [RatingController::class, 'index'])->name('index');
+            Route::post('/index', [RatingController::class, 'store'])->name('post');
+            Route::get('/datatables', [RatingController::class, 'datatables'])->name('datatables');
         });
     });
 });

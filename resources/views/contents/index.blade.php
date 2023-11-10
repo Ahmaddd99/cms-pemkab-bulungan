@@ -117,16 +117,15 @@ $('#body').summernote({
 	height: 350,
 	placeholder: 'Tulis deskripsi konten',
 	toolbar: [
-      ['style', ['style']],
+      // ['style', ['style']],
       ['style', ['bold', 'italic', 'underline', 'clear']],
-      ['font', ['strikethrough', 'superscript', 'subscript']],
+      //['font', ['strikethrough', 'superscript', 'subscript']],
       ['fontsize', ['fontsize']],
       ['color', ['color']],
       ['para', ['ul', 'ol', 'paragraph']],
-      ['height', ['height']],
-      ['fontname', ['fontname']],
+      // ['height', ['height']],
+      // ['fontname', ['fontname']],
       ['table', ['table']],
-      ['view', ['fullscreen', 'codeview', 'help']]
     ]
 });
 
@@ -358,7 +357,7 @@ $(".tambah-attribute").on("click", async function () {
                                 <input type="number" name="order[]" id="order" class="form-control text-center order" value="0" onclick="this.select()" required>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-attribute-additional" style="width: 100%;margin-top:2.5em"><i class="bi bi-trash"></i></button>
                             </div>
                         </div>
                     </div>
@@ -368,10 +367,13 @@ $(".tambah-attribute").on("click", async function () {
 
 });
 
-$(document).on("click", ".btn-hapus-attribute", function () {
-    stateAttribute=stateAttribute-1;
-    statebutton();
-    $(this).closest(".attribute-group-additional").remove();
+$(document).on("click", ".btn-hapus-attribute-additional", function () {
+    let co = confirm("Anda yakin ingin menghapus field ini?");
+    if(co){
+        stateAttribute=stateAttribute-1;
+        statebutton();
+        $(this).closest(".attribute-group-additional").remove();
+    }
 })
 // end attribute
 
@@ -615,11 +617,13 @@ function getContent(id) {
             }
             $(".btn-hapus-attribute").on("click", function () {
                 let attValId = $(this).closest(".attribute-group-additional").find(".attribute_value_id").val();
-                // console.log(attValId);
-                let conf = confirm("Apakah anda yakin ingin menghapus atribut ini?");
-                if (conf) {
+                let conff = confirm("Apakah anda yakin ingin menghapus atribut ini?");
+                if (conff) {
+                    stateAttribute=stateAttribute-1;
+                    statebutton();
                     deleteAttVal(attValId);
                     $(this).closest(".attribute-group-additional").remove();
+                    alert("Berhasil dihapus!");
                 }
             });
         });

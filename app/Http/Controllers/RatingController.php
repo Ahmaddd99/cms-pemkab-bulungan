@@ -76,8 +76,8 @@ class RatingController extends Controller
         })
         ->addColumn('actions', function($row){
             return '
-            <button type="button" class="btn btn-info btn-edit-feature btn-sm" data-id="' . $row->id . '" data-target="#ModalFeature" data-toggle="modal" >Edit</button>
-            <button type="button" class="btn btn-danger btn-delete-feature btn-sm" data-id="' . $row->id . '">Hapus</button>
+            <button type="button" class="btn btn-info btn-edit-icon btn-sm" data-id="' . $row->id . '" data-target="#ModalRating" data-toggle="modal" >Edit</button>
+            <button type="button" class="btn btn-danger btn-delete-icon btn-sm" data-id="' . $row->id . '">Hapus</button>
             ';
         })
         ->rawColumns(['name', 'icon', 'actions'])
@@ -85,10 +85,24 @@ class RatingController extends Controller
     }
 
     public function get($id){
-        //
+        $data = Rating::find($id);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     public function destroy($id){
-        //
+        $data = Rating::findOrFail($id);
+        if($data){
+            $path = public_path('rating/') . $data->icon;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+
+            $data->delete();
+            return response()->json([
+                'message' => 'data was deleted'
+            ]);
+        }
     }
 }

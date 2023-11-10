@@ -143,6 +143,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/index', [RatingController::class, 'index'])->name('index');
             Route::post('/index', [RatingController::class, 'store'])->name('post');
             Route::get('/datatables', [RatingController::class, 'datatables'])->name('datatables');
+            Route::get('/get/{id}', [RatingController::class, 'get'])->name('get');
+            Route::delete('/delete/{id}', [RatingController::class, 'destroy'])->name('delete');
         });
     });
 });

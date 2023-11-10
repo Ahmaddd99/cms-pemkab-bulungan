@@ -136,10 +136,10 @@ $(".btn-add-content").on("click", function () {
     getfeature();
     getAttrToModal();
     getRating();
-    $("#form-group-body").find('.attribute-group-additional').remove();
-    $("#tambah-attribute").on("click", function(){
-        buttonAddAttr('show');
-    });
+    // $("#form-group-body").find('.attribute-group-additional').remove();
+    // $("#tambah-attribute").on("click", function(){
+    //     buttonAddAttr('show');
+    // });
 });
 
 $("#ModalContent").on("hidden.bs.modal", function () {
@@ -152,6 +152,9 @@ $("#ModalContent").on("hidden.bs.modal", function () {
     // showAttributeForm('hide');
     $("#form-group-body").find('.attribute-group-additional').remove();
     $('.id').val("");
+    stateAttribute = 0;
+    statebutton();
+    console.log(stateAttribute);
 });
 // end partials
 
@@ -283,17 +286,10 @@ function getAttrToModal() {
                 option += `<option value="${val.id}">${val.name}</option>`
             });
             $(`.attribute-modal`).html(option);
-            // if(selectedAttribute) {
-            //     $('.attribute_id').val(selectedAttribute);
-            // }
         });
 }
 
-// $(".attribute_id").on("change", function(){
-//     selectedAttribute = $(this).val();
-// });
 let stateAttribute = 0;
-
 
 function statebutton(){
     if(stateAttribute === 0){
@@ -316,6 +312,7 @@ function buttonAddAttr(condition){
 
 $(".tambah-attribute").on("click", async function () {
     stateAttribute++;
+    console.log(stateAttribute);
     statebutton();
     let rand = generateRandomString();
     let newAttributeGroup = `
@@ -558,6 +555,7 @@ function getContent(id) {
             } else {
                 stateAttribute = attribute.length;
                 console.log(stateAttribute);
+                statebutton();
                 let attributeData = "";
                 $.each(attribute, function (key, val) {
                     let rand = generateRandomString();

@@ -94,11 +94,24 @@
     }
 
     $(".btn-add-rating").on("click", function(){
-
+        $('#preview-icon').addClass('d-none');
+        $('#preview-icon').find('img').attr('src', '');
     });
 
-    $("#ModalRating").on("hidden-bs-modal", function(){
+    $("#ModalRating").on("hidden.bs.modal", function(){
+        afterAction();
+    });
 
+    $('#icon').on('change', function() {
+        $('#preview-icon').removeClass('d-none');
+        const file = this.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#preview-icon').find('img').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
     });
 
     $("#FormRating").on("submit", function(e){
@@ -124,6 +137,37 @@
         });
     }
 
-    
+    $(document).on('click', '.btn-edit-icon', function(){
+        let id = $(this).data('id');
+        editRating(id);
+    });
+
+    function editRating(id){
+        axios.get(`./get/${id}`)
+            .then(function(response){
+                let data = response.data.data;
+                // console.log(data);
+                $('.id').val(data.id);
+                $('.name').val(data.name);
+
+                $("#preview-icon").removeClass('d-none');
+                $('#preview-icon').find('img').attr('src', `../../rating/${data.icon}`);
+            })
+    }
+
+    $(document).on('click', '.btn-delete-icon', function(){
+        let id = $(this).data('id');
+        let conf = confirm("Anda yakin ingin menghapus data ini?");
+        if (conf) {
+            deleteData(id);
+        }
+    });
+
+    function deleteData(id){
+        axios.delete(`./delete/${id}`)
+            .then(function(response){
+                reloadDatatable();
+            })
+    }
 
 @endsection

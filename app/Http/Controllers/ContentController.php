@@ -298,11 +298,17 @@ class ContentController extends Controller
                     $ratings .= ' <img src="../../rating/'.$data->rating->icon.'" alt="'.$data->rating->name.'" class="mx-1" style="max-width:80px" />';
                 }
                 if($row->qrcode !== null){
-                    return '<div><b>'.$row->title.'</b> <span class="badge badge-pill badge-success" style="font-size:0.55em">QR Code</span><br><p>'.$row->meta.'</p></div>';
+                    return '<div>
+                                <strong>'.$row->title.'</strong>
+                                <span class="badge badge-pill badge-success" style="font-size:0.55em">QR Code</span>
+                                <p>'.$row->meta.'</p>
+                                '.$ratings.'
+                            </div>
+                            ';
                 } else {
                     return '
                         <div>
-                            <h5>'.$row->title.'</h5>
+                            <strong>'.$row->title.'</strong>
                             <p>'.$row->meta.'</p>
                             '.$ratings.'
                         </div>

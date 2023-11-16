@@ -173,6 +173,7 @@ $("#ModalContent").on("hidden.bs.modal", function () {
     // showAttributeForm('hide');
     $("#form-group-body").find('.attribute-group-additional').remove();
     $('.id').val("");
+    $('#body').summernote('code', '');
     stateAttribute = 0;
     statebutton();
     console.log(stateAttribute);

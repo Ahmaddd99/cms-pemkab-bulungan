@@ -45,12 +45,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="body"><strong>Deskripsi</strong></label>
-                                <textarea name="body" id="body" cols="3" class="form-control body" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
+                                <textarea name="body" id="body" cols="3" class="form-control body body-content" style="height: 10em" placeholder="Masukan deskripsi konten"></textarea>
                             {{-- <div id="body"></div> --}}
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-10">
-                                    <label for="qrcode"><strong>Deskripsi</strong></label>
+                                    <label for="qrcode"><strong>QR Code Link</strong></label>
                                     <textarea name="qrcode" id="qrcode" class="form-control qrcode" cols="30" rows="1" placeholder="https://"></textarea>
                                 </div>
                                 <div class="col-2">

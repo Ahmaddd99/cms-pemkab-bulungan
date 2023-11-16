@@ -50,6 +50,7 @@
                             <div class="form-group">
                                 <label for="image_placeholder"><strong>Upload placeholder</strong></label>
                                 <input type="file" class="form-control image-placeholder-sub" id="image-placeholder-sub" name="image_placeholder" accept="image/*">
+                                <small class="text-primary">*Disarankan resolusi untuk upload ikon subkategori adalah: 512x512</small>
                             </div>
                         </div>
                     </div>

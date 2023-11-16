@@ -24,6 +24,7 @@
                     <div class="form-group">
                         <label for="icon"><strong>Upload Gambar</strong></label>
                         <input type="file" class="form-control icon-feature" id="icon" name="icon" accept="image/*">
+                        <small class="text-primary">*Disarankan resolusi untuk upload gambar rating adalah: 200x40</small>
                     </div>
                 </div>
                 <div class="modal-footer">

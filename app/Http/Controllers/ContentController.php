@@ -129,9 +129,7 @@ class ContentController extends Controller
                     AttributesValue::upsert($dataItems, ['id']);
                 }
 
-                if ($request->rating_id){
-                    $content->ratings()->sync($request->rating_id);
-                }
+                $content->ratings()->sync($request->rating_id);
 
                 //content gallery
                 $galleryImages = [];

@@ -146,7 +146,7 @@ $("#ModalContent").on("show.bs.modal", function () {
     // $(document).on("", ".custom-select").select2();
     // categoryId();
     dynamicselect();
-    // getRating();
+    getRating();
 });
 
 $(".btn-add-content").on("click", function () {
@@ -156,7 +156,7 @@ $(".btn-add-content").on("click", function () {
     getAllAttribute();
     getfeature();
     getAttrToModal();
-    getRating();
+    // getRating();
     // $("#form-group-body").find('.attribute-group-additional').remove();
     // $("#tambah-attribute").on("click", function(){
     //     buttonAddAttr('show');
@@ -494,12 +494,12 @@ async function getRating() {
     }
 
     $(".btn-clear-ratings").on("click", function(){
-        $(`input.checkbox-image`).prop("checked", false);
+        $(`input.checkbox-image`).removeAttr("checked");
         console.log("clear bang");
 
         let idx = $('.content-idx').val();
         console.log(idx);
-        clearRatings(idx);
+        // clearRatings(idx);
     });
 
 function clearRatings(contentid){
@@ -544,9 +544,8 @@ $(document).on("click", ".btn-edit-content", function () {
 });
 
 function getContent(id) {
-    getRating();
     axios.get('./get/' + id)
-        .then(async function (response) {
+    .then(async function (response) {
             let data = response.data.content;
             let feature = response.data.content.feature_value;
             let attribute = response.data.content.attribut_value;
@@ -566,7 +565,7 @@ function getContent(id) {
             $('.content_order').val(data.order);
 
             $.each(ratings, function(k,v) {
-                $(`input.checkbox-image-${v.rating_id}`).prop('checked', 'checked');
+                $(`input.checkbox-image-${v.rating_id}`).attr('checked', 'checked');
                 console.log(0)
             });
 

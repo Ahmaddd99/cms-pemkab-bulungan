@@ -176,7 +176,7 @@ $("#ModalContent").on("hidden.bs.modal", function () {
     $('#body').summernote('code', '');
     stateAttribute = 0;
     statebutton();
-    console.log(stateAttribute);
+    // console.log(stateAttribute);
 });
 // end partials
 
@@ -334,7 +334,7 @@ function buttonAddAttr(condition){
 
 $(".tambah-attribute").on("click", async function () {
     stateAttribute++;
-    console.log(stateAttribute);
+    // console.log(stateAttribute);
     statebutton();
     let rand = generateRandomString();
     let newAttributeGroup = `
@@ -478,7 +478,7 @@ async function getRating() {
     await axios.get('./rating')
         .then(function (response) {
             let data = response.data.rating;
-            console.log(data);
+            // console.log(data);
             let icon = '';
             $.each(data, function (key, val) {
                 icon += `
@@ -496,10 +496,10 @@ async function getRating() {
 
     $(".btn-clear-ratings").on("click", function(){
         $(`input.checkbox-image`).removeAttr("checked");
-        console.log("clear bang");
+        // console.log("clear bang");
 
         let idx = $('.content-idx').val();
-        console.log(idx);
+        // console.log(idx);
         // clearRatings(idx);
     });
 
@@ -567,7 +567,6 @@ function getContent(id) {
 
             $.each(ratings, function(k,v) {
                 $(`input.checkbox-image-${v.rating_id}`).attr('checked', 'checked');
-                console.log(0)
             });
 
             // await getsubcategory(data.category_id);
@@ -596,7 +595,7 @@ function getContent(id) {
                 // buttonAddAttr('hide');
             } else {
                 stateAttribute = attribute.length;
-                console.log(stateAttribute);
+                // console.log(stateAttribute);
                 statebutton();
                 let attributeData = "";
                 $.each(attribute, function (key, val) {

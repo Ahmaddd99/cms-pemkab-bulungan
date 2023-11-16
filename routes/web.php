@@ -104,6 +104,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{categoryid}/select', [ContentController::class, 'dynamicSelectCategory'])->name('dynamic');
             // rating
             Route::get('/rating', [ContentController::class, 'rating'])->name('rating');
+            // clear rating
+            Route::delete('/{contentid}/clear', [ContentController::class, 'clearRatings'])->name('clear.rating');
         });
 
         // gallery

@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="col-4">
-                            <input type="hidden" class="form-control id" id="id" name="id" value="">
+                            <input type="hidden" class="form-control id content-idx" id="id" name="id" value="">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label class="required" for="category_id"><strong>Kategori</strong></label>
@@ -106,7 +106,10 @@
                             <hr>
                             <!-- Rating -->
                             <div id="form-rating" class="form-group mb-3">
-                                <label for=""><strong>Rating Label</strong></label>
+                                <div class="d-flex justify-content-between">
+                                    <label for=""><strong>Rating Label</strong></label>
+                                    <button type="button" class="btn btn-sm btn-outline-danger btn-clear-ratings">Clear</button>
+                                </div>
                                 <div class="mt-2 each-icon row g-1" style="max-height:150px;height:150px;overflow-y:scroll"></div>
                             </div>
                             <!-- end rating -->

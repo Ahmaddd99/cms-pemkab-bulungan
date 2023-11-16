@@ -483,15 +483,31 @@ async function getRating() {
                 icon += `
                 <div class="col-4 text-center checkbox-wrapper">
                     <label class="chk">
-                        <input class="checkbox-image-${val.id}" type="checkbox" value="${val.id}" name="rating_id[]" />
+                        <input class="checkbox-image-${val.id} checkbox-image" type="checkbox" value="${val.id}" name="rating_id[]" />
                         <img class="img-fluid img-thumbnail p-2" src="../../rating/${val.icon}" alt="${val.name}" />
                     </label>
                 </div>`
             })
             $(".each-icon").html(icon);
+
+        })
+    }
+
+    $(".btn-clear-ratings").on("click", function(){
+        $(`input.checkbox-image`).prop("checked", false);
+        console.log("clear bang");
+
+        let idx = $('.content-idx').val();
+        console.log(idx);
+        clearRatings(idx);
+    });
+
+function clearRatings(contentid){
+    axios.delete(`../content/${contentid}/clear`)
+        .then(function(response){
+            console.log(response);
         })
 }
-
 // end checkbox rating
 
 // post
@@ -541,7 +557,7 @@ function getContent(id) {
             // $('.subcategory_id').val(data.subcategory_id);
             // getcatid(data.category_id);
             // getsubid(data.subcategory_id);
-            console.log(data);
+            //console.log(data);
             $('.title').val(data.title);
             $('#body').summernote('code', data.body);
             $('.meta').val(data.meta);
@@ -551,6 +567,7 @@ function getContent(id) {
 
             $.each(ratings, function(k,v) {
                 $(`input.checkbox-image-${v.rating_id}`).prop('checked', 'checked');
+                console.log(0)
             });
 
             // await getsubcategory(data.category_id);

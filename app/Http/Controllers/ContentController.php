@@ -7,6 +7,7 @@ use App\Models\AttributesValue;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\ContentGallery;
+use App\Models\ContentRating;
 use App\Models\Feature;
 use App\Models\FeatureValue;
 use App\Models\Rating;
@@ -419,5 +420,15 @@ class ContentController extends Controller
         return response()->json([
             'message' => 'Content gallery was deleted'
         ]);
+    }
+
+    public function clearRatings($contentid){
+        $data = ContentRating::where('content_id', $contentid);
+        if($data){
+            $data->delete();
+            return response()->json([
+                "Berhasil membersihkan rating"
+            ]);
+        }
     }
 }

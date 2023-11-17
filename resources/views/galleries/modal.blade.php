@@ -14,6 +14,7 @@
                     <div class="form-group">
                         <label for="image"><strong>Upload Gambar</strong></label>
                         <input type="file" name="image_gallery[]" id="image" class="form-control image" accept="image/*" multiple>
+                        <small class="text-primary">*Disarankan resolusi untuk upload galeri konten adalah: 800x800</small>
                     </div>
                     <div id="koleksi-galeri" class="d-none my-3 text-center">
 

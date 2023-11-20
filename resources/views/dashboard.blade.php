@@ -13,10 +13,23 @@
         </div>
         <div class="card-body">
             <ol>
-                <li>Menu <b><code>Agenda</code></b> untuk membuat/menjadwalkan Agenda. cukup</li>
-                <li>Menu <b><code>Banner</code></b> untuk mengupload, edit, dan hapus Banner</li>
-                <li>Pada menu <b><code>Konten</code></b> terdapat submenu seperti Kategori, Subkategori, Isi Konten, dan Galeri Konten</li>
-                <li>Pada menu <b><code>Pengaturan</code></b> terdapat beberapa submenu untuk pelengkap Konten</li>
+                <li>Halaman <b><code>Agenda</code></b> digunakan untuk membuat agenda kegiatan</li>
+                <li>Halaman <b><code>Banner</code></b> digunakan untuk menambah atau menghapus banner pada tampilan utama di kiosk</li>
+                <li>Pada menu <b><code>Konten</code></b> terdapat beberapa submenu untuk menampilkan konten pada tampilan utama
+                    <ul>
+                        <li><strong>Kategori.</strong> Halaman ini digunakan untuk membuat, mengedit dan mengahapus Kategori pada halaman utama</li>
+                        <li><strong>Subkategori.</strong> Halaman ini digunakan untuk menambah atau menghapus Subkategori</li>
+                        <li><strong>Isi Konten.</strong> Halaman ini digunakan untuk menambah atau menghapus Isi Konten pada tampilan di kiosk</li>
+                        <li><strong>Galeri Konten.</strong> Halaman ini digunakan untuk menambah atau menghapus Galeri Konten di halaman konten</li>
+                    </ul>
+                </li>
+                <li>Pada menu <b><code>Pengaturan</code></b> terdapat beberapa submenu untuk pelengkap Konten
+                    <ul>
+                        <li><strong>Fitur.</strong> Halaman ini digunakan untuk membuat, mengedit dan mengahapus Fitur pada halaman utama</li>
+                        <li><strong>Rating.</strong> Halaman Label ini digunakan untuk menambah atau menghapus Label didalam Isi Konten</li>
+                        <li><strong>Label.</strong> Halaman Rating ini digunakan untuk menambah atau menghapus Rating didalam Isi Konten</li>
+                    </ul>
+                </li>
             </ol>
         </div>
     </div>

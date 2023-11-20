@@ -267,6 +267,11 @@ const generateRandomString = () => {
 function postAttribute(att) {
     axios.post('{{ route('menu.content.post.attribute') }}', att)
         .then(function (response) {
+            Swal.fire({
+                title: "Berhasil!",
+                text: "Label berhasil ditambah!",
+                icon: "success"
+            });
             $("#ModalAttribute").modal('hide');
             $("#FormAttribute")[0].reset();
             let attribute = response.data.attribute;
@@ -369,12 +374,22 @@ $(".tambah-attribute").on("click", async function () {
 });
 
 $(document).on("click", ".btn-hapus-attribute-additional", function () {
-    let co = confirm("Anda yakin ingin menghapus field ini?");
-    if(co){
-        stateAttribute=stateAttribute-1;
-        statebutton();
-        $(this).closest(".attribute-group-additional").remove();
-    }
+    Swal.fire({
+        title: "Anda yakin?",
+        text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Kembali",
+        confirmButtonText: "Hapus!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            stateAttribute=stateAttribute-1;
+            statebutton();
+            $(this).closest(".attribute-group-additional").remove();
+        }
+    });
 })
 // end attribute
 
@@ -407,6 +422,11 @@ function postFeature(feature) {
         }
     })
         .then(function (response) {
+            Swal.fire({
+                title: "Berhasil!",
+                text: "Fitur berhasil ditambah!",
+                icon: "success"
+            });
             $("#ModalFeature").modal('hide');
             $("#FormFeature")[0].reset();
             getfeature();
@@ -464,11 +484,21 @@ function getContentGallery(contentId) {
 $(document).on('click', '.delete-gallery', function () {
     let idGallery = $(this).data('gallery-id');
     let contentId = $(this).data('content-id');
-    let confdel = confirm("Anda yakin ingin menghapus gambar ini?");
-    if (confdel) {
-        deleteGall(idGallery);
-        getContentGallery(contentId);
-    }
+    Swal.fire({
+        title: "Anda yakin?",
+        text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Kembali",
+        confirmButtonText: "Hapus!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteGall(idGallery);
+            getContentGallery(contentId);
+        }
+    });
 });
 
 // Checkbox Rating
@@ -525,13 +555,21 @@ function postContent(post) {
         }
     })
         .then(function (response) {
+            Swal.fire({
+                title: "Berhasil!",
+                text: "Data yang anda masukan tersimpan dengan baik!",
+                icon: "success"
+            });
             afterAction();
             reloadDatatable();
-            // console.log(response);
         })
         .catch(function (error) {
             console.log("Terjadi kesalahan saat post data ", error);
-            alert("Perhatikan saat mengisi form, pastikan untuk mengisi data mandatory");
+            Swal.fire({
+                icon: "error",
+                title: "Terjadi kesalahan!",
+                text: "Perhatikan kembali, pastikan untuk mengisi data dengan benar!"
+            });
         });
 }
 // end post
@@ -633,14 +671,23 @@ function getContent(id) {
             }
             $(".btn-hapus-attribute").on("click", function () {
                 let attValId = $(this).closest(".attribute-group-additional").find(".attribute_value_id").val();
-                let conff = confirm("Apakah anda yakin ingin menghapus atribut ini?");
-                if (conff) {
-                    stateAttribute=stateAttribute-1;
-                    statebutton();
-                    deleteAttVal(attValId);
-                    $(this).closest(".attribute-group-additional").remove();
-                    alert("Berhasil dihapus!");
-                }
+                Swal.fire({
+                    title: "Anda yakin?",
+                    text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: "Kembali",
+                    confirmButtonText: "Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        stateAttribute=stateAttribute-1;
+                        statebutton();
+                        deleteAttVal(attValId);
+                        $(this).closest(".attribute-group-additional").remove();
+                    }
+                });
             });
         });
 }
@@ -652,6 +699,11 @@ function getContent(id) {
 function deleteAttVal(id) {
     axios.delete('./delAttVal/' + id)
         .then(function (response) {
+            Swal.fire({
+                title: "Terhapus!",
+                text: "Attribut berhasil dihapus!",
+                icon: "success"
+            });
             reloadDatatable();
         })
 }
@@ -660,21 +712,41 @@ function deleteAttVal(id) {
 function deleteGall(id) {
     axios.delete('./delGallery/' + id)
         .then(function (response) {
+            Swal.fire({
+                title: "Terhapus!",
+                text: "Galeri Konten berhasil dihapus!",
+                icon: "success"
+            });
         })
 }
 
 // delete all
 $(document).on("click", ".btn-delete-content", function () {
     let id = $(this).data('id');
-    let conf = confirm("apakah anda yakin ingin menghapus data ini?");
-    if (conf) {
-        deleteContent(id);
-    }
+    Swal.fire({
+        title: "Anda yakin?",
+        text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Kembali",
+        confirmButtonText: "Hapus!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteContent(id);
+        }
+    });
 });
 
 function deleteContent(id) {
     axios.delete('./delete/' + id)
         .then(function (response) {
+            Swal.fire({
+                title: "Terhapus!",
+                text: "Isi Konten berhasil terhapus!",
+                icon: "success"
+            });
             reloadDatatable();
         })
 }

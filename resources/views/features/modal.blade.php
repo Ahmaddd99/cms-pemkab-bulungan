@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="margin: 0 auto">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Form Feature</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Form Fitur</h5>
                     <button type="button" class="close close-feature" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -38,10 +38,11 @@
                     <div class="form-group">
                         <label for="image"><strong>Upload Gambar</strong></label>
                         <input type="file" class="form-control image-feature" id="image" name="image" accept="image/*">
+                        <small class="text-primary">*Disarankan resolusi untuk upload gambar fitur adalah: 800x800</small>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>

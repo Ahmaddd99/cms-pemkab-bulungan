@@ -199,7 +199,7 @@
                             <form method="POST" action="./delete/${val.id}" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger" style="margin-left:10px" onclick="return confirm('Anda yakin ingin menghapus agenda di tanggal ini?')">&times;</button>
+                                <button class="btn btn-danger btn-hapus-agenda" style="margin-left:10px" onclick="return confirm('Anda yakin ingin menghapus agenda di tanggal ini?')">Hapus</button>
                             </form>
                         </div><!-- / .col -->
                     </div><!-- / .row -->

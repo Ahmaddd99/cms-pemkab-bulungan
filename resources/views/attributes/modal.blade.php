@@ -5,7 +5,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="margin: 0 auto">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Form Atribut</strong></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><strong>Form Label</strong></h5>
                     <button type="button" class="close close-gallery" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,11 +15,11 @@
                     <div class="form-group mb-3">
                         <label class="required" for="name"><strong>Nama Label</strong></label>
                         <input type="text" name="name" id="name" class="form-control name"
-                            placeholder="Tulis nama atribut disini" required></input>
+                            placeholder="Tulis nama label disini" required></input>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>

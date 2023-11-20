@@ -113,6 +113,11 @@
     function postAttribute(data){
         axios.post('{{route('submenu.attribute.post')}}', data)
             .then(function(response){
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "Data yang anda masukan tersimpan dengan baik!",
+                    icon: "success"
+                });
                 console.log(response);
                 afterAction();
                 reloadDatatable();
@@ -139,15 +144,30 @@
 
     $(document).on("click", ".btn-delete-attribute", function(){
         let id = $(this).data("id");
-        let conf = confirm("Apakah anda yakin ingin menghapus data ini?");
-        if(conf){
-            deleteAttribute(id);
-        }
+        Swal.fire({
+            title: "Anda yakin?",
+            text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Kembali",
+            confirmButtonText: "Hapus!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAttribute(id);
+            }
+        });
     });
 
     function deleteAttribute(id){
         axios.delete('./delete/' + id)
             .then(function(response){
+                Swal.fire({
+                    title: "Terhapus!",
+                    text: "Data anda berhasil terhapus!",
+                    icon: "success"
+                });
                 reloadDatatable();
             })
     }

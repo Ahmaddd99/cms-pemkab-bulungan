@@ -159,6 +159,11 @@
                 }
             })
             .then(function(response) {
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "Data yang anda masukan tersimpan dengan baik!",
+                    icon: "success"
+                });
                 console.log(response);
                 afterAction();
                 reloadDatatable();
@@ -194,16 +199,30 @@
     // delete
     $(document).on("click", ".btn-delete-banner", function(){
         let id = $(this).data('id');
-        //console.log(id);
-        let conf = confirm("Anda yakin ingin menghapus data tersebut?");
-        if(conf){
-            deleteBanner(id);
-        }
+        Swal.fire({
+            title: "Anda yakin?",
+            text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Kembali",
+            confirmButtonText: "Hapus!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteBanner(id);
+            }
+        });
     });
 
     function deleteBanner(id){
         axios.delete('./delete/'+id)
             .then(function(response){
+                Swal.fire({
+                    title: "Terhapus!",
+                    text: "Banner berhasil terhapus!",
+                    icon: "success"
+                });
                 reloadDatatable();
             })
             .catch(function(response){

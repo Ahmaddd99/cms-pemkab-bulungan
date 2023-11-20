@@ -197,6 +197,11 @@
             }
         })
         .then(function(response){
+            Swal.fire({
+                title: "Berhasil!",
+                text: "Data yang anda masukan tersimpan dengan baik!",
+                icon: "success"
+            });
             console.log(response);
             afterAction();
             reloadDatatable();
@@ -234,16 +239,30 @@
 
     $(document).on("click", ".btn-delete-subcategory", function(){
         let id = $(this).data('id');
-        console.log(id);
-        let conf = confirm("Apakah anda yakin ingin menghapus subkategori ini?");
-        if(conf){
-            deleteSubcategory(id);
-        }
+        Swal.fire({
+            title: "Anda yakin?",
+            text: "Data yang sudah terhapus tidak bisa dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Kembali",
+            confirmButtonText: "Hapus!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteSubcategory(id);
+            }
+        });
     })
 
     function deleteSubcategory(id){
         axios.delete('./delete/' + id)
             .then(function(response){
+                Swal.fire({
+                    title: "Terhapus!",
+                    text: "Subkategori berhasil terhapus!",
+                    icon: "success"
+                });
                 console.log(response);
                 reloadDatatable();
             })
